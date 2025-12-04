@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetmelik ve Mevzuat - Mersin Etkin Zümre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #0F172A; }
+        a { text-decoration: none; }
+        header { background-color: #0F172A; color: white; padding: 1.2rem 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 700; border-left: 5px solid #E30A17; padding-left: 15px; margin: 0; }
+        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; }
+        nav a { font-family: 'Inter', sans-serif; color: #cbd5e1; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: #E30A17; }
+        .active-page { color: #E30A17 !important; }
+        .btn-forum { background-color: #E30A17; padding: 10px 20px; border-radius: 6px; color: white !important; font-weight: 600; }
+
+        .main-layout { display: flex; gap: 30px; margin-top: 30px; margin-bottom: 50px; flex-wrap: wrap; }
+        .sidebar { flex: 0 0 280px; width: 100%; }
+        .filter-box { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .filter-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; color: #0F172A; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        .menu-item { display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: #64748b; font-weight: 500; border-radius: 8px; transition: 0.2s; cursor: pointer; margin-bottom: 5px; }
+        .menu-item:hover { background-color: #f1f5f9; color: #E30A17; }
+        .menu-item.active { background-color: #fff1f2; color: #E30A17; font-weight: 700; }
+        .content-area { flex: 1; background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-height: 400px; }
+        .page-header { border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px; }
+        .page-title { font-size: 1.2rem; font-weight: 700; color: #0F172A; }
+        .file-row { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f1f5f9; transition: 0.2s; }
+        .file-row:hover { background-color: #f8fafc; padding: 15px 10px; border-radius: 8px; }
+        .file-info { display: flex; align-items: center; gap: 15px; flex: 1; }
+        .file-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.2rem; }
+        .icon-pdf { background-color: #fee2e2; color: #dc2626; }
+        .file-details h4 { font-size: 0.95rem; color: #334155; font-weight: 600; margin-bottom: 2px; }
+        .file-details span { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; background-color: #f1f5f9; color: #64748b; margin-right: 15px; }
+        .btn-download { color: #cbd5e1; font-size: 1.2rem; margin-left: 20px; cursor: pointer; transition: 0.2s; }
+        .btn-download:hover { color: #0F172A; transform: scale(1.1); }
+        .content-section { display: none; }
+        .content-section.show { display: block; }
+
+        @media screen and (max-width: 768px) {
+            .container { width: 95%; }
+            .header-content { flex-direction: column; text-align: center; }
+            .logo { margin-bottom: 20px; }
+            nav ul { flex-direction: column; gap: 10px; width: 100%; padding-bottom: 10px; }
+            .main-layout { flex-direction: column; }
+            .sidebar { width: 100%; flex: none; margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo"><h1>Mersin Etkin Zümre</h1></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="arsiv.html">Zümre Arşivi</a></li>
+                    <li><a href="yonetmelik.html" class="active-page">Yönetmelik</a></li>
+                    <li><a href="ornekler.html">İyi Örnekler</a></li>
+                    <li><a href="tutanak.html">Evrak Oluştur</a></li>
+                    <li><a href="ilceler.html">İlçe Ziyaretleri</a></li>
+                    <li><a href="forum.html" class="btn-forum">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-layout">
+        <aside class="sidebar">
+            <div class="filter-box">
+                <div class="filter-title"><i class="fas fa-book-open"></i> Mevzuat Kategorileri</div>
+                <div class="menu-item active" onclick="openCategory(event, 'sec-genelge')"><i class="fas fa-bullhorn"></i> Genelgeler</div>
+                <div class="menu-item" onclick="openCategory(event, 'sec-temel')"><i class="fas fa-child"></i> Temel Eğitim Yönetmeliği</div>
+                <div class="menu-item" onclick="openCategory(event, 'sec-orta')"><i class="fas fa-graduation-cap"></i> Ortaöğretim Yönetmeliği</div>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <div id="sec-genelge" class="content-section show">
+                <div class="page-header"><div class="page-title">Yayınlanan Genelgeler</div></div>
+                <div class="file-row">
+                    <div class="file-info">
+                        <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+                        <div class="file-details"><h4>Milli Eğitim Bakanlığı 63 Sayılı Genelge</h4><span>PDF Dosyası</span></div>
+                    </div>
+                    <span class="badge">GENELGE</span>
+                    <a href="dosyalar/genelge.pdf" class="btn-download" download><i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            <div id="sec-temel" class="content-section"><div class="page-header"><div class="page-title">Temel Eğitim Yönetmelikleri</div></div><p style="color:#64748b;">Henüz dosya eklenmedi.</p></div>
+            <div id="sec-orta" class="content-section"><div class="page-header"><div class="page-title">Ortaöğretim Yönetmelikleri</div></div><p style="color:#64748b;">Henüz dosya eklenmedi.</p></div>
+        </main>
+    </div>
+
+    <script>
+        function openCategory(evt, categoryName) {
+            var contents = document.getElementsByClassName("content-section");
+            for (var i = 0; i < contents.length; i++) { contents[i].style.display = "none"; }
+            var menuItems = document.getElementsByClassName("menu-item");
+            for (var i = 0; i < menuItems.length; i++) { menuItems[i].className = menuItems[i].className.replace(" active", ""); }
+            document.getElementById(categoryName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>

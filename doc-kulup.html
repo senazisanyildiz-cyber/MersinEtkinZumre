@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kulüp Karar Tutanağı - Mersin Etkin Zümre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Times+New+Roman&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; color: #0F172A; }
+        * { box-sizing: border-box; } a { text-decoration: none; }
+        header { background-color: #0F172A; color: white; padding: 1.2rem 0; }
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 700; border-left: 5px solid #E30A17; padding-left: 15px; margin: 0; }
+        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; }
+        nav a { font-family: 'Inter', sans-serif; color: #cbd5e1; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
+        nav a:hover { color: #E30A17; }
+        .active-page { color: #E30A17 !important; }
+        .btn-forum { background-color: #E30A17; padding: 10px 20px; border-radius: 6px; color: white !important; font-weight: 600; }
+        .editor-layout { display: flex; gap: 20px; padding: 30px 0; height: calc(100vh - 80px); }
+        .input-panel { flex: 0 0 350px; background: white; padding: 20px; border-radius: 10px; overflow-y: auto; }
+        .preview-panel { flex: 1; background: #94a3b8; padding: 20px; display: flex; justify-content: center; overflow-y: auto; }
+        .a4-page { width: 210mm; min-height: 297mm; background: white; padding: 20mm; font-family: 'Times New Roman', serif; box-shadow: 0 0 15px rgba(0,0,0,0.2); font-size: 12pt; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+        .btn-print { background-color: #0F172A; color: white; width: 100%; padding: 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; }
+        @media print { .input-panel, header { display: none; } .a4-page { position: absolute; left: 0; top: 0; width: 100%; margin: 0; box-shadow: none; } }
+        @media screen and (max-width: 768px) { .header-content { flex-direction: column; } nav ul { flex-direction: column; gap: 10px; width:100%; padding-bottom:10px; } .editor-layout { flex-direction: column; height: auto; } .preview-panel { display: none; } }
+    </style>
+</head>
+<body>
+    <header><div class="container header-content"><div class="logo"><h1>Mersin Etkin Zümre</h1></div><nav><ul><li><a href="index.html">Anasayfa</a></li><li><a href="arsiv.html">Zümre Arşivi</a></li><li><a href="yonetmelik.html">Yönetmelik</a></li><li><a href="ornekler.html">İyi Örnekler</a></li><li><a href="tutanak.html" class="active-page">Evrak Oluştur</a></li><li><a href="ilceler.html">İlçe Ziyaretleri</a></li><li><a href="forum.html" class="btn-forum">Forum</a></li></ul></nav></div></header>
+    <div class="container editor-layout">
+        <div class="input-panel">
+            <h3>Kulüp Bilgileri</h3>
+            <input type="text" id="inKulup" placeholder="Kulüp Adı" oninput="update()"><input type="text" id="inTarih" placeholder="Tarih" oninput="update()"><input type="text" id="inYer" placeholder="Yer" oninput="update()"><input type="text" id="inKararNo" placeholder="Karar No" oninput="update()">
+            <hr><label>Gündem</label><textarea id="inGundem" style="height:80px" oninput="update()"></textarea><label>Kararlar</label><textarea id="inKarar" style="height:100px" oninput="update()"></textarea>
+            <button class="btn-print" onclick="window.print()">🖨️ Yazdır</button>
+        </div>
+        <div class="preview-panel">
+            <div class="a4-page">
+                <h3 style="text-align:center; text-transform:uppercase;">SOSYAL KULÜP KARAR TUTANAĞI</h3><br>
+                <p><strong>Kulüp Adı:</strong> <span id="outKulup">...</span></p><p><strong>Karar No:</strong> <span id="outKararNo">...</span></p><p><strong>Tarih / Yer:</strong> <span id="outTarih">...</span> / <span id="outYer">...</span></p><br>
+                <h4>GÜNDEM MADDELERİ:</h4><div id="outGundem" style="white-space: pre-wrap;">...</div><br><h4>ALINAN KARARLAR:</h4><div id="outKarar" style="white-space: pre-wrap;">...</div><br><br><br>
+                <div style="display:flex; justify-content:space-between; text-align:center;"><div>Danışman Öğretmen<br><br>.................</div><div>Kulüp Başkanı<br><br>.................</div><div>Okul Müdürü<br><br>.................</div></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function update() { document.getElementById('outKulup').innerText = document.getElementById('inKulup').value; document.getElementById('outTarih').innerText = document.getElementById('inTarih').value; document.getElementById('outYer').innerText = document.getElementById('inYer').value; document.getElementById('outKararNo').innerText = document.getElementById('inKararNo').value; document.getElementById('outGundem').innerText = document.getElementById('inGundem').value; document.getElementById('outKarar').innerText = document.getElementById('inKarar').value; }
+    </script>
+</body>
+</html>

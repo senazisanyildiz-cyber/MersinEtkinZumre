@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zümre Tutanağı - Mersin Etkin Zümre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Times+New+Roman&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; color: #0F172A; }
+        * { box-sizing: border-box; } a { text-decoration: none; }
+        
+        /* Header */
+        header { background-color: #0F172A; color: white; padding: 1.2rem 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 700; border-left: 5px solid #E30A17; padding-left: 15px; margin: 0; }
+        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; }
+        nav a { font-family: 'Inter', sans-serif; color: #cbd5e1; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
+        nav a:hover { color: #E30A17; }
+        .active-page { color: #E30A17 !important; }
+        .btn-forum { background-color: #E30A17; padding: 10px 20px; border-radius: 6px; color: white !important; font-weight: 600; }
+
+        /* Editor */
+        .editor-layout { display: flex; gap: 20px; padding: 30px 0; height: calc(100vh - 80px); }
+        .input-panel { flex: 0 0 400px; background: white; padding: 25px; border-radius: 10px; overflow-y: auto; }
+        .preview-panel { flex: 1; background: #94a3b8; padding: 20px; display: flex; justify-content: center; overflow-y: auto; }
+        .a4-page { width: 210mm; min-height: 297mm; background: white; padding: 20mm; font-family: 'Times New Roman', serif; font-size: 12pt; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+        
+        /* Form Elemanları */
+        label { font-size: 0.85rem; font-weight: 700; color: #64748b; display: block; margin-bottom: 5px; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: 'Inter', sans-serif; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .box-container { background-color: #f8fafc; border: 1px dashed #cbd5e1; padding: 15px; border-radius: 8px; margin-bottom:10px; }
+        .btn-add { background-color: #22c55e; color: white; width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; }
+        .btn-print { background-color: #0F172A; color: white; width: 100%; padding: 15px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 20px; }
+        .mini-list { list-style: none; padding: 0; margin: 0; }
+        .mini-item { background: #fff; border: 1px solid #e2e8f0; padding: 8px; margin-bottom: 5px; font-size: 0.85rem; display: flex; justify-content: space-between; }
+        .btn-del { color: #ef4444; cursor: pointer; }
+
+        /* Kağıt İçi */
+        .paper-header { text-align: center; margin-bottom: 25px; }
+        .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .info-table td { border: 1px solid #000; padding: 5px 10px; }
+        .print-list { padding-left: 25px; margin: 0; }
+        .signatures-area { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
+
+        @media screen and (max-width: 768px) { 
+            .header-content { flex-direction: column; } nav ul { flex-direction: column; gap: 10px; width:100%; padding-bottom:10px; }
+            .editor-layout { flex-direction: column; height: auto; } .preview-panel { display: none; }
+        }
+        @media print { .input-panel, header { display: none; } .a4-page { position: absolute; left: 0; top: 0; margin: 0; box-shadow: none; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo"><h1>Mersin Etkin Zümre</h1></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="arsiv.html">Zümre Arşivi</a></li>
+                    <li><a href="yonetmelik.html">Yönetmelik</a></li>
+                    <li><a href="ornekler.html">İyi Örnekler</a></li>
+                    <li><a href="tutanak.html" class="active-page">Evrak Oluştur</a></li>
+                    <li><a href="ilceler.html">İlçe Ziyaretleri</a></li>
+                    <li><a href="forum.html" class="btn-forum">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container editor-layout">
+        <div class="input-panel">
+            <h3 style="margin-top:0; color:#E30A17;">Zümre Tutanağı Bilgileri</h3>
+            <input type="text" id="inpTitle" placeholder="Toplantı Başlığı" oninput="updateView()">
+            <input type="text" id="inpSchool" placeholder="Okul Adı" oninput="updateView()">
+            <div class="form-row">
+                <input type="text" id="inpDate" placeholder="Tarih" oninput="updateView()">
+                <select id="inpNo" onchange="updateView()"><option value="1">No: 1</option><option value="2">No: 2</option></select>
+            </div>
+            <input type="text" id="inpPlace" placeholder="Yer" oninput="updateView()">
+            <div class="box-container">
+                <input type="text" id="newAgenda" placeholder="Gündem Maddesi">
+                <textarea id="newDecision" placeholder="Alınan Karar" style="height:60px; margin-top:5px;"></textarea>
+                <button class="btn-add" onclick="addItem()" style="margin-top:10px;">+ Madde Ekle</button>
+            </div>
+            <ul class="mini-list" id="miniListItems"></ul>
+            <div class="box-container" style="margin-top:15px;">
+                <label>İmzalar</label>
+                <input type="text" id="memName" placeholder="Ad Soyad">
+                <input type="text" id="memTitle" placeholder="Ünvan" style="margin-top:5px;">
+                <button class="btn-add" onclick="addMember()" style="margin-top:10px; background-color:#3b82f6;">+ Kişi Ekle</button>
+            </div>
+            <ul class="mini-list" id="miniListMembers"></ul>
+            <input type="text" id="inpPrincipal" placeholder="Okul Müdürü" style="margin-top:15px;" oninput="updateView()">
+            <button class="btn-print" onclick="window.print()">🖨️ Yazdır</button>
+        </div>
+        <div class="preview-panel">
+            <div class="a4-page">
+                <div class="paper-header"><h3 id="outTitle" style="margin:0;">TOPLANTI BAŞLIĞI</h3><p id="outSchool" style="margin:5px 0;">OKUL ADI</p></div>
+                <table class="info-table"><tr><td><strong>Tarih:</strong> <span id="outDate">...</span></td><td><strong>No:</strong> <span id="outNo">1</span></td><td><strong>Yer:</strong> <span id="outPlace">...</span></td></tr></table>
+                <h4 style="text-decoration:underline;">GÜNDEM MADDELERİ</h4><ol id="outAgendaList" class="print-list"><li>...</li></ol>
+                <h4 style="text-decoration:underline;">ALINAN KARARLAR</h4><ol id="outDecisionList" class="print-list"><li>...</li></ol>
+                <div class="signatures-area">
+                    <div id="outMembers" style="display:flex; gap:20px; flex-wrap:wrap;"></div>
+                    <div style="text-align:center; min-width:150px;"><span id="outPrincipal" style="font-weight:bold; display:block;">Ad Soyad</span><span>Okul Müdürü</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let items = [], members = [];
+        function updateView() { document.getElementById('outTitle').innerText = (document.getElementById('inpTitle').value || "BAŞLIK").toUpperCase(); document.getElementById('outSchool').innerText = (document.getElementById('inpSchool').value || "OKUL ADI").toUpperCase(); document.getElementById('outDate').innerText = document.getElementById('inpDate').value; document.getElementById('outNo').innerText = document.getElementById('inpNo').value; document.getElementById('outPlace').innerText = document.getElementById('inpPlace').value; document.getElementById('outPrincipal').innerText = document.getElementById('inpPrincipal').value || "Ad Soyad"; }
+        function addItem() { items.push({ ag: document.getElementById('newAgenda').value, dec: document.getElementById('newDecision').value }); document.getElementById('newAgenda').value = ""; document.getElementById('newDecision').value = ""; render(); }
+        function addMember() { members.push({ name: document.getElementById('memName').value, title: document.getElementById('memTitle').value }); document.getElementById('memName').value = ""; document.getElementById('memTitle').value = ""; render(); }
+        function render() { 
+            document.getElementById('miniListItems').innerHTML = items.map(i => `<li class="mini-item">${i.ag.substring(0,20)}...</li>`).join('');
+            document.getElementById('outAgendaList').innerHTML = items.map(i => `<li>${i.ag}</li>`).join('');
+            document.getElementById('outDecisionList').innerHTML = items.map(i => `<li>${i.dec}</li>`).join('');
+            document.getElementById('miniListMembers').innerHTML = members.map(m => `<li class="mini-item">${m.name}</li>`).join('');
+            document.getElementById('outMembers').innerHTML = members.map(m => `<div style="text-align:center; min-width:120px;"><span style="font-weight:bold; display:block;">${m.name}</span><span>${m.title}</span></div>`).join('');
+        }
+    </script>
+</body>
+</html>

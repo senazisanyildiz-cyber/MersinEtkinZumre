@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proje Detayı - Mersin Etkin Zümre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- GENEL AYARLAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0F172A; line-height: 1.6; }
+        a { text-decoration: none; }
+        
+        /* Navbar (Aynısı) */
+        header { background-color: #0F172A; color: white; padding: 1rem 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .container { width: 90%; max-width: 1000px; margin: 0 auto; } /* Okuma kolaylığı için biraz daralttım */
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.4rem; border-left: 4px solid #E30A17; padding-left: 15px; }
+        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; }
+        nav a { color: #cbd5e1; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: #E30A17; }
+        .btn-forum { background-color: #E30A17; padding: 8px 16px; border-radius: 5px; color: white !important; }
+
+        /* --- DETAY SAYFASI TASARIMI --- */
+        
+        .project-header {
+            background: white;
+            padding: 40px 0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 30px;
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        .badge {
+            background-color: #dbeafe; color: #1e40af;
+            padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;
+        }
+
+        .project-title { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; line-height: 1.2; }
+        .project-school { font-size: 1.1rem; color: #475569; font-weight: 500; }
+
+        /* İçerik Kutusu */
+        .content-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+
+        /* Kapak Resmi */
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            background-color: #cbd5e1;
+        }
+
+        /* Yazı Stili */
+        .project-body { font-size: 1.1rem; color: #334155; line-height: 1.8; }
+        .project-body h3 { color: #0F172A; margin-top: 30px; margin-bottom: 15px; font-size: 1.4rem; border-left: 4px solid #E30A17; padding-left: 10px; }
+        .project-body p { margin-bottom: 20px; }
+
+        /* Yazar Kartı */
+        .author-box {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .avatar-large {
+            width: 60px; height: 60px;
+            background-color: #E30A17;
+            color: white;
+            font-size: 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            font-weight: 700;
+        }
+        .author-info h4 { font-size: 1.1rem; color: #0F172A; margin-bottom: 2px; }
+        .author-info p { color: #64748b; font-size: 0.9rem; }
+
+        /* Geri Dön Butonu */
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: #64748b; font-weight: 600; margin-bottom: 20px;
+        }
+        .back-btn:hover { color: #E30A17; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo"><h1>Mersin Etkin Zümre</h1></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="arsiv.html">Zümre Arşivi</a></li>
+                    <li><a href="yonetmelik.html">Yönetmelik</a></li>
+                    <li><a href="ornekler.html" style="color:#E30A17">İyi Örnekler</a></li>
+                    <li><a href="tutanak.html">Tutanak Oluştur</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="padding-top: 30px;">
+        <a href="ornekler.html" class="back-btn"><i class="fas fa-arrow-left"></i> Listeye Dön</a>
+        
+        <div class="content-box">
+            <div class="meta-info">
+                <span class="badge">İLKOKUL</span>
+                <span><i class="far fa-calendar"></i> 25 Kasım 2025</span>
+            </div>
+            
+            <h1 class="project-title">Atıktan Sanata Geri Dönüşüm Sergisi</h1>
+            <p class="project-school"><i class="fas fa-school"></i> Yenişehir İlkokulu</p>
+
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+
+            <img src="https://images.unsplash.com/photo-1544367563-12123d832e34?q=80&w=1000" class="featured-image" alt="Proje Görseli">
+
+            <div class="project-body">
+                <h3>Projenin Amacı</h3>
+                <p>Bu proje ile öğrencilerimizin çevre bilincini geliştirmeyi ve evsel atıkların aslında birer çöp olmadığını, sanat eserine dönüşebileceğini göstermeyi amaçladık. Görsel Sanatlar dersi müfredatıyla ilişkilendirerek disiplinler arası bir çalışma yürüttük.</p>
+
+                <h3>Uygulama Süreci</h3>
+                <p>Öğrencilerimiz 2 hafta boyunca evlerindeki plastik kapak, karton kutu ve pet şişeleri biriktirdi. Sınıf ortamında bu malzemeleri boyayarak ve keserek çeşitli hayvan figürleri, robotlar ve dekoratif eşyalar tasarladılar.</p>
+
+                <h3>Elde Edilen Sonuçlar</h3>
+                <p>Proje sonunda okulumuzun koridorunda bir sergi düzenledik. Velilerin de katılımıyla öğrencilerimiz eserlerini tanıttı. Bu süreçte hem el becerileri gelişti hem de geri dönüşümün önemi somut bir şekilde kavranmış oldu.</p>
+            </div>
+
+            <div class="author-box">
+                <div class="avatar-large">A</div>
+                <div class="author-info">
+                    <h4>Ayşe Yılmaz</h4>
+                    <p>Sınıf Öğretmeni - Proje Yürütücüsü</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

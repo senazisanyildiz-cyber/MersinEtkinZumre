@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maarif Modelini Anlamak - Mersin Etkin Zümre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- GENEL AYARLAR --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #0F172A; line-height: 1.6; }
+        a { text-decoration: none; }
+        
+        /* --- AKILLI HEADER (SIKIŞMAYAN MENÜ) --- */
+        header {
+            background-color: #0F172A;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container { width: 92%; max-width: 1400px; margin: 0 auto; }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-left: 5px solid #E30A17;
+            padding-left: 15px;
+            margin: 0;
+            white-space: nowrap; /* Logo satır atlamasın */
+        }
+
+        /* Menü Linkleri */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px; /* Boşluğu biraz azalttık */
+            align-items: center;
+            margin: 0; padding: 0;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            font-weight: 500;
+            font-size: 0.9rem; /* Fontu bir tık küçülttük, sığsın diye */
+            transition: 0.3s;
+            white-space: nowrap; /* Linkler satır atlamasın */
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+        nav a:hover { color: #E30A17; background: rgba(255,255,255,0.05); }
+        .active-page { color: #E30A17 !important; font-weight: 700; }
+
+        .btn-forum {
+            background-color: #E30A17;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white !important;
+            font-weight: 600;
+        }
+
+        /* Hamburger İkonu (Başlangıçta Gizli) */
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: white; }
+
+        /* --- MAARİF MODEL İÇERİĞİ --- */
+        .maarif-hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .maarif-hero h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 15px; }
+        .maarif-hero p { color: #64748b; font-size: 1.2rem; max-width: 800px; margin: 0 auto; }
+
+        /* 3 Sütunlu Bilgi Kartları */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: 0.3s;
+            border-top: 5px solid transparent;
+        }
+        .info-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
+
+        /* Kart Renkleri */
+        .card-erdem { border-color: #3b82f6; }
+        .card-deger { border-color: #E30A17; }
+        .card-eylem { border-color: #10b981; }
+
+        .icon-circle {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px auto;
+            color: white;
+        }
+
+        .card-erdem .icon-circle { background: #3b82f6; }
+        .card-deger .icon-circle { background: #E30A17; }
+        .card-eylem .icon-circle { background: #10b981; }
+
+        .info-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #0F172A; }
+        .info-card p { color: #64748b; line-height: 1.7; }
+
+        /* Alt Bilgi Kutusu */
+        .download-section {
+            background: #0F172A;
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .btn-download {
+            display: inline-block;
+            background-color: #E30A17;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn-download:hover { background-color: white; color: #E30A17; }
+
+        /* --- MOBİL VE TABLET UYUMLULUK (MENÜ SIKIŞMASINI ÖNLER) --- */
+        @media screen and (max-width: 1150px) { /* 1150px altındaki her ekranda hamburger çıkar */
+            
+            .hamburger { display: block; } /* İkonu göster */
+
+            /* Menüyü Gizle ve Mobilleştir */
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #0F172A;
+                padding: 20px 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            nav.active { display: block; animation: slideDown 0.3s ease; }
+
+            nav ul { flex-direction: column; gap: 0; }
+            nav a { 
+                display: block; 
+                padding: 15px 20px; 
+                width: 100%; 
+                text-align: center;
+                font-size: 1.1rem; 
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .btn-forum { width: 80%; margin: 10px auto; display: block; text-align: center; }
+        }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo"><h1>Mersin Etkin Zümre</h1></div>
+            
+            <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="arsiv.html">Zümre Arşivi</a></li>
+                    <li><a href="yonetmelik.html">Yönetmelik</a></li>
+                    
+                    <li><a href="maarif.html" class="active-page">Maarifi Anlamak</a></li>
+                    
+                    <li><a href="ornekler.html">İyi Örnekler</a></li>
+                    <li><a href="tutanak.html">Evrak Oluştur</a></li>
+                    <li><a href="ilceler.html">İlçe Ziyaretleri</a></li>
+                    <li><a href="forum.html" class="btn-forum">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="maarif-hero">
+        <div class="container">
+            <span style="background:#e0f2fe; color:#0369a1; padding:5px 15px; border-radius:20px; font-weight:700; font-size:0.9rem;">YENİ MÜFREDAT</span>
+            <h2 style="margin-top:15px;">Türkiye Yüzyılı Maarif Modeli</h2>
+            <p>Erdemli insan, yetkin toplum hedefiyle hazırlanan, beceri odaklı ve bütüncül eğitim yaklaşımı.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card card-erdem">
+                <div class="icon-circle"><i class="fas fa-brain"></i></div>
+                <h3>Bütüncül Eğitim</h3>
+                <p>Öğrenciyi sadece akademik değil; zihinsel, sosyal, duygusal ve fiziksel olarak bir bütün halinde ele alan yaklaşım.</p>
+            </div>
+
+            <div class="info-card card-deger">
+                <div class="icon-circle"><i class="fas fa-heart"></i></div>
+                <h3>Erdem - Değer - Eylem</h3>
+                <p>Milli ve manevi değerlerimizin, günlük hayattaki davranışlara (eyleme) dönüşmesini hedefleyen karakter eğitimi.</p>
+            </div>
+
+            <div class="info-card card-eylem">
+                <div class="icon-circle"><i class="fas fa-tools"></i></div>
+                <h3>Beceri Odaklılık</h3>
+                <p>Ezber bilgi yerine; analiz etme, sorgulama ve üretme becerilerini geliştiren kavramsal öğrenme süreçleri.</p>
+            </div>
+
+        </div>
+
+        <div class="download-section">
+            <h2>Ortak Metni İncelediniz mi?</h2>
+            <p style="opacity:0.8; margin-top:10px;">Türkiye Yüzyılı Maarif Modeli Ortak Metni ve Öğretim Programlarını buradan indirebilirsiniz.</p>
+            <a href="https://mufredat.meb.gov.tr/" target="_blank" class="btn-download">
+                <i class="fas fa-download"></i> Müfredat Dosyasını İndir
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("nav-menu").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

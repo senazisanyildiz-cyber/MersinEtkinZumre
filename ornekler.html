@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi Örnekler - Mersin Etkin Zümre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; margin: 0; color: #0F172A; line-height: 1.6; }
+        a { text-decoration: none; transition: 0.3s; }
+        header { background-color: #0F172A; color: white; padding: 1.2rem 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .container { width: 92%; max-width: 1300px; margin: 0 auto; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 700; border-left: 5px solid #E30A17; padding-left: 15px; margin: 0; }
+        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; }
+        nav a { font-family: 'Inter', sans-serif; color: #cbd5e1; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: #E30A17; }
+        .active-page { color: #E30A17 !important; }
+        .btn-forum { background-color: #E30A17; padding: 10px 20px; border-radius: 6px; color: white !important; font-weight: 600; }
+
+        .page-header { text-align: center; padding: 60px 0 40px 0; background: linear-gradient(to bottom, #f1f5f9, #f8fafc); border-bottom: 1px solid #e2e8f0; }
+        .page-header h2 { font-size: 2.2rem; margin-bottom: 10px; color: #0F172A; }
+        .page-header p { color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px auto; }
+        .submit-box { background-color: white; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 30px; max-width: 700px; margin: 0 auto; text-align: center; transition: 0.3s; }
+        .submit-box:hover { border-color: #E30A17; background-color: #fff1f2; }
+        .submit-title { font-weight: 700; color: #0F172A; margin-bottom: 5px; display: block; }
+        .submit-desc { font-size: 0.9rem; color: #64748b; margin-bottom: 20px; display: block; }
+        .btn-submit { background-color: #E30A17; color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-submit:hover { background-color: #b90812; transform: translateY(-2px); }
+        .filter-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+        .filter-btn { padding: 8px 25px; border-radius: 30px; background: white; border: 1px solid #e2e8f0; color: #64748b; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: 0.3s; }
+        .filter-btn:hover { border-color: #0F172A; color: #0F172A; }
+        .filter-btn.active { background-color: #0F172A; color: white; border-color: #0F172A; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; padding-bottom: 80px; }
+        .project-card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid #f1f5f9; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: 0.3s ease; position: relative; display: flex; flex-direction: column; color: inherit; animation: fadeIn 0.5s ease; }
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .card-image-wrapper { position: relative; height: 220px; overflow: hidden; background-color: #cbd5e1; }
+        .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .project-card:hover .card-image-wrapper img { transform: scale(1.05); }
+        .category-badge { position: absolute; top: 15px; right: 15px; padding: 6px 14px; border-radius: 8px; color: white; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .bg-purple { background-color: #8b5cf6; } .bg-blue { background-color: #3b82f6; } .bg-teal { background-color: #14b8a6; } .bg-orange { background-color: #f97316; }
+        .card-content { padding: 25px; flex: 1; display: flex; flex-direction: column; }
+        .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; color: #0F172A; line-height: 1.4; }
+        .card-desc { font-size: 0.95rem; color: #64748b; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .author { display: flex; align-items: center; gap: 10px; }
+        .author img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; background: #e2e8f0; }
+        .author-name { font-size: 0.85rem; font-weight: 600; color: #334155; }
+        .author-school { font-size: 0.75rem; color: #94a3b8; display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @media screen and (max-width: 768px) { .header-content { flex-direction: column; } nav ul { flex-direction: column; gap: 10px; width:100%; padding-bottom:10px; } .projects-grid { grid-template-columns: 1fr; } .showcase-hero h2 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo"><h1>Mersin Etkin Zümre</h1></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="arsiv.html">Zümre Arşivi</a></li>
+                    <li><a href="yonetmelik.html">Yönetmelik</a></li>
+                    <li><a href="ornekler.html" class="active-page">İyi Örnekler</a></li>
+                    <li><a href="tutanak.html">Evrak Oluştur</a></li>
+                    <li><a href="ilceler.html">İlçe Ziyaretleri</a></li>
+                    <li><a href="forum.html" class="btn-forum">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h2>İlham Veren Projeler</h2>
+            <p>Sınıflarınızda uyguladığınız yaratıcı etkinlikleri ve projeleri meslektaşlarınızla paylaşın.</p>
+            <div class="submit-box">
+                <span class="submit-title">Sizin de paylaşmak istediğiniz bir projeniz mi var?</span>
+                <span class="submit-desc">Çalışmanızı bize gönderin, inceleyelim ve yayınlayalım.</span>
+                <a href="basvuru.html" class="btn-submit"><i class="fas fa-paper-plane"></i> Projeni Gönder</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterProjects('all', this)">Tümü</button>
+            <button class="filter-btn" onclick="filterProjects('anaokulu', this)">Anaokulu</button>
+            <button class="filter-btn" onclick="filterProjects('ilkokul', this)">İlkokul</button>
+            <button class="filter-btn" onclick="filterProjects('ortaokul', this)">Ortaokul</button>
+            <button class="filter-btn" onclick="filterProjects('lise', this)">Lise</button>
+        </div>
+
+        <div class="projects-grid">
+            <a href="ornek-detay.html" class="project-card" data-category="ilkokul">
+                <div class="card-image-wrapper">
+                    <span class="category-badge bg-blue">İlkokul</span>
+                    <img src="https://images.unsplash.com/photo-1544367563-12123d832e34?q=80&w=600&auto=format&fit=crop" alt="Sanat">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Atıktan Sanata Geri Dönüşüm</h3>
+                    <p class="card-desc">Görsel sanatlar dersinde öğrencilerimizle evsel atıkları kullanarak harika 3D maketler tasarladık.</p>
+                    <div class="card-footer">
+                        <div class="author"><img src="https://ui-avatars.com/api/?name=Ayse+Yilmaz&background=3b82f6&color=fff" alt="Profil"><div><span class="author-name">Ayşe Yılmaz</span><span class="author-school">Yenişehir İlkokulu</span></div></div>
+                        <div class="card-stats"><div class="stat-item"><i class="fas fa-heart"></i> 24</div></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function filterProjects(category, btnElement) {
+            var buttons = document.getElementsByClassName('filter-btn');
+            for(var i=0; i<buttons.length; i++) { buttons[i].classList.remove('active'); }
+            btnElement.classList.add('active');
+            var cards = document.querySelectorAll('.project-card');
+            cards.forEach(function(card) {
+                var cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) { card.style.display = 'flex'; card.style.animation = 'fadeIn 0.5s ease'; }
+                else { card.style.display = 'none'; }
+            });
+        }
+    </script>
+</body>
+</html>

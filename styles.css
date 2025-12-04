@@ -1,0 +1,132 @@
+/* Genel Ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #FFFFFF; /* Zemin Beyazı */
+    color: #0F172A; /* Metin rengi olarak Kurumsal Koyu */
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Üst Menü Tasarımı */
+header {
+    background-color: #0F172A; /* Kurumsal Koyu */
+    color: white;
+    padding: 1rem 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-left: 4px solid #E30A17; /* MEB Kırmızısı vurgusu */
+    padding-left: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #e2e8f0;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #E30A17; /* Üzerine gelince MEB Kırmızısı */
+}
+
+/* Özel Forum Butonu */
+.btn-forum {
+    background-color: #E30A17; /* MEB Kırmızısı */
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: white !important;
+}
+
+.btn-forum:hover {
+    background-color: #b90812; /* Kırmızının koyu tonu */
+}
+
+/* Karşılama Alanı (Hero) */
+.hero {
+    background-color: #f1f5f9; /* Çok açık gri arka plan */
+    text-align: center;
+    padding: 80px 20px;
+    border-bottom: 5px solid #E30A17;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #0F172A;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #0F172A;
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #E30A17;
+    transition: 0.3s;
+}
+
+/* Kartlar Alanı */
+.features {
+    display: flex;
+    gap: 20px;
+    padding: 50px 0;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 4px solid #0F172A;
+    min-width: 250px;
+}
+
+.card h3 {
+    color: #E30A17;
+    margin-bottom: 10px;
+}
+
+/* Alt Bilgi (Footer) */
+footer {
+    background-color: #0F172A;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 50px;
+    font-size: 0.9rem;
+}

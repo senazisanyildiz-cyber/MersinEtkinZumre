@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ölçme ve Değerlendirme - Mersin Etkin Zümre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Times+New+Roman&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; color: #0F172A; }
+        * { box-sizing: border-box; } a { text-decoration: none; }
+        header { background-color: #0F172A; color: white; padding: 1.2rem 0; }
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 700; border-left: 5px solid #E30A17; padding-left: 15px; margin: 0; }
+        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; }
+        nav a { font-family: 'Inter', sans-serif; color: #cbd5e1; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
+        nav a:hover { color: #E30A17; }
+        .active-page { color: #E30A17 !important; }
+        .btn-forum { background-color: #E30A17; padding: 10px 20px; border-radius: 6px; color: white !important; font-weight: 600; }
+        .editor-layout { display: flex; gap: 20px; padding: 30px 0; height: calc(100vh - 80px); }
+        .input-panel { flex: 0 0 350px; background: white; padding: 20px; border-radius: 10px; overflow-y: auto; }
+        .preview-panel { flex: 1; background: #94a3b8; padding: 20px; display: flex; justify-content: center; overflow-y: auto; }
+        .a4-page { width: 297mm; height: 210mm; background: white; padding: 15mm; font-family: 'Times New Roman', serif; color: black; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+        .rubric-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid black; padding-bottom: 10px; }
+        .rubric-table { width: 100%; border-collapse: collapse; font-size: 11pt; }
+        .rubric-table th, .rubric-table td { border: 1px solid black; padding: 5px; text-align: center; }
+        .rubric-table th { background-color: #f0f0f0; font-weight: bold; }
+        .text-left { text-align: left !important; padding-left: 10px !important; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+        .btn-print { background-color: #0F172A; color: white; width: 100%; padding: 12px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; }
+        @media print { body * { visibility: hidden; } .a4-page, .a4-page * { visibility: visible; } .a4-page { position: absolute; left: 0; top: 0; width: 100%; margin: 0; box-shadow: none; } @page { size: landscape; } }
+        @media screen and (max-width: 768px) { .header-content { flex-direction: column; } nav ul { flex-direction: column; gap: 10px; width:100%; padding-bottom:10px; } .editor-layout { flex-direction: column; height: auto; } .preview-panel { display: none; } }
+    </style>
+</head>
+<body>
+    <header><div class="container header-content"><div class="logo"><h1>Mersin Etkin Zümre</h1></div><nav><ul><li><a href="index.html">Anasayfa</a></li><li><a href="arsiv.html">Zümre Arşivi</a></li><li><a href="yonetmelik.html">Yönetmelik</a></li><li><a href="ornekler.html">İyi Örnekler</a></li><li><a href="tutanak.html" class="active-page">Evrak Oluştur</a></li><li><a href="ilceler.html">İlçe Ziyaretleri</a></li><li><a href="forum.html" class="btn-forum">Forum</a></li></ul></nav></div></header>
+    <div class="container editor-layout">
+        <div class="input-panel">
+            <h3 style="margin-top:0;">Ölçme Aracı Bilgileri</h3>
+            <label>Ders</label><input type="text" id="inpDers" oninput="updateRubric()"><label>Sınıf</label><input type="text" id="inpSinif" oninput="updateRubric()"><label>Alt Başlık</label><input type="text" id="inpScope" oninput="updateRubric()"><label>Konu</label><input type="text" id="inpKonu" oninput="updateRubric()">
+            <hr style="margin:20px 0;"><label>Öğrenci Listesi</label><textarea id="inpStudents" style="height:150px;" oninput="updateStudents()"></textarea>
+            <button class="btn-print" onclick="window.print()">🖨️ Yazdır</button>
+        </div>
+        <div class="preview-panel">
+            <div class="a4-page">
+                <div class="rubric-header"><h2>SÜREÇ ODAKLI DEĞERLENDİRME GÖZLEM FORMU</h2><p id="outScope"></p></div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-weight:bold;"><span id="outDers">Ders: ...</span><span id="outSinif">Sınıf: ...</span><span id="outKonu">Konu: ...</span></div>
+                <table class="rubric-table"><thead><tr><th width="5%">No</th><th width="25%">Adı Soyadı</th><th>Derse Katılım (1-5)</th><th>Araştırma (1-5)</th><th>İşbirliği (1-5)</th><th>Sonuç (1-5)</th><th>TOPLAM</th><th>DÜŞÜNCELER</th></tr></thead><tbody id="studentTableBody"><tr><td>1</td><td class="text-left">Örnek Öğrenci</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateRubric() { document.getElementById('outDers').innerText = "Ders: " + document.getElementById('inpDers').value; document.getElementById('outSinif').innerText = "Sınıf: " + document.getElementById('inpSinif').value; document.getElementById('outKonu').innerText = "Konu: " + document.getElementById('inpKonu').value; document.getElementById('outScope').innerText = document.getElementById('inpScope').value; }
+        function updateStudents() { const text = document.getElementById('inpStudents').value; const lines = text.split('\n'); const tbody = document.getElementById('studentTableBody'); tbody.innerHTML = ""; lines.forEach((name, index) => { if(name.trim() !== "") { tbody.innerHTML += `<tr><td>${index + 1}</td><td class="text-left">${name}</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`; } }); }
+    </script>
+</body>
+</html>
