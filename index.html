@@ -38,6 +38,9 @@
             color: var(--text-gray);
             line-height: 1.6;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         a {
@@ -78,7 +81,7 @@
         }
 
         .meb-logo {
-            height: 110px; /* Logo boyutu ideal */
+            height: 110px;
             width: auto;
             display: block;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
@@ -344,7 +347,7 @@
             border-left: 4px solid var(--meb-red);
         }
 
-        /* --- FAYDALI BAĞLANTILAR (LINKLER DÜZELTİLDİ) --- */
+        /* --- FAYDALI BAĞLANTILAR (GÜNCELLENDİ) --- */
         .useful-links {
             background-color: #fff;
             padding: 12px 0;
@@ -472,6 +475,7 @@
             padding: 40px 0;
             border-top: 4px solid var(--meb-red);
             font-size: 0.95rem;
+            margin-top: auto;
         }
         .footer-note {
             margin-top: 10px;
@@ -491,7 +495,7 @@
                 width: 100%;
                 justify-content: center;
                 text-align: center;
-                flex-direction: column; /* Mobilde logo üstte kalsın */
+                flex-direction: column;
                 gap: 10px;
             }
             
@@ -622,16 +626,21 @@
             <div class="useful-links-inner">
                 <span class="links-title-inline"><i class="fas fa-link"></i> Hızlı Erişim:</span>
                 <div class="links-grid-inline">
+                    
+                    <a href="https://tymm.meb.gov.tr" target="_blank" class="link-item">
+                        <i class="fas fa-bullseye"></i> TYMM Platformu
+                    </a>
+
+                    <a href="https://tymm.meb.gov.tr/sinif-ici-etkinlik-videolari" target="_blank" class="link-item">
+                        <i class="fas fa-video"></i> Sınıf İçi Etkinlik Videoları
+                    </a>
+
                     <a href="https://mufredat.meb.gov.tr" target="_blank" class="link-item">
-                        <i class="fas fa-landmark"></i> Türkiye Yüzyılı Maarif Modeli
+                        <i class="fas fa-landmark"></i> Mufredat.meb
                     </a>
                     
                     <a href="https://ttkb.meb.gov.tr" target="_blank" class="link-item">
-                        <i class="fas fa-book-open"></i> Talim ve Terbiye Kurulu (TTKB)
-                    </a>
-                    
-                    <a href="http://kitapinceleme.meb.gov.tr" target="_blank" class="link-item">
-                        <i class="fas fa-search"></i> TTKB Kitap İnceleme / İDES
+                        <i class="fas fa-book-open"></i> Talim ve Terbiye Kurulu
                     </a>
                     
                     <a href="https://ogmmateryal.eba.gov.tr" target="_blank" class="link-item">
