@@ -1,735 +1,225 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mersin Etkin Zümre Platformu</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mersin Etkin Zümre</title>
 
-    <!-- Fontlar -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap"
-        rel="stylesheet"
-    />
-    <!-- İkonlar -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+<style>
 
-    <style>
-        /* --- GENEL AYARLAR --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "Inter", sans-serif;
-            background-color: #ffffff;
-            color: #333;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        ul {
-            list-style: none;
-        }
+/* === GENEL AYARLAR === */
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: #FFFFFF;
+    color: #0F172A;
+}
 
-        .container {
-            width: 94%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+/* === HEADER === */
+.top-header {
+    background-color: #FFFFFF;
+    padding: 0 40px;
+    border-bottom: 4px solid #E30A17;
+}
 
-        /* --- ÜST BANT --- */
-        .top-header {
-            background-color: #fff;
-            padding: 14px 0 18px;
-            border-bottom: 1px solid #e2e8f0;
-        }
+.top-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 90px;   /* İncelttik */
+}
 
-        .top-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 120px; /* daha kompakt */
-        }
+/* === LOGO VE METİN === */
+.brand-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
-        /* LOGO ALANI */
-        .brand-area {
-            display: flex;
-            align-items: center;
-            gap: 14px; /* logo-yazı arası boşluk azaltıldı */
-        }
+.meb-logo {
+    height: 150px;      /* Optimize edildi */
+    width: auto;
+}
 
-        .meb-logo {
-            height: 180px; /* masaüstünde büyük ama dengeli */
-            width: auto;
-            display: block;
-        }
+.brand-text h1 {
+    font-size: 2.1rem;  /* Daha profesyonel */
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 0;
+    color: #0F172A;
+}
 
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .brand-text h1 {
-            font-size: 2.4rem;
-            font-weight: 900;
-            color: #0f172a;
-            line-height: 1.05;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            margin: 0;
-        }
-        .brand-text span {
-            font-size: 1.05rem;
-            color: #64748b;
-            font-weight: 600;
-            margin-top: 6px;
-        }
+.brand-text h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #6B7280;
+}
 
-        /* SLOGAN ALANI */
-        .slogan-area {
-            text-align: right;
-            margin-top: 20px;
-        }
-        .slogan-text {
-            font-family: "Playfair Display", serif;
-            font-size: 1.6rem;
-            font-style: italic;
-            color: #e30a17;
-            font-weight: 600;
-        }
+/* === SLOGAN === */
+.slogan-area {
+    text-align: right;
+    font-size: 1.4rem;
+    font-family: "Times New Roman", serif;
+    color: #E30A17;
+    margin-top: 10px;
+}
 
-        /* --- NAVİGASYON ÇUBUĞU --- */
-        .main-nav {
-            background-color: #0f172a;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-top: 4px solid #e30a17;
-            height: 60px;
-        }
+/* === NAVBAR === */
+.navbar {
+    background-color: #0F172A;
+    color: #FFFFFF;
+    font-weight: 600;
+}
 
-        .nav-container {
-            width: 94%;
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
+.nav-list {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 18px 0;
+}
 
-        .desktop-nav {
-            display: flex;
-            height: 100%;
-            align-items: center;
-        }
-        .nav-item {
-            height: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
+.nav-list a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.95rem;
+}
 
-        .nav-link {
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 0 22px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            border-right: 1px solid rgba(255, 255, 255, 0.06);
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.35px;
-        }
-        .nav-link:hover,
-        .nav-item:hover .nav-link {
-            background-color: #e30a17;
-        }
-        .nav-link i {
-            margin-left: 6px;
-            font-size: 0.75rem;
-            opacity: 0.8;
-        }
+.nav-list a:hover {
+    color: #E30A17;
+}
 
-        /* DROPDOWN MENÜ */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: white;
-            min-width: 250px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            border-top: 3px solid #e30a17;
-            padding: 5px 0;
-            z-index: 9999;
-        }
-        .nav-item:hover .dropdown-menu {
-            display: block;
-            animation: fadeIn 0.2s ease;
-        }
+/* === FAYDALI BAĞLANTILAR === */
+.useful-links {
+    background-color: #F8FAFC;
+    padding: 8px 0;    /* incelttik */
+    border-bottom: 1px solid #E5E7EB;
+    font-size: 0.95rem;
+}
 
-        .dropdown-item a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: #333;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-bottom: 1px solid #f1f5f9;
-            transition: 0.2s;
-        }
-        .dropdown-item a i {
-            width: 25px;
-            color: #64748b;
-        }
-        .dropdown-item a:hover {
-            background-color: #f8fafc;
-            color: #e30a17;
-            padding-left: 25px;
-        }
-        .dropdown-item a:hover i {
-            color: #e30a17;
-        }
+.useful-links ul {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 10px 40px;
+    margin: 0;
+}
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+.useful-links a {
+    text-decoration: none;
+    background-color: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 20px;
+    padding: 8px 18px;
+    color: #0F172A;
+    font-size: 0.85rem;
+}
 
-        /* --- MOBİL İÇİN HAMBURGER --- */
-        .hamburger {
-            display: none;
-            font-size: 1.8rem;
-            color: white;
-            cursor: pointer;
-            padding: 10px;
-        }
+.useful-links a:hover {
+    background-color: #E30A17;
+    color: white;
+}
 
-        /* --- YAN MENÜ (SIDEBAR) --- */
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            backdrop-filter: blur(2px);
-        }
+/* === HERO === */
+.hero {
+    background-image:
+        linear-gradient( rgba(15,23,42,0.85), rgba(15,23,42,0.60) ),
+        url('mersin.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 160px 25px;  /* Daha geniş */
+    text-align: center;
+    color: white;
+}
 
-        .sidebar-menu {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 280px;
-            height: 100%;
-            background-color: #0f172a;
-            z-index: 2001;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
+.hero h2 {
+    font-size: 3rem;    /* Premium başlık */
+    margin: 0 0 10px 0;
+    letter-spacing: -1px;
+}
 
-        body.menu-open .sidebar-overlay {
-            opacity: 1;
-            visibility: visible;
-        }
-        body.menu-open .sidebar-menu {
-            left: 0;
-        }
+.hero p {
+    font-size: 1.1rem;
+    max-width: 780px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
 
-        .sidebar-header {
-            padding: 20px;
-            background: #0b1120;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 2100;
-        }
-        .sidebar-brand {
-            font-weight: 800;
-            color: white;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-        .close-btn {
-            color: white;
-            font-size: 1.4rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .close-btn:hover {
-            color: #e30a17;
-            transform: rotate(90deg);
-        }
+/* === MOBİL === */
+@media screen and (max-width: 1100px) {
+    .top-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .meb-logo {
+        height: 80px;
+    }
+    .nav-list {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
 
-        .sidebar-list {
-            padding: 10px 0;
-            margin: 0;
-        }
-        .sidebar-link {
-            display: block;
-            padding: 12px 20px;
-            color: #cbd5e1;
-            font-weight: 500;
-            font-size: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            transition: 0.2s;
-        }
-        .sidebar-link:hover {
-            background-color: rgba(255, 255, 255, 0.08);
-            color: #e30a17;
-            padding-left: 30px;
-        }
-        .sidebar-link.active {
-            color: #e30a17;
-            background: rgba(227, 10, 23, 0.1);
-            border-left: 4px solid #e30a17;
-        }
-
-        /* --- YENİ: ÜSTE TAŞINAN FAYDALI BAĞLANTILAR --- */
-        .useful-links {
-            background-color: #f8fafc;
-            padding: 18px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .useful-links-inner {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-        }
-        .links-title-inline {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-right: 8px;
-            white-space: nowrap;
-        }
-        .links-grid-inline {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .link-item {
-            background: white;
-            padding: 7px 16px;
-            border-radius: 999px;
-            border: 1px solid #e2e8f0;
-            color: #4b5563;
-            font-weight: 500;
-            transition: 0.2s;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-        }
-        .link-item i {
-            margin-right: 6px;
-            font-size: 0.8rem;
-        }
-        .link-item:hover {
-            border-color: #e30a17;
-            color: #e30a17;
-            transform: translateY(-1px);
-        }
-
-        /* --- HERO --- */
-        .hero {
-            background-image: linear-gradient(
-                    rgba(15, 23, 42, 0.85),
-                    rgba(15, 23, 42, 0.7)
-                ),
-                url("mersin.jpg");
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            padding: 110px 20px;
-            color: white;
-            border-bottom: 5px solid #e30a17;
-        }
-        .hero h2 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            margin-bottom: 14px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-        .hero p {
-            font-size: 1.1rem;
-            opacity: 0.92;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        /* --- KARTLAR --- */
-        .features {
-            display: flex;
-            gap: 25px;
-            padding: 40px 0 50px;
-            flex-wrap: wrap;
-        }
-        .card {
-            flex: 1;
-            background: white;
-            border: 1px solid #e2e8f0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: 0.3s;
-            border-top: 4px solid #0f172a;
-            min-width: 280px;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            border-top-color: #e30a17;
-        }
-        .card h3 {
-            font-size: 1.3rem;
-            color: #0f172a;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        footer {
-            background-color: #0f172a;
-            color: #94a3b8;
-            text-align: center;
-            padding: 30px 0;
-            border-top: 4px solid #e30a17;
-            font-size: 0.9rem;
-        }
-
-        /* --- MOBİL UYUM --- */
-        @media screen and (max-width: 1100px) {
-            .top-header {
-                padding: 10px 0 12px;
-            }
-            .top-content {
-                flex-direction: column;
-                gap: 10px;
-                align-items: flex-start;
-                min-height: auto;
-            }
-
-            .brand-area {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-            .meb-logo {
-                height: 80px; /* mobilde daha kompakt */
-            }
-            .brand-text h1 {
-                font-size: 1.6rem;
-            }
-            .brand-text span {
-                font-size: 0.95rem;
-            }
-
-            .slogan-area {
-                width: 100%;
-                text-align: right;
-                margin-top: -4px;
-                padding-right: 10px;
-            }
-            .slogan-text {
-                font-size: 1.2rem;
-            }
-
-            .desktop-nav {
-                display: none;
-            }
-            .hamburger {
-                display: block;
-                margin-left: auto;
-            }
-
-            .useful-links {
-                padding: 12px 0;
-            }
-            .links-title-inline {
-                margin-bottom: 4px;
-            }
-
-            .hero {
-                padding: 80px 15px;
-            }
-            .hero h2 {
-                font-size: 2.1rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+</style>
 </head>
+
 <body>
-    <!-- ÜST BANT (LOGO + BAŞLIK + SLOGAN) -->
-    <div class="top-header">
-        <div class="container top-content">
-            <div class="brand-area">
-                <img
-                    src="EZKLogo.png"
-                    alt="Mersin Etkin Zümre Logosu"
-                    class="meb-logo"
-                />
-                <div class="brand-text">
-                    <h1>MERSİN ETKİN ZÜMRE</h1>
-                    <span>Eğitimde Birlik ve İlerleme Platformu</span>
-                </div>
-            </div>
-            <div class="slogan-area">
-                <span class="slogan-text">"Köklerden Geleceğe..."</span>
+
+<!-- ================= TOP HEADER ================= -->
+<header class="top-header">
+    <div class="top-content">
+
+        <div class="brand-area">
+            <img src="EZKLogo.png" alt="Mersin Logo" class="meb-logo">
+            <div class="brand-text">
+                <h1>MERSİN ETKİN ZÜMRE</h1>
+                <h2>Türkiye Yüzyılı Maarif Modeli Yer Alıyor</h2>
             </div>
         </div>
+
+        <div class="slogan-area">
+            "Köklerden Geleceğe..."
+        </div>
+
     </div>
+</header>
 
-    <!-- ANA MENÜ -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <ul class="desktop-nav">
-                <li class="nav-item active">
-                    <a href="index.html" class="nav-link">ANASAYFA</a>
-                </li>
-                <li class="nav-item">
-                    <a href="arsiv.html" class="nav-link">ZÜMRE ARŞİVİ</a>
-                </li>
-                <li class="nav-item">
-                    <a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a>
-                </li>
+<!-- ================= NAV ================= -->
+<nav class="navbar">
+    <ul class="nav-list">
+        <li><a href="index.html">ANASAYFA</a></li>
+        <li><a href="arsiv.html">ZÜMRE ARŞİVİ</a></li>
+        <li><a href="yonetmelik.html">YÖNETMELİK</a></li>
+        <li><a href="tutanak.html">EVRAK OLUŞTUR</a></li>
+        <li><a href="maarif.html">MAARİFİ ANLAMAK</a></li>
+        <li><a href="ilceler.html">İLÇE ZİYARETLERİ</a></li>
+        <li><a href="ornekler.html">İYİ ÖRNEKLER</a></li>
+        <li><a href="forum.html">FORUM</a></li>
+    </ul>
+</nav>
 
-                <li class="nav-item">
-                    <a href="tutanak.html" class="nav-link">
-                        EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item">
-                            <a href="doc-zumre.html"
-                                ><i class="fas fa-users"></i> Zümre Tutanağı</a
-                            >
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="doc-plan.html"
-                                ><i class="fas fa-calendar-alt"></i> Yıllık Plan</a
-                            >
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="doc-sinav.html"
-                                ><i class="fas fa-file-alt"></i> Yazılı Sınav</a
-                            >
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="doc-olcme.html"
-                                ><i class="fas fa-tasks"></i> Ölçme Değerlendirme</a
-                            >
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="doc-kulup.html"
-                                ><i class="fas fa-hands-helping"></i> Kulüp
-                                Evrakları</a
-                            >
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="doc-sinif.html"
-                                ><i class="fas fa-chalkboard-teacher"></i> Sınıf
-                                Rehberlik</a
-                            >
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="nav-item">
-                    <a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a>
-                </li>
-                <li class="nav-item">
-                    <a href="ilceler.html" class="nav-link">İLÇE ZİYARETLERİ</a>
-                </li>
-                <li class="nav-item">
-                    <a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a>
-                </li>
-                <li class="nav-item">
-                    <a href="forum.html" class="nav-link">FORUM</a>
-                </li>
-            </ul>
+<!-- ================= FAYDALI BAĞLANTILAR ================= -->
+<section class="useful-links">
+    <ul>
+        <li><a href="#">🏛 Türkiye Yüzyılı Maarif Modeli</a></li>
+        <li><a href="#">📘 Talim ve Terbiye Kurulu (TTKB)</a></li>
+        <li><a href="#">🔎 TTKB Kitap İnceleme / İDES</a></li>
+        <li><a href="#">🏫 Okul Temelli Planlama – MEB</a></li>
+        <li><a href="#">📍 Mersin İl MEM</a></li>
+    </ul>
+</section>
 
-            <div class="hamburger" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
 
-    <!-- ÜSTE TAŞINMIŞ FAYDALI BAĞLANTILAR -->
-    <section class="useful-links">
-        <div class="container">
-            <div class="useful-links-inner">
-                <span class="links-title-inline">
-                    Faydalı Bağlantılar:
-                </span>
-                <div class="links-grid-inline">
-                    <a
-                        href="https://tymm.meb.gov.tr/"
-                        target="_blank"
-                        class="link-item"
-                    >
-                        <i class="fas fa-landmark"></i>
-                        Türkiye Yüzyılı Maarif Modeli
-                    </a>
-                    <a
-                        href="https://ttkb.meb.gov.tr/"
-                        target="_blank"
-                        class="link-item"
-                    >
-                        <i class="fas fa-book-open"></i>
-                        Talim ve Terbiye Kurulu (TTKB)
-                    </a>
-                    <a
-                        href="http://kitapinceleme.meb.gov.tr/"
-                        target="_blank"
-                        class="link-item"
-                    >
-                        <i class="fas fa-search"></i>
-                        TTKB Kitap İnceleme / İDES
-                    </a>
-                    <a
-                        href="https://www.meb.gov.tr/"
-                        target="_blank"
-                        class="link-item"
-                    >
-                        <i class="fas fa-school"></i>
-                        Okul Temelli Planlama – MEB
-                    </a>
-                    <a
-                        href="https://mersin.meb.gov.tr/"
-                        target="_blank"
-                        class="link-item"
-                    >
-                        <i class="fas fa-map-marker-alt"></i>
-                        Mersin İl Millî Eğitim Müdürlüğü
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <h2>Türkiye Yüzyılı Maarif Modeli<br>Mersin Etkin Zümre’de</h2>
+    <p>
+        Mersin’de görev yapan öğretmenler için; Türkiye Yüzyılı Maarif Modeli, okul temelli
+        planlama, ölçme-değerlendirme ve zümre işbirliğine yönelik dokümanların ve iyi
+        örneklerin paylaşıldığı dijital zümre platformu.
+    </p>
+</section>
 
-    <!-- MOBİL MENÜ -->
-    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
-    <div class="sidebar-menu">
-        <div class="sidebar-header">
-            <span class="sidebar-brand">MENÜ</span>
-            <div class="close-btn" onclick="toggleSidebar()">
-                <i class="fas fa-times"></i>
-            </div>
-        </div>
-        <ul class="sidebar-list">
-            <li>
-                <a href="index.html" class="sidebar-link active">ANASAYFA</a>
-            </li>
-            <li>
-                <a href="arsiv.html" class="sidebar-link">ZÜMRE ARŞİVİ</a>
-            </li>
-            <li>
-                <a href="yonetmelik.html" class="sidebar-link">YÖNETMELİK</a>
-            </li>
-            <li>
-                <a href="tutanak.html" class="sidebar-link">EVRAK OLUŞTUR (MENÜ)</a>
-            </li>
-            <li>
-                <a href="maarif.html" class="sidebar-link">MAARİFİ ANLAMAK</a>
-            </li>
-            <li>
-                <a href="ilceler.html" class="sidebar-link">İLÇE ZİYARETLERİ</a>
-            </li>
-            <li>
-                <a href="ornekler.html" class="sidebar-link">İYİ ÖRNEKLER</a>
-            </li>
-            <li>
-                <a href="forum.html" class="sidebar-link">FORUM</a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
-            <h2>Türkiye Yüzyılı Maarif Modeli Mersin Etkin Zümre’de</h2>
-            <p>
-                Mersin’de görev yapan öğretmenler için; Türkiye Yüzyılı Maarif
-                Modeli, okul temelli planlama, ölçme-değerlendirme ve zümre
-                işbirliğine yönelik dokümanların ve iyi örneklerin paylaşıldığı
-                dijital zümre platformu.
-            </p>
-        </div>
-    </section>
-
-    <!-- ÖZELLİK KARTLARI -->
-    <section class="features container">
-        <div class="card">
-            <h3>📄 Yönetmelikler</h3>
-            <p>
-                Millî Eğitim Bakanlığı ve Mersin İl Millî Eğitim Müdürlüğü'nün
-                güncel mevzuat, yazı ve yönergelerine tek noktadan erişim.
-            </p>
-        </div>
-        <div class="card">
-            <h3>🗂️ Zümre Arşivi</h3>
-            <p>
-                Geçmiş yıllara ait zümre toplantı tutanakları, yıllık planlar ve
-                okul temelli planlama dokümanlarının düzenli arşivi.
-            </p>
-        </div>
-        <div class="card">
-            <h3>💬 Öğretmen Forumu</h3>
-            <p>
-                Türkiye Yüzyılı Maarif Modeli uygulamaları, ders içi etkinlikler ve
-                iyi örneklerin meslektaşlar arasında paylaşıldığı etkileşimli alan.
-            </p>
-        </div>
-    </section>
-
-    <!-- ALT BİLGİ -->
-    <footer>
-        <div class="container">
-            <p>
-                &copy; 2024 <strong>Mersin Etkin Zümre</strong>. Tüm Hakları
-                Saklıdır.
-            </p>
-            <p class="footer-note">
-                Öğretmenler için, öğretmenler tarafından oluşturulmuştur.
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        function toggleSidebar() {
-            document.body.classList.toggle("menu-open");
-        }
-    </script>
 </body>
 </html>
