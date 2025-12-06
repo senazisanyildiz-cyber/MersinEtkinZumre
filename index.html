@@ -25,7 +25,7 @@
         }
         body {
             font-family: "Inter", sans-serif;
-            background-color: #ffffff;
+            background-color: #0F172A; /* beyaz yerine koyu zemin */
             color: #333;
             line-height: 1.5;
             overflow-x: hidden;
@@ -47,7 +47,7 @@
         /* --- ÜST BANT --- */
         .top-header {
             background-color: #fff;
-            padding: 6px 0 8px;            /* daha dar */
+            padding: 6px 0 8px;            /* daraltıldı */
             border-bottom: 1px solid #e2e8f0;
         }
 
@@ -66,7 +66,7 @@
         }
 
         .meb-logo {
-            height: 120px;                 /* 150 → 120 */
+            height: 120px;                 /* daha profesyonel oran */
             width: auto;
             display: block;
         }
@@ -315,7 +315,7 @@
         /* --- ÜSTE TAŞINAN FAYDALI BAĞLANTILAR --- */
         .useful-links {
             background-color: #f8fafc;
-            padding: 8px 0; /* inceltildi */
+            padding: 8px 0;
             border-bottom: 1px solid #e2e8f0;
         }
         .useful-links-inner {
@@ -369,7 +369,8 @@
             background-size: cover;
             background-position: center;
             text-align: center;
-            padding: 160px 20px; /* geniş hero */
+            padding: 200px 20px;   /* daha uzun hero */
+            min-height: 70vh;      /* ekranın %70'i kadar yükseklik */
             color: white;
             border-bottom: 5px solid #e30a17;
         }
@@ -385,36 +386,6 @@
             opacity: 0.92;
             max-width: 720px;
             margin: 0 auto;
-        }
-
-        /* --- KARTLAR (istersen sonra eklersin) --- */
-        .features {
-            display: flex;
-            gap: 25px;
-            padding: 40px 0 50px;
-            flex-wrap: wrap;
-        }
-        .card {
-            flex: 1;
-            background: white;
-            border: 1px solid #e2e8f0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: 0.3s;
-            border-top: 4px solid #0f172a;
-            min-width: 280px;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            border-top-color: #e30a17;
-        }
-        .card h3 {
-            font-size: 1.3rem;
-            color: #0f172a;
-            margin-bottom: 10px;
-            font-weight: 700;
         }
 
         footer {
@@ -473,7 +444,8 @@
             }
 
             .hero {
-                padding: 110px 15px;
+                padding: 150px 15px;  /* mobilde de biraz uzun */
+                min-height: 60vh;
             }
             .hero h2 {
                 font-size: 2.1rem;
@@ -600,7 +572,7 @@
                         <i class="fas fa-school"></i>
                         Okul Temelli Planlama – MEB
                     </a>
-                    <!-- Mersin İl MEM linki isteğin üzerine kaldırıldı -->
+                    <!-- Mersin İl MEM linki kaldırıldı -->
                 </div>
             </div>
         </div>
