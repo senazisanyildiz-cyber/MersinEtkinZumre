@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- GENEL AYARLAR (ANASAYFA İLE AYNI) --- */
+        /* --- GENEL AYARLAR --- */
         :root {
             --meb-red: #E30A17;
             --corporate-dark: #0F172A;
@@ -302,7 +302,7 @@
             color: #94a3b8;
         }
 
-        /* Footer (En altta kalmasını sağlamak için) */
+        /* Footer */
         footer {
             background-color: #0b1120;
             color: #94a3b8;
@@ -497,23 +497,12 @@
                         <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
                         <div class="file-details">
                             <h4>Eğitim Kurulları ve Zümreleri Yönergesi</h4>
-                            <span>Son Güncelleme: 06.12.2024</span>
-                        </div>
-                    </div>
-                   
-                </div>
-                
-                <div class="file-row">
-                    <div class="file-left">
-                        <div class="file-icon icon-doc"><i class="fas fa-file-word"></i></div>
-                        <div class="file-details">
-                            <h4>Zümre Toplantı Tutanağı Şablonu (Boş)</h4>
-                            <span>Word Dosyası</span>
+                            <span>PDF Dosyası - Güncel</span>
                         </div>
                     </div>
                     <div class="file-right">
-                        <span class="badge">ŞABLON</span>
-                        <a href="#" class="btn-download" title="İndir">
+                        <span class="badge">RESMİ YAZI</span>
+                        <a href="dosyalar/zumreyonergesi.pdf" class="btn-download" download title="İndir">
                             <i class="fas fa-download"></i>
                         </a>
                     </div>
@@ -578,7 +567,7 @@
                     submenu.classList.remove('open');
                     headerElement.classList.remove('active');
                 } else {
-                    // Diğer açık olanları kapat (İsteğe bağlı, daha temiz görünüm için)
+                    // Diğer açık olanları kapat (İsteğe bağlı)
                     var allSubmenus = document.querySelectorAll('.submenu');
                     var allHeaders = document.querySelectorAll('.cat-header');
                     
@@ -609,7 +598,6 @@
             } else {
                 // Eğer grup yoksa boş olduğunu göster ama başlığı koru
                 document.getElementById('group-empty').classList.add('active');
-                // İçeriği temizle mesajı güncelle (Opsiyonel)
                 document.querySelector('#group-empty p').textContent = "'" + title + "' kategorisinde henüz dosya bulunamadı.";
             }
             
@@ -618,8 +606,6 @@
             for(var j=0; j<links.length; j++) {
                 links[j].classList.remove('active');
             }
-            
-            // Eğer tıklanan bir submenu linki ise ona active class ekle (Event target üzerinden yakalanabilir ama basitlik için geçiyorum)
         }
     </script>
 
