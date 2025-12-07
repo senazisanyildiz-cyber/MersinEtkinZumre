@@ -49,26 +49,20 @@
         .brand-area {
             display: flex;
             align-items: center;
-            gap: 20px;
+            /* DÜZELTİLDİ: Mesafe 20px'ten 8px'e düşürüldü */
+            gap: 8px; 
             height: 110px; 
             flex-shrink: 0; 
         }
 
-        /* --- [YENİ YÖNTEM] CSS BACKGROUND IMAGE --- */
-        /* Bu yöntemle resim bir 'öğe' değil, 'duvar kağıdı' olur. Asla zıplamaz. */
+        /* --- SABİT LOGO KUTUSU --- */
         .logo-fixed {
             width: 110px;
             height: 110px;
-            
-            /* Resmi buraya gömüyoruz */
             background-image: url('EZKLogo.png');
-            
-            /* Resim kutuya sığsın ama tekrar etmesin */
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center left;
-            
-            /* Kutu esnemesin */
             flex-shrink: 0;
             display: block;
         }
@@ -172,7 +166,10 @@
             color: #333; font-size: 0.9rem; font-weight: 500;
             border-bottom: 1px solid #f1f5f9;
         }
+        /* Dropdown İkon Rengi */
+        .dropdown-item a i { margin-right: 10px; color: #64748b; width: 20px; text-align: center; }
         .dropdown-item a:hover { background-color: #f8fafc; color: var(--meb-red); padding-left: 25px; }
+        .dropdown-item a:hover i { color: var(--meb-red); }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
@@ -350,7 +347,8 @@
             .brand-area {
                 flex-direction: row !important;
                 align-items: center;
-                gap: 12px;
+                /* Mobilde mesafe biraz daha açılabilir */
+                gap: 12px; 
                 text-align: left;
                 width: auto;
                 height: auto; 
@@ -411,9 +409,12 @@
                         EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="doc-zumre.html">Zümre Tutanağı</a></li>
-                        <li class="dropdown-item"><a href="doc-plan.html">Yıllık Plan</a></li>
-                        <li class="dropdown-item"><a href="doc-sinav.html">Yazılı Sınav</a></li>
+                        <li class="dropdown-item"><a href="doc-zumre.html"><i class="fas fa-users"></i> Zümre Tutanağı</a></li>
+                        <li class="dropdown-item"><a href="doc-plan.html"><i class="fas fa-calendar-alt"></i> Yıllık Plan</a></li>
+                        <li class="dropdown-item"><a href="doc-sinav.html"><i class="fas fa-file-alt"></i> Yazılı Sınav</a></li>
+                        <li class="dropdown-item"><a href="doc-olcme.html"><i class="fas fa-tasks"></i> Ölçme Değerlendirme</a></li>
+                        <li class="dropdown-item"><a href="doc-kulup.html"><i class="fas fa-hands-helping"></i> Kulüp Evrakları</a></li>
+                        <li class="dropdown-item"><a href="doc-sinif.html"><i class="fas fa-chalkboard-teacher"></i> Sınıf Rehberlik</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
