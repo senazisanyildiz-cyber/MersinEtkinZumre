@@ -75,7 +75,6 @@
         label { font-size: 0.85rem; font-weight: 700; color: #64748b; display: block; margin-bottom: 5px; margin-top: 15px; }
         input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: 0.2s; }
         input:focus, select:focus, textarea:focus { border-color: var(--meb-red); outline: none; box-shadow: 0 0 0 3px rgba(227, 10, 23, 0.1); }
-        
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         
         .box-container { background-color: #f8fafc; border: 1px dashed #cbd5e1; padding: 15px; border-radius: 8px; margin-top: 15px; }
@@ -294,36 +293,37 @@
     <script>
         let items = [], members = [];
 
-        [cite_start]// MERSİN MEM ORTAK GÜNDEM MADDELERİ (Hatasız ve Temiz Liste) [cite: 283-311]
+        // MERSİN MEM ORTAK GÜNDEM MADDELERİ
         const defaultAgenda = [
-            `Açılış ve yoklama, gündem maddelerinin okunması, gündeme eklenecek maddelerin tespiti.`,
-            `Bir önceki toplantıda alınan kararların değerlendirilmesi.`,
-            `Millî Eğitim Bakanlığı 2025/63 sayılı genelgelerin incelenmesi.`,
-            `Planlamaların; eğitim ve öğretimle ilgili mevzuat, okulun kuruluş amacı ve ilgili alanın öğretim programına uygun yapılması.`,
-            `Türkiye Yüzyılı Maarif Modeli’nin temel yaklaşımı ve öğrenci profili doğrultusunda zümre çalışmalarının uygulanma durumu.`,
-            `Türkiye Yüzyılı Maarif Modeli’nin temel yaklaşımı kapsamında Erdem-Değer-Eylem çerçevesinde değerler eğitimi çalışmalarına yer verilmesi.`,
-            `Atatürkçülükle ilgili konuların üzerinde durularak çalışmaların buna göre planlanması.`,
-            `Derslerin işlenişinde uygulanacak öğretim yöntem ve tekniklerinin belirlenmesi.`,
-            `Özel eğitim ihtiyacı olan öğrenciler için bireyselleştirilmiş eğitim programları (BEP) ile ders planlarının görüşülmesi.`,
-            `Zümre öğretmenleri arasında, ittifakla alınacak zümre kararına bağlı olarak her eğitim ve öğretim yılında en az bir kez ders ziyareti yapılması.`,
-            `Öğretim alanı ile ilgili akademik ve bilimsel çalışmaların izlenmesi, teknolojik gelişmelerin takip edilmesi.`,
-            `Öğrencilerde girişimcilik bilincinin kazandırılmasına yönelik çalışmaların yapılması.`,
-            `Derslerin daha verimli işlenebilmesi için ihtiyaç duyulan araç-gereç ve öğretim materyallerinin belirlenmesi.`,
-            `Okul ve çevre imkânlarının değerlendirilerek yapılacak deney, proje, gezi ve gözlemlerin planlanması.`,
-            `Sınavların şekil, sayı ve süresiyle ürün değerlendirme ölçeklerin belirlenmesi.`,
-            `Proje konuları ile performans çalışmalarının belirlenmesi ve değerlendirme ölçeklerinin hazırlanması.`,
-            `İş sağlığı ve güvenliği tedbirlerinin değerlendirilmesi.`,
-            `Öğrencilerin üst düzey düşünme becerileri ile sosyal ve duygusal becerilerini hayata geçirmelerine yönelik planlamalar.`,
-            `TYMM millî, manevi ve ahlaki değerlerin, örtük öğrenme yoluyla eğitim süreçlerinde yürütülmesi.`,
-            `Eğitim ve öğretim süreçlerinin disiplinler arası bir yaklaşımla ele alınması.`,
-            `Öğrencilerin çoklu okuryazarlık becerilerinin geliştirilmesine yönelik planlamalar.`,
-            `Sosyal sorumluluk programı kapsamında yürütülebilecek faaliyetlerin planlanması.`,
-            `Eğitim ortamlarında ihtiyaç duyulacak araç, gereç ve mali kaynak gibi hususların belirlenmesi.`,
-            `Öğrenme süreçlerinin konu ve öğrenciye göre farklılaştırılarak zenginleştirilmesi.`,
-            `Okul-aile iş birliğini güçlendirecek çalışmaların planlanması.`,
-            `EBA, HEMBA ve ÖBA’nın aktif kullanımı.`,
-            `Türkiye Yüzyılı Maarif Modeli’ne yönelik görüşlerin TTKB-İDES sistemine işlenmesi.`,
-            `Dilek ve temenniler, kapanış.`
+            "Açılış ve yoklama, gündem maddelerinin okunması, gündeme eklenecek maddelerin tespiti,",
+            "Bir önceki toplantıda alınan kararlar,",
+            "Millî Eğitim Bakanlığı 2025/63 sayılı genelgelerin incelenmesi,",
+            "Planlamaların; eğitim ve öğretimle ilgili mevzuat, okulun kuruluş amacı ve ilgili alanın öğretim programına uygun yapılması,",
+            "Türkiye Yüzyılı Maarif Modeli’nin temel yaklaşımı ve öğrenci profili doğrultusunda zümre çalışmalarının uygulanma durumu,",
+            "Türkiye Yüzyılı Maarif Modeli’nin temel yaklaşımı kapsamında Erdem-Değer-Eylem çerçevesinde değerler eğitimi çalışmalarına yer verilmesi,",
+            "Atatürkçülükle ilgili konuların üzerinde durularak çalışmaların buna göre planlanması ile öğretim programlarının incelenmesi, programların çevre özellikleri de dikkate alınarak amacına ve içeriğine uygun olarak uygulanması, yıllık plan ve ders planlarının hazırlanması ve uygulanmasında konu ve kazanım ağırlıklarının dikkate alınması,",
+            "Derslerin işlenişinde uygulanacak öğretim yöntem ve tekniklerinin belirlenmesi,",
+            "Özel eğitim ihtiyacı olan öğrenciler için bireyselleştirilmiş eğitim programları (BEP) ile ders planlarının görüşülmesi,",
+            "Zümre öğretmenleri arasında, ittifakla alınacak zümre kararına bağlı olarak her eğitim ve öğretim yılında en az bir kez ders ziyareti yapılması, dersin işlenişine yönelik dönütlerin değerlendirilmesi ile diğer zümre ve alan öğretmenleriyle yapılabilecek iş birliği ve esaslarının belirlenmesi,",
+            "Öğretim alanı ile ilgili akademik ve bilimsel çalışmaların izlenmesi, teknolojik gelişmelerin takip edilmesi, müzakere edilmesi, uygulamalara yansıtılması,",
+            "Öğrencilerde girişimcilik bilincinin kazandırılmasına yönelik çalışmaların yapılması, öğrencilerin araştırma, geliştirme ve tasarım konularında bilgi ve becerilerinin geliştirilmesi,",
+            "Derslerin daha verimli işlenebilmesi için ihtiyaç duyulan araç-gereç ve benzeri öğretim materyallerinin belirlenmesi, derslerin öğretim programı ve amaçlarına göre laboratuvar, kütüphane, spor salonu, atölye ve benzeri eğitim ortamlarının etkin kullanımına yönelik planlamaların yapılması,",
+            "Okul ve çevre imkânlarının değerlendirilerek, yapılacak deney, proje, anket, araştırma, gezi ve gözlemlerin planlanması, derslerin konu ve kazanım uygunluğuna göre okul dışı öğrenme ortamlarının kullanılmasına yönelik planlamaların yapılması,",
+            "Görsel sanatlar, müzik, beden eğitimi dersleriyle uygulamalı nitelikteki diğer derslerin değerlendirilmesinde dikkate alınacak hususların tespit edilmesi;",
+            "sınavların şekil, sayı ve süresiyle ürün değerlendirme ölçeklerin belirlenmesi,",
+            "Öğretim programları, okul ve çevre şartları dikkate alınarak eğitim kurumlarının kademe ve türüne göre proje konuları ile performans çalışmalarının belirlenmesi, planlanması ve bunların ölçme ve değerlendirilmesine yönelik ölçeklerin hazırlanması,",
+            "İş sağlığı ve güvenliği tedbirlerinin değerlendirilmesi,",
+            "Öğrencilerin, karar verme, problem çözme ve eleştirel düşünmeden oluşan üst düzey düşünme becerileri ile birlikte sosyal ve duygusal becerilerini hayata geçirmelerine yönelik planlamaların yapılması,",
+            "TYMM millî, manevi ve ahlaki değerlerin, örtük öğrenme yoluyla eğitim ve öğretim süreçlerinde etkin bir şekilde yürütülmesine yönelik çalışmaların planlanması, bu doğrultuda gerekli öğrenme ortamlarının oluşturulması,",
+            "Eğitim ve öğretim süreçlerinin disiplinler arası bir yaklaşımla ele alınarak, öğrenme alanı, konu, öğrenme çıktısı ve öğrenme hedeflerinin bu yaklaşımla belirlenmesi, yapılacak ortak çalışmaların takvime bağlanarak uygulanması,",
+            "Öğrencilerin çoklu okuryazarlık becerilerinin geliştirilmesine yönelik planlamaların yapılması,",
+            "Sosyal sorumluluk programı kapsamında ders bazında yürütülebilecek faaliyetlerin planlanması,",
+            "Eğitim ve öğretim yılı içerisinde okul içi veya okul dışı eğitim ortamlarında yürütecekleri faaliyetlerde ihtiyaç duyacağı araç, gereç, mali kaynak gibi hususların belirlenmesi,",
+            "Okul öncesi ve ilkokullarda öğrencilerin akademik ve sosyal gelişiminin takibi ile öğrencilerin gelişim düzeyleri, öğretmen rehberliğinde gerçekleştirilen bireysel ve grupla yapılan etkinliklere katılım gözlem formları, oyun temelli değerlendirmeler ve verilen görevleri yerine getirme amaçlı ölçme araçları ile takip edilmesi kapsamında ders yılı süresince yapılacakların planlanması,",
+            "Öğrenme ve öğretme süreçlerinin konu ve öğrenciye göre farklılaştırılarak, zenginleştirilerek, derinleştirilerek planlanması (Biçimlendirici değerlendirme uygulamaları),",
+            "Okul-aile iş birliğini güçlendirecek çalışmaların planlanması, veli bilgilendirilmesinde EBA’daki video ve dijital içeriklerden yararlanılması,",
+            "EBA, HEMBA ve ÖBA’nın aktif kullanımı,",
+            "Türkiye Yüzyılı Maarif Modeli ’ne yönelik görüş ve önerilerin İzleme ve Değerlendirme Sistemi’ne (TTKB-İDES) işlenmesi"
         ];
 
         function toggleSidebar() { document.body.classList.toggle("menu-open"); }
