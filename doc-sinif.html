@@ -2,52 +2,245 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Veli Toplantısı - Mersin Etkin Zümre</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Times+New+Roman&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sınıf Rehberlik - Mersin Etkin Zümre</title>
+    
+    <link rel="preload" as="image" href="EZKLogo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; color: #0F172A; }
-        * { box-sizing: border-box; } a { text-decoration: none; }
-        header { background-color: #0F172A; color: white; padding: 1.2rem 0; }
-        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo h1 { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 700; border-left: 5px solid #E30A17; padding-left: 15px; margin: 0; }
-        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; }
-        nav a { font-family: 'Inter', sans-serif; color: #cbd5e1; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
-        nav a:hover { color: #E30A17; }
-        .active-page { color: #E30A17 !important; }
-        .btn-forum { background-color: #E30A17; padding: 10px 20px; border-radius: 6px; color: white !important; font-weight: 600; }
-        .editor-layout { display: flex; gap: 20px; padding: 30px 0; height: calc(100vh - 80px); }
-        .input-panel { flex: 0 0 350px; background: white; padding: 20px; border-radius: 10px; overflow-y: auto; }
-        .preview-panel { flex: 1; background: #94a3b8; padding: 20px; display: flex; justify-content: center; overflow-y: auto; }
-        .a4-page { width: 210mm; min-height: 297mm; background: white; padding: 20mm; font-family: 'Times New Roman', serif; font-size:12pt; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
-        input, textarea { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
-        .btn-print { background-color: #0F172A; color: white; width: 100%; padding: 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; }
-        @media print { .input-panel, header { display: none; } .a4-page { position: absolute; left: 0; top: 0; width: 100%; margin: 0; box-shadow: none; } }
-        @media screen and (max-width: 768px) { .header-content { flex-direction: column; } nav ul { flex-direction: column; gap: 10px; width:100%; padding-bottom:10px; } .editor-layout { flex-direction: column; height: auto; } .preview-panel { display: none; } }
+        /* --- MASTER CSS (TÜM SAYFALARDA AYNI) --- */
+        :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
+        html { overflow-y: scroll; } 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        .container { width: 94%; max-width: 1400px; margin: 0 auto; }
+
+        /* HEADER (100px Yükseklik) */
+        .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
+        .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
+        .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
+        
+        /* LOGO KUTUSU (80px) */
+        .logo-fixed { width: 80px; height: 80px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
+        
+        .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
+        .brand-text h1 { font-size: 1.6rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
+        .brand-text span { font-size: 0.9rem; color: #64748b; font-weight: 600; margin-top: 2px; }
+        
+        .slogan-area { text-align: right; min-width: 200px; }
+        .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
+
+        /* NAVİGASYON */
+        .main-nav { background-color: var(--corporate-dark); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
+        .nav-container { width: 94%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; }
+        .desktop-nav { display: flex; height: 100%; align-items: center; }
+        .nav-item { height: 100%; position: relative; display: flex; align-items: center; }
+        .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link { background-color: var(--meb-red); color: white; }
+        .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
+        
+        /* Dropdown */
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border-top: 3px solid var(--meb-red); padding: 5px 0; z-index: 9999; }
+        .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
+        .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
+        .dropdown-item a i { margin-right: 10px; color: #64748b; width: 20px; text-align: center; }
+        .dropdown-item a:hover { background-color: #f8fafc; color: var(--meb-red); padding-left: 25px; }
+        .dropdown-item a:hover i { color: var(--meb-red); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
+
+        /* MOBİL MENÜ */
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; }
+        .sidebar-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background-color: var(--corporate-dark); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
+        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; } body.menu-open .sidebar-menu { left: 0; }
+        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); } .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; } .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
+        .sidebar-list { padding: 10px 0; } .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); } .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; } .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
+
+        @media screen and (max-width: 1100px) {
+            .top-header { height: auto; padding: 10px 0; }
+            .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; height: auto; }
+            .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; height: auto; }
+            .logo-fixed { width: 60px; height: 60px; }
+            .brand-text h1 { font-size: 1.1rem; text-align: left; margin: 0; } .brand-text span { font-size: 0.75rem; text-align: left; display: block; }
+            .slogan-area { display: none; }
+            .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; color: white; }
+        }
+
+        /* --- EDİTÖR ÖZEL STİLLERİ --- */
+        .editor-layout { display: flex; gap: 30px; padding: 40px 0; min-height: calc(100vh - 160px); }
+        
+        .input-panel { flex: 0 0 350px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; }
+        .input-panel h3 { margin-top: 0; color: var(--corporate-dark); border-bottom: 2px solid var(--meb-red); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.2rem; }
+        
+        input, textarea { width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+        input:focus, textarea:focus { border-color: var(--meb-red); outline: none; }
+        
+        .btn-print { background-color: var(--corporate-dark); color: white; width: 100%; padding: 15px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-print:hover { background-color: var(--meb-red); }
+
+        .preview-panel { flex: 1; background: #cbd5e1; padding: 40px; border-radius: 12px; display: flex; justify-content: center; overflow-y: auto; }
+        
+        /* A4 Tasarımı */
+        .a4-page { 
+            width: 210mm; 
+            min-height: 297mm; 
+            background: white; 
+            padding: 20mm; 
+            font-family: 'Times New Roman', serif; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            color: black;
+            font-size: 12pt;
+            line-height: 1.5;
+        }
+
+        .signatures { display: flex; justify-content: space-between; text-align: center; margin-top: 50px; page-break-inside: avoid; }
+
+        @media screen and (max-width: 1000px) {
+            .editor-layout { flex-direction: column; }
+            .input-panel { position: static; width: 100%; }
+            .preview-panel { padding: 10px; background: white; }
+            .a4-page { width: 100%; height: auto; min-height: 210mm; box-shadow: none; padding: 10px; }
+        }
+
+        /* YAZDIRMA AYARLARI */
+        @media print { 
+            .top-header, .main-nav, .input-panel, .hamburger { display: none !important; } 
+            body, .container, .editor-layout, .preview-panel { background: white; margin: 0; padding: 0; width: 100%; display: block; }
+            .a4-page { position: absolute; left: 0; top: 0; width: 100%; margin: 0; box-shadow: none; border: none; } 
+        }
     </style>
 </head>
 <body>
-    <header><div class="container header-content"><div class="logo"><h1>Mersin Etkin Zümre</h1></div><nav><ul><li><a href="index.html">Anasayfa</a></li><li><a href="arsiv.html">Zümre Arşivi</a></li><li><a href="yonetmelik.html">Yönetmelik</a></li><li><a href="ornekler.html">İyi Örnekler</a></li><li><a href="tutanak.html" class="active-page">Evrak Oluştur</a></li><li><a href="ilceler.html">İlçe Ziyaretleri</a></li><li><a href="forum.html" class="btn-forum">Forum</a></li></ul></nav></div></header>
-    <div class="container editor-layout">
-        <div class="input-panel">
-            <h3 style="margin-top:0; color:#E30A17;">Veli Toplantısı</h3>
-            <input type="text" id="inSinif" placeholder="Sınıf" oninput="update()"><input type="text" id="inTarih" placeholder="Tarih" oninput="update()">
-            <hr><label>Gündem</label><textarea id="inGundem" style="height:100px" oninput="update()"></textarea><label>Kararlar</label><textarea id="inKarar" style="height:100px" oninput="update()"></textarea>
-            <button class="btn-print" onclick="window.print()">🖨️ Yazdır</button>
-        </div>
-        <div class="preview-panel">
-            <div class="a4-page">
-                <h3 style="text-align:center;">VELİ TOPLANTISI TUTANAĞI</h3>
-                <p><strong>Sınıf:</strong> <span id="outSinif">...</span></p><p><strong>Tarih:</strong> <span id="outTarih">...</span></p><br>
-                <h4>GÜNDEM:</h4><div id="outGundem" style="white-space: pre-wrap;">...</div><br><h4>KARARLAR:</h4><div id="outKarar" style="white-space: pre-wrap;">...</div><br><br>
-                <h4>KATILIMCI İMZA LİSTESİ:</h4><table border="1" cellspacing="0" cellpadding="5" width="100%"><tr><th>Sıra</th><th>Veli Adı Soyadı</th><th>Öğrenci Adı</th><th>İmza</th></tr><tr><td>1</td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td></tr><tr><td>4</td><td></td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td></td></tr></table><br><br>
-                <div style="float:right; text-align:center;">Sınıf Rehber Öğretmeni<br><br>.......................</div>
+
+    <div class="top-header">
+        <div class="container top-content">
+            <div class="brand-area">
+                <a href="index.html" class="logo-fixed" title="Anasayfa"></a>
+                <div class="brand-text">
+                    <h1>MERSİN ETKİN ZÜMRE</h1>
+                    <span>Eğitimde Birlik ve İlerleme Platformu</span>
+                </div>
+            </div>
+            <div class="slogan-area">
+                <span class="slogan-text">"Köklerden Geleceğe..."</span>
             </div>
         </div>
     </div>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="desktop-nav">
+                <li class="nav-item"><a href="index.html" class="nav-link">ANASAYFA</a></li>
+                <li class="nav-item"><a href="arsiv.html" class="nav-link">ZÜMRE ARŞİVİ</a></li>
+                <li class="nav-item"><a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a></li>
+                <li class="nav-item">
+                    <a href="tutanak.html" class="nav-link" style="background-color:#E30A17;">EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="doc-zumre.html"><i class="fas fa-users"></i> Zümre Tutanağı</a></li>
+                        <li class="dropdown-item"><a href="doc-plan.html"><i class="fas fa-calendar-alt"></i> Yıllık Plan</a></li>
+                        <li class="dropdown-item"><a href="doc-sinav.html"><i class="fas fa-file-alt"></i> Yazılı Sınav</a></li>
+                        <li class="dropdown-item"><a href="doc-olcme.html"><i class="fas fa-tasks"></i> Ölçme Değerlendirme</a></li>
+                        <li class="dropdown-item"><a href="doc-kulup.html"><i class="fas fa-hands-helping"></i> Kulüp Evrakları</a></li>
+                        <li class="dropdown-item"><a href="doc-sinif.html"><i class="fas fa-chalkboard-teacher"></i> Sınıf Rehberlik</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
+                <li class="nav-item"><a href="ilceler.html" class="nav-link">İLÇE ZİYARETLERİ</a></li>
+                <li class="nav-item"><a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a></li>
+                <li class="nav-item"><a href="forum.html" class="nav-link">FORUM</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar-menu">
+        <div class="sidebar-header"><span class="sidebar-brand">MENÜ</span><div class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div>
+        <ul class="sidebar-list">
+            <li><a href="index.html" class="sidebar-link">ANASAYFA</a></li>
+            <li><a href="arsiv.html" class="sidebar-link">ZÜMRE ARŞİVİ</a></li>
+            <li><a href="yonetmelik.html" class="sidebar-link">YÖNETMELİK</a></li>
+            <li><a href="tutanak.html" class="sidebar-link active">EVRAK OLUŞTUR</a></li>
+            <li><a href="maarif.html" class="sidebar-link">MAARİFİ ANLAMAK</a></li>
+            <li><a href="ilceler.html" class="sidebar-link">İLÇE ZİYARETLERİ</a></li>
+            <li><a href="ornekler.html" class="sidebar-link">İYİ ÖRNEKLER</a></li>
+            <li><a href="forum.html" class="sidebar-link">FORUM</a></li>
+        </ul>
+    </div>
+
+    <div class="container editor-layout">
+        <div class="input-panel">
+            <h3>Veli Toplantısı</h3>
+            <input type="text" id="inSinif" placeholder="Sınıf (Örn: 9/A)" oninput="update()">
+            <input type="text" id="inTarih" placeholder="Tarih (GG.AA.YYYY)" oninput="update()">
+            
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+            
+            <label style="margin-top:0;">Gündem Maddeleri</label>
+            <textarea id="inGundem" style="height:100px" oninput="update()"></textarea>
+            
+            <label>Alınan Kararlar</label>
+            <textarea id="inKarar" style="height:100px" oninput="update()"></textarea>
+            
+            <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Yazdır / PDF Kaydet</button>
+        </div>
+
+        <div class="preview-panel">
+            <div class="a4-page">
+                <h3 style="text-align:center; text-transform:uppercase; margin-bottom: 30px;">VELİ TOPLANTISI TUTANAĞI</h3>
+                
+                <p><strong>Sınıf:</strong> <span id="outSinif">...</span></p>
+                <p><strong>Tarih:</strong> <span id="outTarih">...</span></p>
+                
+                <h4 style="text-decoration:underline; margin-top:30px;">GÜNDEM:</h4>
+                <div id="outGundem" style="white-space: pre-wrap;">...</div>
+                
+                <h4 style="text-decoration:underline; margin-top:30px;">KARARLAR:</h4>
+                <div id="outKarar" style="white-space: pre-wrap;">...</div>
+                
+                <h4 style="text-decoration:underline; margin-top:40px;">KATILIMCI İMZA LİSTESİ:</h4>
+                <table border="1" cellspacing="0" cellpadding="8" width="100%" style="border-collapse: collapse; margin-top:10px;">
+                    <tr style="background-color:#f0f0f0;">
+                        <th width="10%">Sıra</th>
+                        <th width="30%">Veli Adı Soyadı</th>
+                        <th width="30%">Öğrenci Adı</th>
+                        <th width="30%">İmza</th>
+                    </tr>
+                    <tr><td>1</td><td></td><td></td><td></td></tr>
+                    <tr><td>2</td><td></td><td></td><td></td></tr>
+                    <tr><td>3</td><td></td><td></td><td></td></tr>
+                    <tr><td>4</td><td></td><td></td><td></td></tr>
+                    <tr><td>5</td><td></td><td></td><td></td></tr>
+                    <tr><td>6</td><td></td><td></td><td></td></tr>
+                    <tr><td>7</td><td></td><td></td><td></td></tr>
+                    <tr><td>8</td><td></td><td></td><td></td></tr>
+                </table>
+                
+                <div style="text-align:right; margin-top:50px;">
+                    <strong>Sınıf Rehber Öğretmeni</strong><br><br><br>.......................
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function update() { document.getElementById('outSinif').innerText = document.getElementById('inSinif').value; document.getElementById('outTarih').innerText = document.getElementById('inTarih').value; document.getElementById('outGundem').innerText = document.getElementById('inGundem').value; document.getElementById('outKarar').innerText = document.getElementById('inKarar').value; }
+        function toggleSidebar() {
+            document.body.classList.toggle("menu-open");
+        }
+
+        function update() {
+            document.getElementById('outSinif').innerText = document.getElementById('inSinif').value;
+            document.getElementById('outTarih').innerText = document.getElementById('inTarih').value;
+            document.getElementById('outGundem').innerText = document.getElementById('inGundem').value;
+            document.getElementById('outKarar').innerText = document.getElementById('inKarar').value;
+        }
     </script>
+
 </body>
 </html>
