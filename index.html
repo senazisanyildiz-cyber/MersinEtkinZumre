@@ -22,7 +22,7 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* --- 1. ÜST HEADER (YAN YANA VE DÜZGÜN) --- */
+        /* --- 1. ÜST HEADER --- */
         .top-header {
             background: white;
             padding: 10px 0;
@@ -32,19 +32,18 @@
         .top-content {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Dikeyde ortala */
+            align-items: center;
             min-height: 90px;
         }
 
-        /* Sol Taraf: Logo ve Yazı Grubu */
         .brand-area {
             display: flex;
             align-items: center;
-            gap: 20px; /* Logo ile yazı arası boşluk */
+            gap: 20px;
         }
 
         .meb-logo {
-            height: 85px; /* Logo boyutu ideal */
+            height: 85px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
@@ -57,7 +56,7 @@
         }
 
         .brand-text h1 {
-            font-size: 1.8rem; /* Yazı boyutu büyütüldü */
+            font-size: 1.8rem;
             font-weight: 900;
             color: var(--corporate-dark);
             text-transform: uppercase;
@@ -72,7 +71,6 @@
             margin-top: 3px;
         }
 
-        /* Sağ Taraf: Slogan */
         .slogan-area {
             text-align: right;
         }
@@ -84,7 +82,7 @@
             font-weight: 600;
         }
 
-        /* --- 2. MENÜ (NAVBAR) - ESKİ BEĞENDİĞİN HALİ --- */
+        /* --- 2. MENÜ (NAVBAR) --- */
         .main-nav {
             background-color: var(--corporate-dark);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -152,9 +150,33 @@
         
         .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
 
-        /* --- 3. HERO (GENİŞ VE KAYAN RESİM) - ESKİ BEĞENDİĞİN HALİ --- */
+        /* --- MOBİL YAN MENÜ (DÜZELTİLDİ) --- */
+        .sidebar-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); z-index: 2000;
+            opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        .sidebar-menu {
+            position: fixed; top: 0; left: -320px; width: 300px; height: 100%;
+            background-color: var(--corporate-dark); z-index: 2001;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+            display: flex; flex-direction: column;
+        }
+        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; }
+        body.menu-open .sidebar-menu { left: 0; }
+
+        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; }
+        .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
+        
+        .sidebar-list { padding: 10px 0; }
+        .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; }
+        .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
+
+        /* --- 3. HERO --- */
         .hero {
-            /* 'mersin.jpg' dosyanın klasörde olduğundan emin ol */
             background-image: linear-gradient(
                     to bottom,
                     rgba(15, 23, 42, 0.85),
@@ -163,16 +185,15 @@
                 url("mersin.jpg");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax (Kayma Efekti) */
+            background-attachment: fixed;
             text-align: center;
-            padding: 160px 20px; /* Genişlik verildi */
-            min-height: 70vh;    /* Ekranın %70'i */
+            padding: 160px 20px;
+            min-height: 70vh;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             border-bottom: 5px solid var(--meb-red);
-            margin-bottom: 0;
         }
 
         .hero-content h2 {
@@ -232,7 +253,7 @@
 
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Geniş kutular */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
@@ -256,7 +277,6 @@
             border-color: var(--meb-red);
         }
 
-        /* Hover Çizgisi */
         .link-card::before {
             content: '';
             position: absolute;
@@ -294,40 +314,35 @@
             border-top: 4px solid var(--meb-red);
         }
 
-       /* --- MOBİL UYUM (SADECE BU KISIM DÜZELDİ) --- */
+        /* --- MOBİL UYUM (LOGO SOLDA, MENÜ AÇILIR) --- */
         @media screen and (max-width: 1000px) {
-            /* Üst bantı yan yana tut */
             .top-content {
-                flex-direction: row;
+                flex-direction: row; /* Yan yana zorla */
                 justify-content: space-between;
                 align-items: center;
                 padding: 10px 5px;
             }
 
-            /* Logo ve Yazı Alanını YAN YANA (row) zorla */
             .brand-area {
                 flex-direction: row !important; /* Alt alta olmayı engeller */
                 align-items: center;
                 gap: 12px;
-                text-align: left; /* Yazıyı sola yasla */
+                text-align: left;
                 width: auto;
             }
 
-            /* Mobilde logo boyutu */
             .meb-logo {
-                height: 55px; /* Mobilde logoyu biraz küçültüyoruz ki sığsın */
+                height: 55px; /* Mobilde logo sığsın diye küçüldü */
                 margin-bottom: 0;
             }
 
-            /* Yazı ayarları */
             .brand-text {
-                align-items: flex-start; /* Yazı bloğunu sola yasla */
+                align-items: flex-start;
             }
 
             .brand-text h1 {
-                font-size: 1.25rem; /* Mobilde başlık boyutu */
+                font-size: 1.25rem;
                 text-align: left;
-                line-height: 1.1;
                 margin: 0;
             }
 
@@ -337,22 +352,18 @@
                 display: block;
             }
 
-            /* Mobilde sloganı gizle (yer kalmadığı için) */
-            .slogan-area {
-                display: none; 
-            }
-
-            /* Menü Ayarları */
+            .slogan-area { display: none; } /* Mobilde sloganı gizle */
+            
             .desktop-nav { display: none; }
             .hamburger { 
                 display: block; 
-                margin-left: auto; /* Hamburgeri en sağa it */
-                color: #333; /* Beyaz arka planda görünmesi için koyu renk */
-                font-size: 1.4rem;
+                margin-left: auto;
+                color: white; /* Hamburger rengi */
             }
             
             .hero { padding: 100px 20px; min-height: 50vh; }
             .hero-content h2 { font-size: 1.8rem; }
+            
             .links-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -362,13 +373,12 @@
     <div class="top-header">
         <div class="container top-content">
             <div class="brand-area">
-                <img src="EZKLogo.png" alt="Mersin Etkin Zümre Logosu" class="meb-logo" />
+                <img src="EZKLogo.png" alt="Logo" class="meb-logo" />
                 <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
                     <span>Eğitimde Birlik ve İlerleme Platformu</span>
                 </div>
             </div>
-            
             <div class="slogan-area">
                 <span class="slogan-text">"Köklerden Geleceğe..."</span>
             </div>
@@ -402,9 +412,29 @@
                 <li class="nav-item"><a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a></li>
                 <li class="nav-item"><a href="forum.html" class="nav-link">FORUM</a></li>
             </ul>
-            <div class="hamburger" onclick="alert('Mobil Menü JS')"><i class="fas fa-bars"></i></div>
+            <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
+
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar-menu">
+        <div class="sidebar-header">
+            <span class="sidebar-brand">MENÜ</span>
+            <div class="close-btn" onclick="toggleSidebar()">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <ul class="sidebar-list">
+            <li><a href="index.html" class="sidebar-link active">ANASAYFA</a></li>
+            <li><a href="arsiv.html" class="sidebar-link">ZÜMRE ARŞİVİ</a></li>
+            <li><a href="yonetmelik.html" class="sidebar-link">YÖNETMELİK</a></li>
+            <li><a href="tutanak.html" class="sidebar-link">EVRAK OLUŞTUR</a></li>
+            <li><a href="maarif.html" class="sidebar-link">MAARİFİ ANLAMAK</a></li>
+            <li><a href="ilceler.html" class="sidebar-link">İLÇE ZİYARETLERİ</a></li>
+            <li><a href="ornekler.html" class="sidebar-link">İYİ ÖRNEKLER</a></li>
+            <li><a href="forum.html" class="sidebar-link">FORUM</a></li>
+        </ul>
+    </div>
 
     <section class="hero">
         <div class="container hero-content">
@@ -414,14 +444,13 @@
                 ölçme-değerlendirme araçları ve zümre işbirliğine yönelik tüm kaynakların 
                 buluştuğu ortak dijital platform.
             </p>
-            <a href="arsiv.html" class="hero-btn">Dokümanlara Göz At</a>
+            <a href="arsiv.html" class="hero-btn">Dökümanlara Göz At</a>
         </div>
     </section>
 
     <section class="quick-links-section">
         <div class="container">
             <div class="section-title"><i class="fas fa-rocket"></i> Hızlı Erişim Menüsü</div>
-            
             <div class="links-grid">
                 
                 <a href="https://mersin.meb.gov.tr" target="_blank" class="link-card">
@@ -481,6 +510,12 @@
             &copy; 2024 Mersin Etkin Zümre. Tüm hakları saklıdır.
         </div>
     </footer>
+
+    <script>
+        function toggleSidebar() {
+            document.body.classList.toggle("menu-open");
+        }
+    </script>
 
 </body>
 </html>
