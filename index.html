@@ -16,24 +16,32 @@
             --text-gray: #333;
         }
 
+        /* [ÖNEMLİ] Sayfa titremesini engelleyen kod */
+        html { overflow-y: scroll; } 
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Inter", sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
+        body { font-family: "Inter", sans-serif; background-color: var(--bg-light); color: var(--text-gray); }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* --- 1. ÜST HEADER --- */
+        /* --- 1. ÜST HEADER (SABİTLENDİ) --- */
         .top-header {
             background: white;
             padding: 10px 0;
             border-bottom: 1px solid #e2e8f0;
+            /* Yükseklik sabitleme: Logo (110px) + Padding (10px+10px) = 130px */
+            height: 130px; 
+            display: flex;
+            align-items: center;
         }
 
         .top-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 90px;
+            height: 100%; /* Kapsayıcının yüksekliğini al */
+            width: 100%;
         }
 
         .brand-area {
@@ -43,9 +51,10 @@
         }
 
         .meb-logo {
-            height: 110px;
+            height: 110px; /* Logo boyutu sabit */
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            display: block;
         }
 
         .brand-text {
@@ -150,7 +159,7 @@
         
         .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
 
-        /* --- MOBİL YAN MENÜ (DÜZELTİLDİ) --- */
+        /* --- MOBİL YAN MENÜ --- */
         .sidebar-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.7); z-index: 2000;
@@ -314,17 +323,22 @@
             border-top: 4px solid var(--meb-red);
         }
 
-        /* --- MOBİL UYUM (LOGO SOLDA, MENÜ AÇILIR) --- */
+        /* --- MOBİL UYUM --- */
         @media screen and (max-width: 1000px) {
+            .top-header {
+                height: auto; /* Mobilde esnek yükseklik */
+                padding: 10px 0;
+            }
             .top-content {
-                flex-direction: row; /* Yan yana zorla */
+                flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
                 padding: 10px 5px;
+                height: auto;
             }
 
             .brand-area {
-                flex-direction: row !important; /* Alt alta olmayı engeller */
+                flex-direction: row !important;
                 align-items: center;
                 gap: 12px;
                 text-align: left;
@@ -332,34 +346,17 @@
             }
 
             .meb-logo {
-                height: 75px; /* Mobilde logo sığsın diye küçüldü */
+                height: 75px;
                 margin-bottom: 0;
             }
 
-            .brand-text {
-                align-items: flex-start;
-            }
-
-            .brand-text h1 {
-                font-size: 1.25rem;
-                text-align: left;
-                margin: 0;
-            }
-
-            .brand-text span {
-                font-size: 0.75rem;
-                text-align: left;
-                display: block;
-            }
-
-            .slogan-area { display: none; } /* Mobilde sloganı gizle */
+            .brand-text { align-items: flex-start; }
+            .brand-text h1 { font-size: 1.25rem; text-align: left; margin: 0; }
+            .brand-text span { font-size: 0.75rem; text-align: left; display: block; }
+            .slogan-area { display: none; }
             
             .desktop-nav { display: none; }
-            .hamburger { 
-                display: block; 
-                margin-left: auto;
-                color: white; /* Hamburger rengi */
-            }
+            .hamburger { display: block; margin-left: auto; color: white; }
             
             .hero { padding: 100px 20px; min-height: 50vh; }
             .hero-content h2 { font-size: 1.8rem; }
