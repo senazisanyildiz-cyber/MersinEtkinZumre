@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mersin Etkin Zümre</title>
+    
+    <link rel="preload" as="image" href="EZKLogo.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
@@ -16,7 +19,7 @@
             --text-gray: #333;
         }
 
-        /* Sayfa titremesini engelleyen scrollbar kodu */
+        /* Sayfa titremesini engelleyen kod */
         html { overflow-y: scroll; } 
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,30 +51,26 @@
             align-items: center;
             gap: 20px;
             height: 110px; 
-            flex-shrink: 0; /* Asla sıkışma */
+            flex-shrink: 0; 
         }
 
-        /* [YENİ TEKNİK] LOGO KUTUSU (WRAPPER) */
-        /* Resmi direkt boyutlandırmak yerine bu kutuyu boyutlandırıyoruz. */
-        /* Bu kutu kodla çizildiği için anında yüklenir ve titremez. */
-        .logo-wrapper {
+        /* --- [YENİ YÖNTEM] CSS BACKGROUND IMAGE --- */
+        /* Bu yöntemle resim bir 'öğe' değil, 'duvar kağıdı' olur. Asla zıplamaz. */
+        .logo-fixed {
             width: 110px;
             height: 110px;
-            min-width: 110px; /* Kilitle */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden; /* Taşanı gizle */
-        }
-
-        .meb-logo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Kutuya sığdır ama yamultma */
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            
+            /* Resmi buraya gömüyoruz */
+            background-image: url('EZKLogo.png');
+            
+            /* Resim kutuya sığsın ama tekrar etmesin */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center left;
+            
+            /* Kutu esnemesin */
+            flex-shrink: 0;
             display: block;
-            /* Resim render kalitesini iyileştirme */
-            image-rendering: -webkit-optimize-contrast;
         }
 
         .brand-text {
@@ -357,17 +356,10 @@
                 height: auto; 
             }
 
-            /* Mobilde de kutu (wrapper) boyutunu küçültüyoruz */
-            .logo-wrapper {
+            /* Mobilde kutuyu küçültüyoruz */
+            .logo-fixed {
                 width: 75px;
                 height: 75px;
-                min-width: 75px;
-            }
-
-            .meb-logo {
-                /* Wrapper zaten boyutlandırıldığı için burası 100% kalır */
-                width: 100%;
-                height: 100%;
             }
 
             .brand-text { align-items: flex-start; }
@@ -389,9 +381,7 @@
         <div class="container top-content">
             <div class="brand-area">
                 
-                <div class="logo-wrapper">
-                    <img src="EZKLogo.png" alt="Logo" class="meb-logo" width="110" height="110" />
-                </div>
+                <a href="index.html" class="logo-fixed" title="Anasayfa"></a>
 
                 <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
