@@ -20,16 +20,44 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* HEADER */
-        .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 110px; display: flex; align-items: center; }
+        /* --- HEADER (ANASAYFA STANDARDI) --- */
+        .top-header {
+            background: white;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            /* Anasayfa ile uyumlu olması için 130px yapıldı */
+            height: 130px; 
+            display: flex;
+            align-items: center;
+        }
+
         .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
-        .brand-area { display: flex; align-items: center; gap: 5px; height: 90px; flex-shrink: 0; }
-        .logo-fixed { width: 90px; height: 90px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
+        
+        .brand-area {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* İdeal yakınlık */
+            height: 110px; /* Logo wrapper ile uyumlu */
+            flex-shrink: 0; 
+        }
+
+        /* LOGO KUTUSU (ANASAYFA STANDARDI) */
+        .logo-fixed {
+            width: 110px;
+            height: 110px;
+            background-image: url('EZKLogo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center left;
+            flex-shrink: 0;
+            display: block;
+        }
+
         .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
-        .brand-text h1 { font-size: 1.7rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
+        .brand-text h1 { font-size: 1.8rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
         .brand-text span { font-size: 0.95rem; color: #64748b; font-weight: 600; margin-top: 3px; }
         .slogan-area { text-align: right; min-width: 200px; }
-        .slogan-text { font-family: "Playfair Display", serif; font-size: 1.35rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
+        .slogan-text { font-family: "Playfair Display", serif; font-size: 1.4rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
 
         /* NAVİGASYON */
         .main-nav { background-color: var(--corporate-dark); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
@@ -48,78 +76,41 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
 
-        /* --- ARŞİV ve KATEGORİLER --- */
+        /* ARŞİV KATEGORİLERİ */
         .archive-header { padding: 40px 0 20px; border-bottom: 1px solid #e2e8f0; margin-bottom: 30px; }
         .archive-header h2 { font-size: 2rem; color: var(--corporate-dark); margin-bottom: 10px; }
         
-        /* Grid */
         .school-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding-bottom: 60px; }
         .school-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: 0.3s; }
         .school-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--meb-red); }
         .card-header { background: var(--corporate-dark); color: white; padding: 20px; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; }
         .card-body { padding: 20px; }
-        .branch-list { list-style: none; }
-        .branch-list li { margin-bottom: 10px; }
+        
+        .branch-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 10px; } /* Liste yapısı */
         .branch-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: #f8fafc; border-radius: 6px; font-weight: 500; font-size: 0.95rem; color: #333; transition: 0.2s; border: 1px solid #f1f5f9; cursor: pointer; }
         .branch-link:hover { background: var(--meb-red); color: white; border-color: var(--meb-red); }
 
-        /* --- DOSYA LİSTESİ BÖLÜMÜ --- */
+        /* DOSYA LİSTESİ BÖLÜMÜ */
         #documents-section { display: none; padding-bottom: 60px; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
 
         .back-btn { display: inline-flex; align-items: center; gap: 8px; color: #64748b; margin-bottom: 20px; cursor: pointer; font-weight: 600; transition: 0.2s; }
         .back-btn:hover { color: var(--meb-red); }
 
-        /* KOORDİNATÖR NOTU (YENİ) */
-        .coordinator-note-btn {
-            background-color: #fffbeb; /* Açık sarı arka plan */
-            color: #b45309; /* Koyu sarı/turuncu yazı */
-            border: 1px solid #fcd34d;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            transition: 0.2s;
-            width: 100%; /* Mobilde tam genişlik */
-            max-width: 400px; /* Masaüstünde sınırlı */
-        }
+        /* KOORDİNATÖR NOTU */
+        .coordinator-note-btn { background-color: #fffbeb; color: #b45309; border: 1px solid #fcd34d; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; transition: 0.2s; width: 100%; max-width: 400px; }
         .coordinator-note-btn:hover { background-color: #fcd34d; color: #78350f; }
-        
-        .coordinator-message-box {
-            display: none; /* Gizli başlar */
-            background-color: #fffbeb;
-            border-left: 5px solid #f59e0b;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            color: #1e293b;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            animation: fadeIn 0.3s ease;
-        }
-        .note-signature {
-            margin-top: 15px;
-            font-weight: 700;
-            color: #b45309;
-            text-align: right;
-            border-top: 1px solid rgba(180, 83, 9, 0.2);
-            padding-top: 10px;
-        }
+        .coordinator-message-box { display: none; background-color: #fffbeb; border-left: 5px solid #f59e0b; padding: 25px; border-radius: 8px; margin-bottom: 30px; color: #1e293b; line-height: 1.6; font-size: 0.95rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); animation: fadeIn 0.3s ease; }
+        .note-signature { margin-top: 15px; font-weight: 700; color: #b45309; text-align: right; border-top: 1px solid rgba(180, 83, 9, 0.2); padding-top: 10px; }
         .note-signature span { font-weight: 500; font-size: 0.9em; font-style: italic; display: block; color: #78350f; }
 
-        /* Dosya Kartları */
+        /* DOSYA KARTLARI */
         .file-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; gap: 15px; transition: 0.3s; margin-bottom: 20px; }
         .file-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: #cbd5e1; }
         .file-main { display: flex; align-items: center; gap: 20px; flex: 1; }
         .file-icon { width: 50px; height: 50px; background-color: #fef2f2; color: #dc2626; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
         .file-info h3 { font-size: 1.05rem; color: var(--corporate-dark); font-weight: 700; margin-bottom: 5px; }
         .file-meta { font-size: 0.85rem; color: #64748b; display: flex; gap: 15px; }
-        
         .file-actions { display: flex; gap: 10px; margin-top: 5px; }
         .btn-action { padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; border: none; text-decoration: none;}
         .btn-preview { background-color: #f1f5f9; color: var(--corporate-dark); }
@@ -128,10 +119,9 @@
         .btn-download:hover { background-color: var(--meb-red); }
         .btn-info { width: 35px; height: 35px; border-radius: 50%; background-color: #fff; border: 1px solid #e2e8f0; color: #64748b; display: flex; align-items: center; justify-content: center; }
         .btn-info:hover { color: var(--meb-red); border-color: var(--meb-red); }
-
         .file-description { display: none; background-color: #f8fafc; padding: 15px; border-radius: 8px; font-size: 0.9rem; color: #475569; border-left: 3px solid #cbd5e1; }
 
-        /* Modal */
+        /* MODAL */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
         .modal-content { background: white; width: 85%; height: 90%; border-radius: 10px; display: flex; flex-direction: column; position: relative; }
         .modal-header { padding: 15px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
@@ -223,29 +213,58 @@
             </div>
 
             <div class="school-grid">
+                
                 <div class="school-card">
                     <div class="card-header">Okul Öncesi <i class="fas fa-shapes"></i></div>
-                    <div class="card-body"><ul class="branch-list"><li><div class="branch-link">Okul Öncesi Öğrt. <i class="fas fa-arrow-right"></i></div></li></ul></div>
+                    <div class="card-body">
+                        <ul class="branch-list">
+                            <li><div class="branch-link">Okul Öncesi Öğrt. <i class="fas fa-arrow-right"></i></div></li>
+                        </ul>
+                    </div>
                 </div>
+
                 <div class="school-card">
                     <div class="card-header">İlkokul <i class="fas fa-school"></i></div>
-                    <div class="card-body"><ul class="branch-list"><li><div class="branch-link">Sınıf Öğretmenliği <i class="fas fa-arrow-right"></i></div></li><li><div class="branch-link">İngilizce <i class="fas fa-arrow-right"></i></div></li></ul></div>
+                    <div class="card-body">
+                        <ul class="branch-list">
+                            <li><div class="branch-link">Sınıf Öğretmenliği <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">İngilizce <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Din Kültürü <i class="fas fa-arrow-right"></i></div></li>
+                        </ul>
+                    </div>
                 </div>
+
                 <div class="school-card">
                     <div class="card-header">Ortaokul <i class="fas fa-book-reader"></i></div>
-                    <div class="card-body"><ul class="branch-list"><li><div class="branch-link">Türkçe <i class="fas fa-arrow-right"></i></div></li><li><div class="branch-link">Matematik <i class="fas fa-arrow-right"></i></div></li></ul></div>
+                    <div class="card-body">
+                        <ul class="branch-list">
+                            <li><div class="branch-link">Türkçe <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Matematik <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Fen Bilimleri <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Sosyal Bilgiler <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">İngilizce <i class="fas fa-arrow-right"></i></div></li>
+                        </ul>
+                    </div>
                 </div>
+
                 <div class="school-card" style="border-color: var(--meb-red); box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
                     <div class="card-header" style="background-color: var(--meb-red);">Lise <i class="fas fa-university"></i></div>
                     <div class="card-body">
                         <ul class="branch-list">
                             <li><div class="branch-link">Türk Dili ve Edebiyatı <i class="fas fa-arrow-right"></i></div></li>
                             <li><div class="branch-link">Matematik <i class="fas fa-arrow-right"></i></div></li>
-                            <li><div class="branch-link" onclick="showDocuments('Kimya')" style="background-color: #fee2e2; color: var(--meb-red); border-color: #fecaca; font-weight: 700;">Kimya <i class="fas fa-arrow-right"></i></div></li>
                             <li><div class="branch-link">Fizik <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link" onclick="showDocuments('Kimya')" style="background-color: #fee2e2; color: var(--meb-red); border-color: #fecaca; font-weight: 700;">Kimya <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Biyoloji <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Tarih <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Coğrafya <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Felsefe <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Din Kültürü <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">İngilizce <i class="fas fa-arrow-right"></i></div></li>
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -349,51 +368,13 @@
 
     <script>
         function toggleSidebar() { document.body.classList.toggle("menu-open"); }
-        
-        // Single Page Geçiş Mantığı
-        function showDocuments(branch) {
-            document.getElementById('category-section').style.display = 'none';
-            document.getElementById('documents-section').style.display = 'block';
-            window.scrollTo(0, 0); 
-        }
-
-        function showCategories() {
-            document.getElementById('documents-section').style.display = 'none';
-            document.getElementById('category-section').style.display = 'block';
-        }
-
-        function toggleDesc(id) {
-            var desc = document.getElementById(id);
-            desc.style.display = (desc.style.display === "block") ? "none" : "block";
-        }
-
-        // Koordinatör Notunu Aç/Kapa
-        function toggleCoordinatorNote() {
-            var note = document.getElementById("coordinatorNote");
-            if (note.style.display === "block") {
-                note.style.display = "none";
-            } else {
-                note.style.display = "block";
-            }
-        }
-
-        // PDF Önizleme Fonksiyonu
-        function openPreview(filePath) {
-            document.getElementById('previewModal').style.display = 'flex';
-            document.getElementById('modalFileName').innerText = filePath.split('/').pop();
-            document.getElementById('docFrame').src = filePath;
-        }
-
-        function closePreview() {
-            document.getElementById('previewModal').style.display = 'none';
-            document.getElementById('docFrame').src = ""; 
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('previewModal')) {
-                closePreview();
-            }
-        }
+        function showDocuments(branch) { document.getElementById('category-section').style.display = 'none'; document.getElementById('documents-section').style.display = 'block'; window.scrollTo(0, 0); }
+        function showCategories() { document.getElementById('documents-section').style.display = 'none'; document.getElementById('category-section').style.display = 'block'; }
+        function toggleDesc(id) { var desc = document.getElementById(id); desc.style.display = (desc.style.display === "block") ? "none" : "block"; }
+        function toggleCoordinatorNote() { var note = document.getElementById("coordinatorNote"); note.style.display = (note.style.display === "block") ? "none" : "block"; }
+        function openPreview(filePath) { document.getElementById('previewModal').style.display = 'flex'; document.getElementById('modalFileName').innerText = filePath.split('/').pop(); document.getElementById('docFrame').src = filePath; }
+        function closePreview() { document.getElementById('previewModal').style.display = 'none'; document.getElementById('docFrame').src = ""; }
+        window.onclick = function(event) { if (event.target == document.getElementById('previewModal')) { closePreview(); } }
     </script>
 
 </body>
