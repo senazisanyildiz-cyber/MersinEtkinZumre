@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
     <style>
-        /* --- MASTER CSS --- */
+        /* --- MASTER CSS (INDEX İLE AYNI) --- */
         :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
         html { overflow-y: scroll; } 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,13 +20,12 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* --- HEADER (ANASAYFA STANDARDI) --- */
+        /* HEADER (KISA VE DAR - INDEX İLE AYNI) */
         .top-header {
             background: white;
             padding: 10px 0;
             border-bottom: 1px solid #e2e8f0;
-            /* Anasayfa ile uyumlu olması için 130px yapıldı */
-            height: 130px; 
+            height: 100px; /* Index'teki kısa yükseklik */
             display: flex;
             align-items: center;
         }
@@ -36,15 +35,14 @@
         .brand-area {
             display: flex;
             align-items: center;
-            gap: 8px; /* İdeal yakınlık */
-            height: 110px; /* Logo wrapper ile uyumlu */
+            gap: 5px; /* Dar mesafe */
+            height: 80px; 
             flex-shrink: 0; 
         }
 
-        /* LOGO KUTUSU (ANASAYFA STANDARDI) */
         .logo-fixed {
-            width: 110px;
-            height: 110px;
+            width: 80px; /* Index'teki boyut */
+            height: 80px;
             background-image: url('EZKLogo.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -54,10 +52,10 @@
         }
 
         .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
-        .brand-text h1 { font-size: 1.8rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
-        .brand-text span { font-size: 0.95rem; color: #64748b; font-weight: 600; margin-top: 3px; }
+        .brand-text h1 { font-size: 1.6rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
+        .brand-text span { font-size: 0.9rem; color: #64748b; font-weight: 600; margin-top: 2px; }
         .slogan-area { text-align: right; min-width: 200px; }
-        .slogan-text { font-family: "Playfair Display", serif; font-size: 1.4rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
+        .slogan-text { font-family: "Playfair Display", serif; font-size: 1.3rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
 
         /* NAVİGASYON */
         .main-nav { background-color: var(--corporate-dark); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
@@ -86,7 +84,7 @@
         .card-header { background: var(--corporate-dark); color: white; padding: 20px; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; }
         .card-body { padding: 20px; }
         
-        .branch-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 10px; } /* Liste yapısı */
+        .branch-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 10px; } 
         .branch-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: #f8fafc; border-radius: 6px; font-weight: 500; font-size: 0.95rem; color: #333; transition: 0.2s; border: 1px solid #f1f5f9; cursor: pointer; }
         .branch-link:hover { background: var(--meb-red); color: white; border-color: var(--meb-red); }
 
@@ -135,7 +133,7 @@
             .top-header { height: auto; padding: 10px 0; }
             .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; height: auto; }
             .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; height: auto; }
-            .logo-fixed { width: 70px; height: 70px; }
+            .logo-fixed { width: 60px; height: 60px; } /* Mobilde daha küçük */
             .brand-text h1 { font-size: 1.2rem; } .brand-text span { font-size: 0.75rem; }
             .slogan-area { display: none; } .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; color: white; }
         }
@@ -243,6 +241,7 @@
                             <li><div class="branch-link">Fen Bilimleri <i class="fas fa-arrow-right"></i></div></li>
                             <li><div class="branch-link">Sosyal Bilgiler <i class="fas fa-arrow-right"></i></div></li>
                             <li><div class="branch-link">İngilizce <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Din Kültürü <i class="fas fa-arrow-right"></i></div></li>
                         </ul>
                     </div>
                 </div>
