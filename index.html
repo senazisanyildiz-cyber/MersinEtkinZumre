@@ -16,7 +16,7 @@
             --text-gray: #333;
         }
 
-        /* Sayfa titremesini engelleyen scrollbar kodu */
+        /* [ÖNEMLİ] Sayfa titremesini engelleyen scrollbar kodu */
         html { overflow-y: scroll; } 
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,23 +43,29 @@
             width: 100%;
         }
 
+        /* GÜNCELLENEN KISIM BAŞLANGIÇ */
         .brand-area {
             display: flex;
             align-items: center;
             gap: 20px;
             height: 110px; 
-            overflow: hidden; 
+            /* Burası önemli: Taşan kısımları gizlemiyoruz, esnekliği kapatıyoruz */
+            flex-shrink: 0;
         }
 
         .meb-logo {
+            /* 1. ADIM: Logoya Çelik Bir Kutu Çiziyoruz (Zıplamayı Önler) */
+            width: 110px;  
             height: 110px;
-            width: auto;
-            /* [DÜZELTİLDİ] aspect-ratio yerine object-fit kullanıldı. 
-               Bu, logonun yamulmasını önler ve orantılı sığmasını sağlar. */
+            
+            /* 2. ADIM: Resmi bu kutuya orantılı sığdırıyoruz (Yamulmayı Önler) */
             object-fit: contain; 
+            
+            /* Görsellik */
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             display: block;
         }
+        /* GÜNCELLENEN KISIM BİTİŞ */
 
         .brand-text {
             display: flex;
@@ -351,6 +357,7 @@
             }
 
             .meb-logo {
+                width: 75px; /* Mobilde de genişliği sabitliyoruz */
                 height: 75px !important; 
                 margin-bottom: 0;
             }
