@@ -4,143 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evrak Oluşturucu - Mersin Etkin Zümre</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    
+    <link rel="preload" as="image" href="EZKLogo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- GENEL AYARLAR --- */
+        /* --- TEMEL AYARLAR (MASTER CSS - INDEX İLE AYNI) --- */
+        :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
+        html { overflow-y: scroll; } 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0F172A; line-height: 1.5; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
+        .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* --- HEADER & LOGO ALANI --- */
-        .top-header { background-color: #fff; padding: 5px 0; border-bottom: 1px solid #e2e8f0; }
-        .container { width: 98%; max-width: 1400px; margin: 0 auto; }
-        .top-content { display: flex; justify-content: space-between; align-items: center; height: 90px; }
+        /* HEADER (100px Yükseklik - KISALTILMIŞ STANDART) */
+        .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
+        .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
         
-        .brand-area { display: flex; align-items: center; gap: 15px; }
-        .meb-logo { height: 85px; width: auto; display: block; }
-        .brand-text { display: flex; flex-direction: column; justify-content: center; }
-        .brand-text h1 { font-size: 1.8rem; font-weight: 900; color: #0F172A; line-height: 1; text-transform: uppercase; letter-spacing: -0.5px; margin: 0; }
-        .brand-text span { font-size: 0.95rem; color: #64748b; font-weight: 600; margin-top: 2px; }
+        .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
         
-        .slogan-area { text-align: right; }
-        .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; color: #E30A17; font-weight: 600; }
+        /* LOGO KUTUSU (80px - STANDART) */
+        .logo-fixed { width: 80px; height: 80px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
+        
+        .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
+        .brand-text h1 { font-size: 1.6rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
+        .brand-text span { font-size: 0.9rem; color: #64748b; font-weight: 600; margin-top: 2px; }
+        
+        .slogan-area { text-align: right; min-width: 200px; }
+        .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
 
-        /* --- NAVİGASYON MENÜSÜ --- */
-        .main-nav { background-color: #0F172A; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; border-top: 4px solid #E30A17; height: 55px; }
-        .nav-container { width: 98%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; }
-        
+        /* NAVİGASYON */
+        .main-nav { background-color: var(--corporate-dark); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
+        .nav-container { width: 94%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; }
         .desktop-nav { display: flex; height: 100%; align-items: center; }
         .nav-item { height: 100%; position: relative; display: flex; align-items: center; }
-        .nav-link { color: white; font-weight: 600; font-size: 0.9rem; padding: 0 20px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255,255,255,0.05); transition: 0.3s; text-transform: uppercase; letter-spacing: 0.3px; }
-        .nav-link:hover, .nav-item:hover .nav-link { background-color: #E30A17; }
+        .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link { background-color: var(--meb-red); color: white; }
         .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
         
-        /* Dropdown Menü */
-        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-top: 3px solid #E30A17; padding: 5px 0; z-index: 9999; }
+        /* Dropdown */
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border-top: 3px solid var(--meb-red); padding: 5px 0; z-index: 9999; }
         .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
-        .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; transition: 0.2s; }
-        .dropdown-item a i { width: 25px; color: #64748b; }
-        .dropdown-item a:hover { background-color: #f8fafc; color: #E30A17; padding-left: 25px; }
-        .dropdown-item a:hover i { color: #E30A17; }
+        .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
+        .dropdown-item a i { margin-right: 10px; color: #64748b; width: 20px; text-align: center; }
+        .dropdown-item a:hover { background-color: #f8fafc; color: var(--meb-red); padding-left: 25px; }
+        .dropdown-item a:hover i { color: var(--meb-red); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
 
-        /* --- MOBİL MENÜ --- */
-        .hamburger { display: none; font-size: 1.6rem; color: white; cursor: pointer; padding: 10px; }
-        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; backdrop-filter: blur(2px); }
-        .sidebar-menu { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background-color: #0F172A; z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0,0,0,0.2); overflow-y: auto; display: flex; flex-direction: column; }
-        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; }
-        body.menu-open .sidebar-menu { left: 0; }
-        .sidebar-header { padding: 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .sidebar-brand { font-weight: 800; color: white; font-size: 1.1rem; letter-spacing: 1px; }
-        .close-btn { color: white; font-size: 1.4rem; cursor: pointer; transition: 0.3s; }
-        .close-btn:hover { color: #E30A17; transform: rotate(90deg); }
-        .sidebar-list { padding: 10px 0; margin: 0; }
-        .sidebar-link { display: block; padding: 15px 25px; color: #cbd5e1; font-weight: 500; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); transition: 0.2s; }
-        .sidebar-link:hover { background-color: rgba(255,255,255,0.05); color: white; padding-left: 30px; }
-        .sidebar-link.active { color: #E30A17; background: rgba(227, 10, 23, 0.1); border-left: 4px solid #E30A17; }
+        /* MOBİL MENÜ */
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; }
+        .sidebar-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background-color: var(--corporate-dark); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
+        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; } body.menu-open .sidebar-menu { left: 0; }
+        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); } .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; } .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
+        .sidebar-list { padding: 10px 0; } .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); } .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; } .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
 
-        /* --- DASHBOARD (EVRAK OLUŞTURUCU) ÖZEL STİLLERİ --- */
+        /* DASHBOARD ÖZEL STİLLERİ */
         .dashboard-header { text-align: center; padding: 60px 0 40px 0; }
         .dashboard-header h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; font-weight: 800; }
         .dashboard-header p { color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding-bottom: 80px; }
+        .tool-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; height: 100%; position: relative; overflow: hidden; }
+        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); border-color: #E30A17; }
         
-        .tool-card { 
-            background: white; 
-            border: 1px solid #e2e8f0; 
-            border-radius: 16px; 
-            padding: 40px 30px; 
-            text-align: center; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            height: 100%; 
-            position: relative;
-            overflow: hidden;
-        }
+        .icon-bg { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 2rem; transition: 0.3s; }
+        .bg-zumre { background-color: #fee2e2; color: #E30A17; } .bg-plan { background-color: #dbeafe; color: #1e40af; } .bg-kulup { background-color: #dcfce7; color: #16a34a; } .bg-sinif { background-color: #fef3c7; color: #d97706; } .bg-maarif { background-color: #f3e8ff; color: #7e22ce; } .bg-sinav { background-color: #cffafe; color: #0891b2; }
         
-        .tool-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); 
-            border-color: #E30A17; 
-        }
-
-        .icon-bg { 
-            width: 80px; 
-            height: 80px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            margin-bottom: 25px; 
-            font-size: 2rem; 
-            transition: 0.3s;
-        }
-
-        /* Renk Kodları */
-        .bg-zumre { background-color: #fee2e2; color: #E30A17; } /* Kırmızı */
-        .bg-plan { background-color: #dbeafe; color: #1e40af; } /* Mavi */
-        .bg-kulup { background-color: #dcfce7; color: #16a34a; } /* Yeşil */
-        .bg-sinif { background-color: #fef3c7; color: #d97706; } /* Turuncu */
-        .bg-maarif { background-color: #f3e8ff; color: #7e22ce; } /* Mor */
-        .bg-sinav { background-color: #cffafe; color: #0891b2; } /* Camgöbeği */
-
         .tool-card h3 { font-size: 1.4rem; color: #0F172A; margin-bottom: 12px; font-weight: 700; }
         .tool-card p { color: #64748b; font-size: 0.95rem; margin-bottom: 30px; flex: 1; line-height: 1.6; }
-        
-        .btn-tool { 
-            background-color: #0F172A; 
-            color: white; 
-            padding: 14px 30px; 
-            border-radius: 50px; 
-            font-weight: 600; 
-            width: 100%; 
-            transition: 0.3s; 
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
+        .btn-tool { background-color: #0F172A; color: white; padding: 14px 30px; border-radius: 50px; font-weight: 600; width: 100%; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
         .tool-card:hover .btn-tool { background-color: #E30A17; }
 
-        /* --- MEDYA SORGULARI --- */
         @media screen and (max-width: 1100px) {
-            .top-header { padding: 10px 0; }
-            .top-content { flex-direction: column; gap: 10px; align-items: flex-start; height: auto; padding-bottom: 10px; }
-            .brand-area { width: 100%; display: flex; align-items: center; gap: 15px; }
-            .meb-logo { height: 70px; }
-            .brand-text h1 { font-size: 1.5rem; }
-            .slogan-area { width: 100%; text-align: right; margin-top: -15px; padding-right: 5px; }
-            .slogan-text { font-size: 1.1rem; }
-            .desktop-nav { display: none; }
-            .hamburger { display: block; margin-left: auto; }
+            .top-header { height: auto; padding: 10px 0; }
+            .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; height: auto; }
+            .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; height: auto; }
+            .logo-fixed { width: 60px; height: 60px; }
+            .brand-text h1 { font-size: 1.1rem; text-align: left; margin: 0; } .brand-text span { font-size: 0.75rem; text-align: left; display: block; }
+            .slogan-area { display: none; }
+            .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; color: white; }
             .dashboard-header h2 { font-size: 2rem; }
         }
     </style>
@@ -150,7 +96,7 @@
     <div class="top-header">
         <div class="container top-content">
             <div class="brand-area">
-                <img src="EZKLogo.png" alt="Mersin Etkin Zümre Logo" class="meb-logo">
+                <a href="index.html" class="logo-fixed" title="Anasayfa"></a>
                 <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
                     <span>Eğitimde Birlik ve İlerleme Platformu</span>
@@ -163,7 +109,7 @@
     </div>
 
     <nav class="main-nav">
-        <div class="nav-container">
+        <div class="container nav-container">
             <ul class="desktop-nav">
                 <li class="nav-item"><a href="index.html" class="nav-link">ANASAYFA</a></li>
                 <li class="nav-item"><a href="arsiv.html" class="nav-link">ZÜMRE ARŞİVİ</a></li>
@@ -190,10 +136,7 @@
 
     <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
     <div class="sidebar-menu">
-        <div class="sidebar-header">
-            <span class="sidebar-brand">MENÜ</span>
-            <div class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></div>
-        </div>
+        <div class="sidebar-header"><span class="sidebar-brand">MENÜ</span><div class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div>
         <ul class="sidebar-list">
             <li><a href="index.html" class="sidebar-link">ANASAYFA</a></li>
             <li><a href="arsiv.html" class="sidebar-link">ZÜMRE ARŞİVİ</a></li>
