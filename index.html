@@ -47,7 +47,6 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            /* [EKLENDİ] Yükseklik kilidi: Resim yüklenmese bile burası 110px kalır */
             height: 110px; 
             overflow: hidden; 
         }
@@ -55,8 +54,9 @@
         .meb-logo {
             height: 110px;
             width: auto;
-            /* [EKLENDİ] Tarayıcıya "bu kare bir resimdir" dedik, yerini rezerve etti */
-            aspect-ratio: 1 / 1; 
+            /* [DÜZELTİLDİ] aspect-ratio yerine object-fit kullanıldı. 
+               Bu, logonun yamulmasını önler ve orantılı sığmasını sağlar. */
+            object-fit: contain; 
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             display: block;
         }
@@ -347,12 +347,10 @@
                 gap: 12px;
                 text-align: left;
                 width: auto;
-                /* Mobilde sabit yükseklik kaldırılabilir veya küçültülebilir */
                 height: auto; 
             }
 
             .meb-logo {
-                /* [EKLENDİ] Mobilde logoyu küçülttük ve !important ile zorladık */
                 height: 75px !important; 
                 margin-bottom: 0;
             }
