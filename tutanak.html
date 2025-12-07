@@ -10,38 +10,139 @@
     <style>
         /* --- GENEL AYARLAR --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0F172A; line-height: 1.5; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0F172A; line-height: 1.5; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        /* (AYNI HEADER CSS KODLARI BURAYA GELECEK - YUKARIDAKİ ARSIV.HTML İLE BİREBİR AYNI KOPYALAYABİLİRSİN) */
-        /* Yer kaplamaması için özet geçiyorum, lütfen arsiv.html'deki <style> içini buraya kopyala ve şu eklemeyi yap: */
+        /* --- HEADER & LOGO ALANI --- */
+        .top-header { background-color: #fff; padding: 5px 0; border-bottom: 1px solid #e2e8f0; }
+        .container { width: 98%; max-width: 1400px; margin: 0 auto; }
+        .top-content { display: flex; justify-content: space-between; align-items: center; height: 90px; }
         
-        /* --- DASHBOARD EKSTRLARI --- */
-        .dashboard-header { text-align: center; padding: 60px 0 40px 0; }
-        .dashboard-header h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; }
-        .dashboard-header p { color: #64748b; font-size: 1.1rem; }
+        .brand-area { display: flex; align-items: center; gap: 15px; }
+        .meb-logo { height: 85px; width: auto; display: block; }
+        .brand-text { display: flex; flex-direction: column; justify-content: center; }
+        .brand-text h1 { font-size: 1.8rem; font-weight: 900; color: #0F172A; line-height: 1; text-transform: uppercase; letter-spacing: -0.5px; margin: 0; }
+        .brand-text span { font-size: 0.95rem; color: #64748b; font-weight: 600; margin-top: 2px; }
+        
+        .slogan-area { text-align: right; }
+        .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; color: #E30A17; font-weight: 600; }
 
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding-bottom: 80px; }
-        .tool-card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 30px; text-align: center; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; height: 100%; }
-        .tool-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #E30A17; }
-        .icon-bg { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 2rem; }
-        .bg-zumre { background-color: #fee2e2; color: #E30A17; } .bg-plan { background-color: #dbeafe; color: #1e40af; } .bg-kulup { background-color: #dcfce7; color: #16a34a; } .bg-sinif { background-color: #fef3c7; color: #d97706; } .bg-maarif { background-color: #f3e8ff; color: #7e22ce; } .bg-sinav { background-color: #cffafe; color: #0891b2; }
-        .tool-card h3 { font-size: 1.3rem; color: #0F172A; margin-bottom: 10px; }
-        .tool-card p { color: #64748b; font-size: 0.9rem; margin-bottom: 20px; flex: 1; }
-        .btn-tool { background-color: #0F172A; color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; width: 100%; transition: 0.2s; }
+        /* --- NAVİGASYON MENÜSÜ --- */
+        .main-nav { background-color: #0F172A; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; border-top: 4px solid #E30A17; height: 55px; }
+        .nav-container { width: 98%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; }
+        
+        .desktop-nav { display: flex; height: 100%; align-items: center; }
+        .nav-item { height: 100%; position: relative; display: flex; align-items: center; }
+        .nav-link { color: white; font-weight: 600; font-size: 0.9rem; padding: 0 20px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255,255,255,0.05); transition: 0.3s; text-transform: uppercase; letter-spacing: 0.3px; }
+        .nav-link:hover, .nav-item:hover .nav-link { background-color: #E30A17; }
+        .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
+        
+        /* Dropdown Menü */
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-top: 3px solid #E30A17; padding: 5px 0; z-index: 9999; }
+        .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
+        .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; transition: 0.2s; }
+        .dropdown-item a i { width: 25px; color: #64748b; }
+        .dropdown-item a:hover { background-color: #f8fafc; color: #E30A17; padding-left: 25px; }
+        .dropdown-item a:hover i { color: #E30A17; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- MOBİL MENÜ --- */
+        .hamburger { display: none; font-size: 1.6rem; color: white; cursor: pointer; padding: 10px; }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; backdrop-filter: blur(2px); }
+        .sidebar-menu { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background-color: #0F172A; z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0,0,0,0.2); overflow-y: auto; display: flex; flex-direction: column; }
+        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; }
+        body.menu-open .sidebar-menu { left: 0; }
+        .sidebar-header { padding: 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-brand { font-weight: 800; color: white; font-size: 1.1rem; letter-spacing: 1px; }
+        .close-btn { color: white; font-size: 1.4rem; cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { color: #E30A17; transform: rotate(90deg); }
+        .sidebar-list { padding: 10px 0; margin: 0; }
+        .sidebar-link { display: block; padding: 15px 25px; color: #cbd5e1; font-weight: 500; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); transition: 0.2s; }
+        .sidebar-link:hover { background-color: rgba(255,255,255,0.05); color: white; padding-left: 30px; }
+        .sidebar-link.active { color: #E30A17; background: rgba(227, 10, 23, 0.1); border-left: 4px solid #E30A17; }
+
+        /* --- DASHBOARD (EVRAK OLUŞTURUCU) ÖZEL STİLLERİ --- */
+        .dashboard-header { text-align: center; padding: 60px 0 40px 0; }
+        .dashboard-header h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; font-weight: 800; }
+        .dashboard-header p { color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding-bottom: 80px; }
+        
+        .tool-card { 
+            background: white; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 16px; 
+            padding: 40px 30px; 
+            text-align: center; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            height: 100%; 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); 
+            border-color: #E30A17; 
+        }
+
+        .icon-bg { 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 25px; 
+            font-size: 2rem; 
+            transition: 0.3s;
+        }
+
+        /* Renk Kodları */
+        .bg-zumre { background-color: #fee2e2; color: #E30A17; } /* Kırmızı */
+        .bg-plan { background-color: #dbeafe; color: #1e40af; } /* Mavi */
+        .bg-kulup { background-color: #dcfce7; color: #16a34a; } /* Yeşil */
+        .bg-sinif { background-color: #fef3c7; color: #d97706; } /* Turuncu */
+        .bg-maarif { background-color: #f3e8ff; color: #7e22ce; } /* Mor */
+        .bg-sinav { background-color: #cffafe; color: #0891b2; } /* Camgöbeği */
+
+        .tool-card h3 { font-size: 1.4rem; color: #0F172A; margin-bottom: 12px; font-weight: 700; }
+        .tool-card p { color: #64748b; font-size: 0.95rem; margin-bottom: 30px; flex: 1; line-height: 1.6; }
+        
+        .btn-tool { 
+            background-color: #0F172A; 
+            color: white; 
+            padding: 14px 30px; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            width: 100%; 
+            transition: 0.3s; 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
         .tool-card:hover .btn-tool { background-color: #E30A17; }
 
-        /* Lütfen arsiv.html'deki HEADER ve MEDIA QUERY kodlarını da buraya dahil et */
-    </style>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #333; line-height: 1.5; overflow-x: hidden; } a { text-decoration: none; color: inherit; } ul { list-style: none; }
-        .top-header { background-color: #fff; padding: 5px 0; border-bottom: 1px solid #e2e8f0; } .container { width: 98%; max-width: 1400px; margin: 0 auto; } .top-content { display: flex; justify-content: space-between; align-items: center; height: 90px; } .brand-area { display: flex; align-items: center; gap: 15px; } .meb-logo { height: 85px; width: auto; display: block; } .brand-text { display: flex; flex-direction: column; justify-content: center; } .brand-text h1 { font-size: 1.8rem; font-weight: 900; color: #0F172A; line-height: 1; text-transform: uppercase; letter-spacing: -0.5px; margin: 0; } .brand-text span { font-size: 0.95rem; color: #64748b; font-weight: 600; margin-top: 2px; } .slogan-area { text-align: right; } .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; color: #E30A17; font-weight: 600; }
-        .main-nav { background-color: #0F172A; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; border-top: 4px solid #E30A17; height: 55px; } .nav-container { width: 98%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; } .desktop-nav { display: flex; height: 100%; align-items: center; } .nav-item { height: 100%; position: relative; display: flex; align-items: center; } .nav-link { color: white; font-weight: 600; font-size: 0.9rem; padding: 0 20px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255,255,255,0.05); transition: 0.3s; text-transform: uppercase; letter-spacing: 0.3px; } .nav-link:hover, .nav-item:hover .nav-link { background-color: #E30A17; } .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; } .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-top: 3px solid #E30A17; padding: 5px 0; z-index: 9999; } .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; } .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; transition: 0.2s; } .dropdown-item a i { width: 25px; color: #64748b; } .dropdown-item a:hover { background-color: #f8fafc; color: #E30A17; padding-left: 25px; } .dropdown-item a:hover i { color: #E30A17; } @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .hamburger { display: none; font-size: 1.6rem; color: white; cursor: pointer; padding: 10px; } .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; backdrop-filter: blur(2px); } .sidebar-menu { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background-color: #0F172A; z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0,0,0,0.2); overflow-y: auto; display: flex; flex-direction: column; } body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; } body.menu-open .sidebar-menu { left: 0; } .sidebar-header { padding: 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); } .sidebar-brand { font-weight: 800; color: white; font-size: 1.1rem; letter-spacing: 1px; } .close-btn { color: white; font-size: 1.4rem; cursor: pointer; transition: 0.3s; } .close-btn:hover { color: #E30A17; transform: rotate(90deg); } .sidebar-list { padding: 10px 0; margin: 0; } .sidebar-link { display: block; padding: 15px 25px; color: #cbd5e1; font-weight: 500; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.03); transition: 0.2s; } .sidebar-link:hover { background-color: rgba(255,255,255,0.05); color: white; padding-left: 30px; } .sidebar-link.active { color: #E30A17; background: rgba(227, 10, 23, 0.1); border-left: 4px solid #E30A17; } .sidebar-sub-title { padding: 20px 25px 5px; font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-top: 10px; }
-        /* Dashboard Özel */
-        .dashboard-header { text-align: center; padding: 60px 0 40px 0; } .dashboard-header h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; } .dashboard-header p { color: #64748b; font-size: 1.1rem; } .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding-bottom: 80px; } .tool-card { background: white; border: 1px solid #e2e8f0; border-radius: 15px; padding: 30px; text-align: center; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; height: 100%; } .tool-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #E30A17; } .icon-bg { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 2rem; } .bg-zumre { background-color: #fee2e2; color: #E30A17; } .bg-plan { background-color: #dbeafe; color: #1e40af; } .bg-kulup { background-color: #dcfce7; color: #16a34a; } .bg-sinif { background-color: #fef3c7; color: #d97706; } .bg-maarif { background-color: #f3e8ff; color: #7e22ce; } .bg-sinav { background-color: #cffafe; color: #0891b2; } .tool-card h3 { font-size: 1.3rem; color: #0F172A; margin-bottom: 10px; } .tool-card p { color: #64748b; font-size: 0.9rem; margin-bottom: 20px; flex: 1; } .btn-tool { background-color: #0F172A; color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; width: 100%; transition: 0.2s; } .tool-card:hover .btn-tool { background-color: #E30A17; }
-        @media screen and (max-width: 1100px) { .top-header { padding: 10px 0; } .top-content { flex-direction: column; gap: 10px; align-items: flex-start; } .brand-area { width: 100%; display: flex; align-items: center; gap: 15px; } .meb-logo { height: 70px; } .brand-text h1 { font-size: 1.5rem; } .slogan-area { width: 100%; text-align: right; margin-top: -15px; padding-right: 5px; } .slogan-text { font-size: 1.1rem; } .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; } .hero h2 { font-size: 2rem; } }
+        /* --- MEDYA SORGULARI --- */
+        @media screen and (max-width: 1100px) {
+            .top-header { padding: 10px 0; }
+            .top-content { flex-direction: column; gap: 10px; align-items: flex-start; height: auto; padding-bottom: 10px; }
+            .brand-area { width: 100%; display: flex; align-items: center; gap: 15px; }
+            .meb-logo { height: 70px; }
+            .brand-text h1 { font-size: 1.5rem; }
+            .slogan-area { width: 100%; text-align: right; margin-top: -15px; padding-right: 5px; }
+            .slogan-text { font-size: 1.1rem; }
+            .desktop-nav { display: none; }
+            .hamburger { display: block; margin-left: auto; }
+            .dashboard-header h2 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -49,7 +150,7 @@
     <div class="top-header">
         <div class="container top-content">
             <div class="brand-area">
-                <img src="EZKLogo.png" alt="Logo" class="meb-logo">
+                <img src="EZKLogo.png" alt="Mersin Etkin Zümre Logo" class="meb-logo">
                 <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
                     <span>Eğitimde Birlik ve İlerleme Platformu</span>
@@ -89,7 +190,10 @@
 
     <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
     <div class="sidebar-menu">
-        <div class="sidebar-header"><span class="sidebar-brand">MENÜ</span><div class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div>
+        <div class="sidebar-header">
+            <span class="sidebar-brand">MENÜ</span>
+            <div class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></div>
+        </div>
         <ul class="sidebar-list">
             <li><a href="index.html" class="sidebar-link">ANASAYFA</a></li>
             <li><a href="arsiv.html" class="sidebar-link">ZÜMRE ARŞİVİ</a></li>
@@ -105,20 +209,58 @@
     <div class="container">
         <div class="dashboard-header">
             <h2>Dijital Evrak Asistanı</h2>
-            <p>İhtiyacınız olan resmi belgeleri saniyeler içinde oluşturun ve çıktı alın.</p>
+            <p>Eğitim-Öğretim süreçlerinizde ihtiyacınız olan resmi belgeleri standartlara uygun şekilde saniyeler içinde oluşturun, düzenleyin ve çıktı alın.</p>
         </div>
+
         <div class="tools-grid">
-            <div class="tool-card"><div class="icon-bg bg-zumre"><i class="fas fa-users"></i></div><h3>Zümre Tutanağı</h3><p>Sene başı, dönem sonu veya aylık zümre toplantı tutanaklarınızı hızlıca oluşturun.</p><a href="doc-zumre.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="icon-bg bg-plan"><i class="fas fa-calendar-alt"></i></div><h3>Yıllık Plan</h3><p>Kazanım bazlı ünitelendirilmiş yıllık plan taslağı hazırlayın.</p><a href="doc-plan.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="icon-bg bg-kulup"><i class="fas fa-hands-helping"></i></div><h3>Kulüp Çalışmaları</h3><p>Sosyal kulüp yıllık çalışma planı ve karar defteri tutanağı oluşturun.</p><a href="doc-kulup.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="icon-bg bg-sinif"><i class="fas fa-chalkboard-teacher"></i></div><h3>Sınıf Rehberlik</h3><p>Veli toplantı tutanağı ve sınıf içi evrakları hazırlayın.</p><a href="doc-sinif.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="icon-bg bg-maarif"><i class="fas fa-tasks"></i></div><h3>Ölçme ve Değerlendirme</h3><p>Süreç odaklı değerlendirme ölçekleri, rubrikler ve gözlem formları.</p><a href="doc-olcme.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="icon-bg bg-sinav"><i class="fas fa-file-alt"></i></div><h3>Yazılı Sınav Kağıdı</h3><p>Klasik veya test usulü sınav kağıtlarını, puanlamasıyla birlikte hazırlayın.</p><a href="doc-sinav.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a></div>
+            <div class="tool-card">
+                <div class="icon-bg bg-zumre"><i class="fas fa-users"></i></div>
+                <h3>Zümre Tutanağı</h3>
+                <p>Sene başı, dönem sonu veya aylık zümre toplantı tutanaklarınızı gündem maddeleriyle hızlıca hazırlayın.</p>
+                <a href="doc-zumre.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-plan"><i class="fas fa-calendar-alt"></i></div>
+                <h3>Yıllık Plan</h3>
+                <p>Türkiye Yüzyılı Maarif Modeli'ne uygun, kazanım bazlı ünitelendirilmiş yıllık plan taslakları.</p>
+                <a href="doc-plan.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-kulup"><i class="fas fa-hands-helping"></i></div>
+                <h3>Kulüp Çalışmaları</h3>
+                <p>Sosyal kulüp yıllık çalışma planı, öğrenci listesi ve karar defteri tutanaklarını otomatik oluşturun.</p>
+                <a href="doc-kulup.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-sinif"><i class="fas fa-chalkboard-teacher"></i></div>
+                <h3>Sınıf Rehberlik</h3>
+                <p>Veli toplantı tutanakları, şube öğretmenler kurulu kararları ve sınıf içi evraklar.</p>
+                <a href="doc-sinif.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-maarif"><i class="fas fa-tasks"></i></div>
+                <h3>Ölçme ve Değerlendirme</h3>
+                <p>Süreç odaklı değerlendirme ölçekleri, dereceli puanlama anahtarları (rubrik) ve gözlem formları.</p>
+                <a href="doc-olcme.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-sinav"><i class="fas fa-file-alt"></i></div>
+                <h3>Yazılı Sınav Kağıdı</h3>
+                <p>Okul başlığı ve puanlama tablosu hazır olan, klasik veya test usulü sınav kağıdı şablonları.</p>
+                <a href="doc-sinav.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
+            </div>
         </div>
     </div>
 
     <script>
-        function toggleSidebar() { document.body.classList.toggle("menu-open"); }
+        function toggleSidebar() {
+            document.body.classList.toggle("menu-open");
+        }
     </script>
 </body>
 </html>
