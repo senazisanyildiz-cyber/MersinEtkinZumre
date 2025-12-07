@@ -21,18 +21,14 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* HEADER (100px Yükseklik) */
+        /* HEADER (100px Yükseklik - KISALTILMIŞ STANDART) */
         .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
         .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
         .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
-        
-        /* LOGO KUTUSU (80px) */
         .logo-fixed { width: 80px; height: 80px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
-        
         .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
         .brand-text h1 { font-size: 1.6rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
         .brand-text span { font-size: 0.9rem; color: #64748b; font-weight: 600; margin-top: 2px; }
-        
         .slogan-area { text-align: right; min-width: 200px; }
         .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
 
@@ -44,8 +40,6 @@
         .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.06); text-transform: uppercase; letter-spacing: 0.5px; }
         .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link { background-color: var(--meb-red); color: white; }
         .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
-        
-        /* Dropdown */
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border-top: 3px solid var(--meb-red); padding: 5px 0; z-index: 9999; }
         .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
         .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
@@ -55,29 +49,11 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
 
-        /* MOBİL MENÜ */
-        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; }
-        .sidebar-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background-color: var(--corporate-dark); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
-        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; } body.menu-open .sidebar-menu { left: 0; }
-        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); } .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; } .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
-        .sidebar-list { padding: 10px 0; } .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); } .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; } .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
-
-        @media screen and (max-width: 1100px) {
-            .top-header { height: auto; padding: 10px 0; }
-            .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; height: auto; }
-            .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; height: auto; }
-            .logo-fixed { width: 60px; height: 60px; }
-            .brand-text h1 { font-size: 1.1rem; text-align: left; margin: 0; } .brand-text span { font-size: 0.75rem; text-align: left; display: block; }
-            .slogan-area { display: none; }
-            .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; color: white; }
-        }
-
         /* --- EDİTÖR ÖZEL STİLLERİ --- */
         .editor-layout { display: flex; gap: 30px; padding: 40px 0; min-height: calc(100vh - 160px); }
         
-        /* Sol Panel */
-        .input-panel { flex: 0 0 380px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; }
-        .panel-title { color: var(--corporate-dark); margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid var(--meb-red); padding-bottom: 10px; margin-bottom: 20px; }
+        .input-panel { flex: 0 0 400px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; }
+        .panel-title { color: var(--corporate-dark); margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid var(--meb-red); padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         
         label { font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 5px; margin-top: 15px; }
         input, select, textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: 0.2s; }
@@ -88,10 +64,15 @@
         .btn-add { background-color: #22c55e; color: white; width: 100%; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.2s; margin-top: 10px; }
         .btn-add:hover { background-color: #16a34a; }
         
+        .btn-template { background-color: #3b82f6; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.8rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        .btn-template:hover { background-color: #2563eb; }
+
         .mini-list { list-style: none; padding: 0; margin: 10px 0 0; }
-        .mini-item { background: white; border: 1px solid #e2e8f0; padding: 10px; margin-bottom: 5px; font-size: 0.85rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
-        .btn-del { color: #ef4444; cursor: pointer; padding: 5px; transition: 0.2s; }
-        .btn-del:hover { background-color: #fef2f2; border-radius: 4px; }
+        .mini-item { background: white; border: 1px solid #e2e8f0; padding: 10px; margin-bottom: 5px; font-size: 0.85rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+        .mini-item span { flex: 1; }
+        .btn-action-group { display: flex; gap: 5px; }
+        .btn-icon { cursor: pointer; padding: 5px; transition: 0.2s; color: #64748b; }
+        .btn-icon:hover { color: var(--meb-red); }
 
         .btn-print { background-color: var(--corporate-dark); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 25px; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .btn-print:hover { background-color: var(--meb-red); }
@@ -109,21 +90,21 @@
             font-size: 12pt; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
             color: black;
-            line-height: 1.4;
+            line-height: 1.5;
         }
         
-        .paper-header { text-align: center; margin-bottom: 25px; text-transform: uppercase; }
+        .paper-header { text-align: center; margin-bottom: 25px; text-transform: uppercase; font-weight: bold; }
         .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
         .info-table td { border: 1px solid #000; padding: 8px; }
         
-        .section-title { text-decoration: underline; font-weight: bold; margin-top: 20px; margin-bottom: 10px; font-size: 13pt; }
-        .print-list { padding-left: 25px; margin: 0; }
-        .print-list li { margin-bottom: 8px; text-align: justify; }
+        .section-title { text-decoration: underline; font-weight: bold; margin-top: 25px; margin-bottom: 10px; font-size: 12pt; }
+        .print-list { padding-left: 20px; margin: 0; }
+        .print-list li { margin-bottom: 10px; text-align: justify; }
+        .decision-text { font-style: italic; margin-top: 5px; display: block; color: #333; }
         
         .signatures-area { margin-top: 60px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 30px; page-break-inside: avoid; }
         .signature-box { text-align: center; min-width: 150px; }
         .signature-name { font-weight: bold; display: block; margin-bottom: 5px; }
-        .signature-title { font-size: 11pt; }
 
         @media screen and (max-width: 1000px) {
             .editor-layout { flex-direction: column; }
@@ -134,7 +115,7 @@
 
         /* YAZDIRMA AYARLARI */
         @media print {
-            .top-header, .main-nav, .input-panel, .hamburger { display: none !important; }
+            .top-header, .main-nav, .input-panel, .hamburger, .sidebar-menu { display: none !important; }
             body { background: white; }
             .container { width: 100%; max-width: none; margin: 0; padding: 0; }
             .editor-layout { display: block; padding: 0; margin: 0; height: auto; }
@@ -205,7 +186,10 @@
     <div class="container editor-layout">
         
         <div class="input-panel">
-            <h3 class="panel-title">Zümre Tutanağı Bilgileri</h3>
+            <div class="panel-title">
+                <span>Zümre Bilgileri</span>
+                <button class="btn-template" onclick="loadDefaultAgenda()"><i class="fas fa-magic"></i> Ortak Gündemi Yükle</button>
+            </div>
             
             <label>Toplantı Başlığı</label>
             <input type="text" id="inpTitle" placeholder="Örn: 2025-2026 Sene Başı Kimya Zümresi" oninput="updateView()">
@@ -232,9 +216,9 @@
             <input type="text" id="inpPlace" placeholder="Örn: Öğretmenler Odası" oninput="updateView()">
             
             <div class="box-container">
-                <label style="margin-top:0;">Gündem ve Kararlar</label>
+                <label style="margin-top:0;">Gündem ve Karar Ekle</label>
                 <input type="text" id="newAgenda" placeholder="Gündem Maddesi (Örn: Açılış)">
-                <textarea id="newDecision" placeholder="Alınan Karar (Örn: Toplantı açıldı...)" style="height:60px; margin-top:5px;"></textarea>
+                <textarea id="newDecision" placeholder="Alınan Karar (Örn: Toplantı açıldı...)" style="height:80px; margin-top:5px;"></textarea>
                 <button class="btn-add" onclick="addItem()">+ Madde Ekle</button>
             </div>
             <ul class="mini-list" id="miniListItems"></ul>
@@ -271,7 +255,7 @@
                 <div class="section-title">GÜNDEM MADDELERİ</div>
                 <ol id="outAgendaList" class="print-list"><li>Henüz madde eklenmedi...</li></ol>
                 
-                <div class="section-title">ALINAN KARARLAR</div>
+                <div class="section-title">GÖRÜŞMELER VE ALINAN KARARLAR</div>
                 <ol id="outDecisionList" class="print-list"><li>Henüz karar eklenmedi...</li></ol>
                 
                 <div class="signatures-area">
@@ -290,9 +274,40 @@
     <script>
         let items = [], members = [];
 
-        function toggleSidebar() {
-            document.body.classList.toggle("menu-open");
-        }
+        [cite_start]// MERSİN MEM ORTAK GÜNDEM MADDELERİ [cite: 530-558]
+        const defaultAgenda = [
+            "Açılış ve yoklama, gündem maddelerinin okunması.",
+            "Bir önceki toplantıda alınan kararların değerlendirilmesi.",
+            "MEB 2025/63 sayılı genelgelerin incelenmesi.",
+            "Planlamaların mevzuat ve öğretim programına uygunluğu.",
+            "Türkiye Yüzyılı Maarif Modeli zümre uygulama durumu.",
+            "Erdem-Değer-Eylem çerçevesinde değerler eğitimi çalışmaları.",
+            "Atatürkçülük konularının planlanması.",
+            "Öğretim yöntem ve tekniklerinin belirlenmesi.",
+            "BEP kapsamındaki öğrencilerin durumu.",
+            "Ders ziyaretleri ve zümreler arası iş birliği.",
+            "Akademik ve bilimsel gelişmelerin takibi.",
+            "Girişimcilik bilincinin kazandırılması.",
+            "Ders araç-gereç ve materyal kullanımı.",
+            "Okul dışı öğrenme ortamlarının planlanması.",
+            "Ölçme ve değerlendirme ölçeklerinin belirlenmesi.",
+            "Proje ve performans çalışmalarının planlanması.",
+            "İş sağlığı ve güvenliği tedbirleri.",
+            "Üst düzey düşünme becerileri ve sosyal-duygusal beceriler.",
+            "Örtük öğrenme ve değerler eğitimi planlaması.",
+            "Disiplinler arası yaklaşım ve ortak çalışmalar.",
+            "Çoklu okuryazarlık becerileri.",
+            "Sosyal sorumluluk projeleri.",
+            "Eğitim araç-gereç ve mali kaynak ihtiyaçları.",
+            "Ölçme ve değerlendirme araçlarının çeşitlendirilmesi.",
+            "Farklılaştırılmış öğretim uygulamaları.",
+            "Okul-aile iş birliği çalışmaları.",
+            "EBA, HEMBA ve ÖBA kullanımı.",
+            "TTKB-İDES sistemine görüş girişi.",
+            "Dilek ve temenniler, kapanış."
+        ];
+
+        function toggleSidebar() { document.body.classList.toggle("menu-open"); }
 
         function updateView() {
             document.getElementById('outTitle').innerText = (document.getElementById('inpTitle').value || "TOPLANTI BAŞLIĞI").toUpperCase();
@@ -303,12 +318,23 @@
             document.getElementById('outPrincipal').innerText = document.getElementById('inpPrincipal').value || "Ad Soyad";
         }
 
+        // OTOMATİK GÜNDEM YÜKLEME FONKSİYONU
+        function loadDefaultAgenda() {
+            if(confirm("Mevcut listeniz silinecek ve Mersin MEM Ortak Gündem maddeleri yüklenecektir. Onaylıyor musunuz?")) {
+                items = [];
+                defaultAgenda.forEach(gundem => {
+                    items.push({ ag: gundem, dec: "......" }); // Karar kısmı boş bırakılır
+                });
+                render();
+            }
+        }
+
         function addItem() {
             const ag = document.getElementById('newAgenda').value;
             const dec = document.getElementById('newDecision').value;
-            if(!ag || !dec) return alert("Lütfen hem gündem maddesini hem kararı yazınız.");
+            if(!ag) return alert("Lütfen gündem maddesi giriniz.");
             
-            items.push({ ag, dec });
+            items.push({ ag, dec: dec || "......" });
             document.getElementById('newAgenda').value = "";
             document.getElementById('newDecision').value = "";
             render();
@@ -328,7 +354,12 @@
         function render() { 
             // Sol Panel Listeleri
             document.getElementById('miniListItems').innerHTML = items.map((i, idx) => 
-                `<li class="mini-item"><span>${idx+1}. ${i.ag.substring(0,20)}...</span> <i class="fas fa-trash btn-del" onclick="deleteItem(${idx})"></i></li>`
+                `<li class="mini-item">
+                    <span><b>${idx+1}.</b> ${i.ag.substring(0,30)}...</span> 
+                    <div class="btn-action-group">
+                        <i class="fas fa-trash btn-icon" onclick="deleteItem(${idx})"></i>
+                    </div>
+                </li>`
             ).join('');
             
             document.getElementById('miniListMembers').innerHTML = members.map((m, idx) => 
@@ -337,7 +368,14 @@
 
             // A4 Önizleme Listeleri
             document.getElementById('outAgendaList').innerHTML = items.map(i => `<li>${i.ag}</li>`).join('');
-            document.getElementById('outDecisionList').innerHTML = items.map(i => `<li>${i.dec}</li>`).join('');
+            
+            // Kararlar kısmında Gündem + Karar şeklinde gösterim (Daha profesyonel)
+            document.getElementById('outDecisionList').innerHTML = items.map((i, idx) => 
+                `<li>
+                    <strong>MADDE ${idx+1}:</strong> ${i.ag}
+                    <span class="decision-text"><strong>KARAR:</strong> ${i.dec}</span>
+                </li>`
+            ).join('');
             
             document.getElementById('outMembers').innerHTML = members.map(m => 
                 `<div class="signature-box"><span class="signature-name">${m.name}</span><span class="signature-title">${m.title}</span></div>`
