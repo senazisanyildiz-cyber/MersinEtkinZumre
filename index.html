@@ -16,7 +16,7 @@
             --text-gray: #333;
         }
 
-        /* [ÖNEMLİ] Sayfa titremesini engelleyen kod */
+        /* Sayfa titremesini engelleyen scrollbar kodu */
         html { overflow-y: scroll; } 
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,12 +25,11 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* --- 1. ÜST HEADER (SABİTLENDİ) --- */
+        /* --- 1. ÜST HEADER --- */
         .top-header {
             background: white;
             padding: 10px 0;
             border-bottom: 1px solid #e2e8f0;
-            /* Yükseklik sabitleme: Logo (110px) + Padding (10px+10px) = 130px */
             height: 130px; 
             display: flex;
             align-items: center;
@@ -40,7 +39,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100%; /* Kapsayıcının yüksekliğini al */
+            height: 100%;
             width: 100%;
         }
 
@@ -48,11 +47,16 @@
             display: flex;
             align-items: center;
             gap: 20px;
+            /* [EKLENDİ] Yükseklik kilidi: Resim yüklenmese bile burası 110px kalır */
+            height: 110px; 
+            overflow: hidden; 
         }
 
         .meb-logo {
-            height: 110px; /* Logo boyutu sabit */
+            height: 110px;
             width: auto;
+            /* [EKLENDİ] Tarayıcıya "bu kare bir resimdir" dedik, yerini rezerve etti */
+            aspect-ratio: 1 / 1; 
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             display: block;
         }
@@ -326,7 +330,7 @@
         /* --- MOBİL UYUM --- */
         @media screen and (max-width: 1000px) {
             .top-header {
-                height: auto; /* Mobilde esnek yükseklik */
+                height: auto;
                 padding: 10px 0;
             }
             .top-content {
@@ -343,10 +347,13 @@
                 gap: 12px;
                 text-align: left;
                 width: auto;
+                /* Mobilde sabit yükseklik kaldırılabilir veya küçültülebilir */
+                height: auto; 
             }
 
             .meb-logo {
-                height: 75px;
+                /* [EKLENDİ] Mobilde logoyu küçülttük ve !important ile zorladık */
+                height: 75px !important; 
                 margin-bottom: 0;
             }
 
@@ -370,7 +377,7 @@
     <div class="top-header">
         <div class="container top-content">
             <div class="brand-area">
-                <img src="EZKLogo.png" alt="Logo" class="meb-logo" />
+                <img src="EZKLogo.png" alt="Logo" class="meb-logo" width="110" height="110" />
                 <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
                     <span>Eğitimde Birlik ve İlerleme Platformu</span>
