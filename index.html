@@ -48,33 +48,37 @@
             align-items: center;
             gap: 20px;
             height: 110px; 
-            /* Flex kutusunun içeriği sıkıştırmasını engeller */
-            flex-shrink: 0; 
+            flex-shrink: 0; /* Asla sıkışma */
         }
 
-        /* --- GÜNCELLENEN LOGO KODU --- */
-        .meb-logo {
-            /* 1. Genişliği KİLİTLİYORUZ */
-            width: 110px;          
-            /* 2. Flexbox'ın sıkıştırmasını engelliyoruz (Titremeyi bu çözer) */
-            min-width: 110px;      
-            
+        /* [YENİ TEKNİK] LOGO KUTUSU (WRAPPER) */
+        /* Resmi direkt boyutlandırmak yerine bu kutuyu boyutlandırıyoruz. */
+        /* Bu kutu kodla çizildiği için anında yüklenir ve titremez. */
+        .logo-wrapper {
+            width: 110px;
             height: 110px;
-            
-            /* 3. Resmi kutuya sığdırıyoruz (Yamulmayı engeller) */
-            object-fit: contain;   
-            
+            min-width: 110px; /* Kilitle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Taşanı gizle */
+        }
+
+        .meb-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Kutuya sığdır ama yamultma */
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             display: block;
+            /* Resim render kalitesini iyileştirme */
+            image-rendering: -webkit-optimize-contrast;
         }
-        /* --------------------------- */
 
         .brand-text {
             display: flex;
             flex-direction: column;
             justify-content: center;
             line-height: 1.1;
-            /* Yazı kısmının da taşmasını engelle */
             overflow: hidden; 
         }
 
@@ -85,10 +89,7 @@
             text-transform: uppercase;
             letter-spacing: -0.5px;
             margin: 0;
-            /* Yazı taşarsa ... koysun (Güvenlik önlemi) */
             white-space: nowrap; 
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .brand-text span {
@@ -100,7 +101,6 @@
 
         .slogan-area {
             text-align: right;
-            /* Sloganın daralmasını engelle */
             min-width: 200px; 
         }
         .slogan-text {
@@ -357,11 +357,17 @@
                 height: auto; 
             }
 
+            /* Mobilde de kutu (wrapper) boyutunu küçültüyoruz */
+            .logo-wrapper {
+                width: 75px;
+                height: 75px;
+                min-width: 75px;
+            }
+
             .meb-logo {
-                width: 75px; 
-                min-width: 75px; /* Mobilde de kilitledik */
-                height: 75px !important; 
-                margin-bottom: 0;
+                /* Wrapper zaten boyutlandırıldığı için burası 100% kalır */
+                width: 100%;
+                height: 100%;
             }
 
             .brand-text { align-items: flex-start; }
@@ -382,7 +388,11 @@
     <div class="top-header">
         <div class="container top-content">
             <div class="brand-area">
-                <img src="EZKLogo.png" alt="Logo" class="meb-logo" width="110" height="110" />
+                
+                <div class="logo-wrapper">
+                    <img src="EZKLogo.png" alt="Logo" class="meb-logo" width="110" height="110" />
+                </div>
+
                 <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
                     <span>Eğitimde Birlik ve İlerleme Platformu</span>
