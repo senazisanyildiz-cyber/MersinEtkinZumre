@@ -6,6 +6,7 @@
     <title>Zümre Arşivi - Mersin Etkin Zümre</title>
     
     <link rel="preload" as="image" href="EZKLogo.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
@@ -47,41 +48,54 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
 
-        /* ARŞİV STİLLERİ */
-        .archive-header { padding: 40px 0 30px; border-bottom: 1px solid #e2e8f0; margin-bottom: 30px; }
+        /* ARŞİV ve ETKİLEŞİM STİLLERİ */
+        .archive-header { padding: 40px 0 20px; border-bottom: 1px solid #e2e8f0; margin-bottom: 30px; }
         .archive-header h2 { font-size: 2rem; color: var(--corporate-dark); margin-bottom: 10px; }
-        .archive-path { color: #64748b; font-size: 0.9rem; }
-        .archive-path span { color: var(--meb-red); font-weight: 600; }
+        
+        /* Kategori Grid */
+        .school-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding-bottom: 60px; }
+        .school-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: 0.3s; }
+        .school-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--meb-red); }
+        .card-header { background: var(--corporate-dark); color: white; padding: 20px; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; }
+        .card-body { padding: 20px; }
+        .branch-list { list-style: none; }
+        .branch-list li { margin-bottom: 10px; }
+        .branch-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: #f8fafc; border-radius: 6px; font-weight: 500; font-size: 0.95rem; color: #333; transition: 0.2s; border: 1px solid #f1f5f9; cursor: pointer; }
+        .branch-link:hover { background: var(--meb-red); color: white; border-color: var(--meb-red); }
 
-        .file-list { display: flex; flex-direction: column; gap: 20px; padding-bottom: 60px; }
-        .file-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; gap: 20px; transition: 0.3s; position: relative; overflow: hidden; }
-        .file-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: #cbd5e1; }
-        .file-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background-color: #cbd5e1; transition: 0.3s; }
-        .file-card:hover::before { background-color: var(--meb-red); }
+        /* Dosya Listesi (Gizli Başlar) */
+        #documents-section { display: none; padding-bottom: 60px; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
 
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: #64748b; margin-bottom: 20px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .back-btn:hover { color: var(--meb-red); }
+
+        .file-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; gap: 15px; transition: 0.3s; margin-bottom: 20px; }
+        .file-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: #cbd5e1; }
         .file-main { display: flex; align-items: center; gap: 20px; flex: 1; }
-        .file-icon { width: 60px; height: 60px; background-color: #eff6ff; color: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
-        .file-info h3 { font-size: 1.1rem; color: var(--corporate-dark); font-weight: 700; margin-bottom: 5px; }
-        .file-meta { font-size: 0.85rem; color: #64748b; display: flex; gap: 15px; align-items: center; }
-        .file-meta i { margin-right: 5px; color: #94a3b8; }
-
-        .file-actions { display: flex; gap: 10px; align-items: center; }
-        .btn-action { padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: 0.2s; border: 1px solid transparent; display: flex; align-items: center; gap: 8px; }
+        .file-icon { width: 50px; height: 50px; background-color: #eff6ff; color: #3b82f6; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+        .file-info h3 { font-size: 1.05rem; color: var(--corporate-dark); font-weight: 700; margin-bottom: 5px; }
+        .file-meta { font-size: 0.85rem; color: #64748b; display: flex; gap: 15px; }
+        
+        .file-actions { display: flex; gap: 10px; margin-top: 5px; }
+        .btn-action { padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; border: none; text-decoration: none;}
         .btn-preview { background-color: #f1f5f9; color: var(--corporate-dark); }
         .btn-preview:hover { background-color: #e2e8f0; }
         .btn-download { background-color: var(--corporate-dark); color: white; }
         .btn-download:hover { background-color: var(--meb-red); }
-        .btn-info { width: 40px; height: 40px; border-radius: 50%; background-color: #fff; border: 1px solid #e2e8f0; color: #64748b; display: flex; align-items: center; justify-content: center; padding: 0; }
+        .btn-info { width: 35px; height: 35px; border-radius: 50%; background-color: #fff; border: 1px solid #e2e8f0; color: #64748b; display: flex; align-items: center; justify-content: center; }
         .btn-info:hover { color: var(--meb-red); border-color: var(--meb-red); }
 
-        .file-description { display: none; background-color: #f8fafc; padding: 15px; border-radius: 8px; font-size: 0.9rem; color: #475569; border-left: 3px solid #cbd5e1; margin-top: -10px; }
+        .file-description { display: none; background-color: #f8fafc; padding: 15px; border-radius: 8px; font-size: 0.9rem; color: #475569; border-left: 3px solid #cbd5e1; }
 
+        /* Modal */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .modal-content { background: white; width: 80%; height: 85%; border-radius: 10px; position: relative; display: flex; flex-direction: column; }
+        .modal-content { background: white; width: 85%; height: 90%; border-radius: 10px; display: flex; flex-direction: column; position: relative; }
         .modal-header { padding: 15px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
-        .modal-title { font-weight: 700; color: var(--corporate-dark); }
-        .modal-close { cursor: pointer; font-size: 1.5rem; color: #64748b; }
-        .modal-body { flex: 1; padding: 0; background: #f1f5f9; display: flex; align-items: center; justify-content: center; }
+        .modal-title { font-weight: 700; }
+        .modal-close { cursor: pointer; font-size: 1.5rem; }
+        .modal-body { flex: 1; padding: 0; background: #f1f5f9; }
+        .modal-body iframe { width: 100%; height: 100%; border: none; }
 
         @media screen and (min-width: 768px) { .file-card { flex-direction: row; align-items: flex-start; } .file-actions { margin-left: auto; } }
         @media screen and (max-width: 1000px) {
@@ -159,96 +173,110 @@
     </div>
 
     <div class="container">
-        <div class="archive-header">
-            <h2>Lise Kimya Zümre Arşivi</h2>
-            <div class="archive-path">Anasayfa > Zümre Arşivi > <span>Lise Kimya</span></div>
+        
+        <div id="category-section">
+            <div class="archive-header">
+                <h2>Zümre Arşivi</h2>
+                <p style="color:#64748b;">Lütfen dökümanlarını incelemek istediğiniz okul türünü ve branşı seçiniz.</p>
+            </div>
+
+            <div class="school-grid">
+                <div class="school-card">
+                    <div class="card-header">Okul Öncesi <i class="fas fa-shapes"></i></div>
+                    <div class="card-body"><ul class="branch-list"><li><div class="branch-link">Okul Öncesi Öğrt. <i class="fas fa-arrow-right"></i></div></li></ul></div>
+                </div>
+                <div class="school-card">
+                    <div class="card-header">İlkokul <i class="fas fa-school"></i></div>
+                    <div class="card-body"><ul class="branch-list"><li><div class="branch-link">Sınıf Öğretmenliği <i class="fas fa-arrow-right"></i></div></li><li><div class="branch-link">İngilizce <i class="fas fa-arrow-right"></i></div></li></ul></div>
+                </div>
+                <div class="school-card">
+                    <div class="card-header">Ortaokul <i class="fas fa-book-reader"></i></div>
+                    <div class="card-body"><ul class="branch-list"><li><div class="branch-link">Türkçe <i class="fas fa-arrow-right"></i></div></li><li><div class="branch-link">Matematik <i class="fas fa-arrow-right"></i></div></li></ul></div>
+                </div>
+                <div class="school-card" style="border-color: var(--meb-red); box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+                    <div class="card-header" style="background-color: var(--meb-red);">Lise <i class="fas fa-university"></i></div>
+                    <div class="card-body">
+                        <ul class="branch-list">
+                            <li><div class="branch-link">Türk Dili ve Edebiyatı <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Matematik <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link" onclick="showDocuments('Kimya')" style="background-color: #fee2e2; color: var(--meb-red); border-color: #fecaca; font-weight: 700;">Kimya <i class="fas fa-arrow-right"></i></div></li>
+                            <li><div class="branch-link">Fizik <i class="fas fa-arrow-right"></i></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="file-list">
-            
+        <div id="documents-section">
+            <div class="back-btn" onclick="showCategories()"><i class="fas fa-arrow-left"></i> Kategoriye Dön</div>
+            <div class="archive-header" style="padding-top: 0;">
+                <h2>Lise Kimya Arşivi</h2>
+                <p style="color:#64748b;">9, 10, 11 ve 12. sınıflar için güncel zümre tutanakları ve planlar.</p>
+            </div>
+
             <div class="file-card">
                 <div class="file-main">
                     <div class="file-icon"><i class="fas fa-file-word"></i></div>
                     <div class="file-info">
                         <h3>2025-2026 Sene Başı Kimya Zümre Tutanağı</h3>
-                        <div class="file-meta">
-                            <span><i class="far fa-calendar"></i> 06.09.2025</span>
-                            <span><i class="far fa-user"></i> Arif EMERÖZ</span>
-                        </div>
+                        <div class="file-meta"><span><i class="far fa-calendar"></i> 06.09.2025</span><span><i class="far fa-user"></i> Arif EMERÖZ</span></div>
                     </div>
                 </div>
                 <div class="file-actions">
                     <button class="btn-action btn-preview" onclick="openPreview('dosyalar/Ders Yılı Başı Örnek Zümre 2025.docx')"><i class="far fa-eye"></i> Görüntüle</button>
                     <a href="dosyalar/Ders Yılı Başı Örnek Zümre 2025.docx" class="btn-action btn-download" download><i class="fas fa-download"></i> İndir</a>
-                    <button class="btn-action btn-info" onclick="toggleDesc('desc1')"><i class="fas fa-info"></i></button>
+                    <button class="btn-action btn-info" onclick="toggleDesc('d1')"><i class="fas fa-info"></i></button>
                 </div>
             </div>
-            <div id="desc1" class="file-description">
-                <strong>Açıklama:</strong> 2025-2026 Eğitim-Öğretim yılı başlangıcında yapılan zümre toplantı tutanağı. [cite_start]Müfredat, yıllık planlar ve TYMM uyum çalışmaları hakkında alınan kararları içerir. [cite: 1]
-            </div>
+            <div id="d1" class="file-description">TYMM uyumu, yıllık planlar, Atatürkçülük konuları ve ölçme değerlendirme kararlarını içeren detaylı sene başı toplantı tutanağı.</div>
 
             <div class="file-card">
                 <div class="file-main">
                     <div class="file-icon"><i class="fas fa-file-word"></i></div>
                     <div class="file-info">
                         <h3>1. Dönem 1. Yazılı Sınav Tutanağı (Senaryolar)</h3>
-                        <div class="file-meta">
-                            <span><i class="far fa-calendar"></i> 17.10.2025</span>
-                            <span><i class="far fa-file-alt"></i> 9-12. Sınıflar</span>
-                        </div>
+                        <div class="file-meta"><span><i class="far fa-calendar"></i> 17.10.2025</span><span><i class="fas fa-tasks"></i> Senaryo Seçimi</span></div>
                     </div>
                 </div>
                 <div class="file-actions">
                     <button class="btn-action btn-preview" onclick="openPreview('dosyalar/Sınav Tutanağı.docx')"><i class="far fa-eye"></i> Görüntüle</button>
                     <a href="dosyalar/Sınav Tutanağı.docx" class="btn-action btn-download" download><i class="fas fa-download"></i> İndir</a>
-                    <button class="btn-action btn-info" onclick="toggleDesc('desc2')"><i class="fas fa-info"></i></button>
+                    <button class="btn-action btn-info" onclick="toggleDesc('d2')"><i class="fas fa-info"></i></button>
                 </div>
             </div>
-            <div id="desc2" class="file-description">
-                [cite_start]<strong>Açıklama:</strong> 9, 10, 11 ve 12. sınıflar için belirlenen ortak sınav senaryoları ve konu soru dağılım tabloları. [cite: 460]
-            </div>
+            <div id="d2" class="file-description">9, 10, 11 ve 12. sınıflar için belirlenen ortak sınav senaryoları ve konu soru dağılım tabloları kararları.</div>
 
             <div class="file-card">
                 <div class="file-main">
                     <div class="file-icon"><i class="fas fa-file-word"></i></div>
                     <div class="file-info">
                         <h3>Kasım 2025 Ara Dönem Kimya Zümre Tutanağı</h3>
-                        <div class="file-meta">
-                            <span><i class="far fa-calendar"></i> 18.11.2025</span>
-                            <span><i class="fas fa-chart-line"></i> Sınav Analizleri</span>
-                        </div>
+                        <div class="file-meta"><span><i class="far fa-calendar"></i> 18.11.2025</span><span><i class="fas fa-chart-bar"></i> Sınav Analizi</span></div>
                     </div>
                 </div>
                 <div class="file-actions">
                     <button class="btn-action btn-preview" onclick="openPreview('dosyalar/Kasım 2025 Kimya zümreleri örneği.docx')"><i class="far fa-eye"></i> Görüntüle</button>
                     <a href="dosyalar/Kasım 2025 Kimya zümreleri örneği.docx" class="btn-action btn-download" download><i class="fas fa-download"></i> İndir</a>
-                    <button class="btn-action btn-info" onclick="toggleDesc('desc3')"><i class="fas fa-info"></i></button>
+                    <button class="btn-action btn-info" onclick="toggleDesc('d3')"><i class="fas fa-info"></i></button>
                 </div>
             </div>
-            <div id="desc3" class="file-description">
-                [cite_start]<strong>Açıklama:</strong> 1. Yazılı sınav sonuçlarının analizi, öğrenci başarı durumları ve telafi eğitim planlamalarını içeren ara dönem zümre tutanağı. [cite: 354]
-            </div>
+            <div id="d3" class="file-description">1. Yazılı sınav sonuçlarının analizi, başarı oranları, telafi eğitimi planlaması ve laboratuvar eksikliklerinin değerlendirilmesi.</div>
 
             <div class="file-card">
                 <div class="file-main">
                     <div class="file-icon"><i class="fas fa-file-word"></i></div>
                     <div class="file-info">
                         <h3>9. Sınıf Kimya Örnek Ders Planı</h3>
-                        <div class="file-meta">
-                            <span><i class="far fa-clock"></i> 160 dk</span>
-                            <span><i class="fas fa-atom"></i> Moleküller Arası Etkileşimler</span>
-                        </div>
+                        <div class="file-meta"><span><i class="far fa-clock"></i> 160 dk</span><span><i class="fas fa-atom"></i> Mol. Arası Etkileşim</span></div>
                     </div>
                 </div>
                 <div class="file-actions">
                     <button class="btn-action btn-preview" onclick="openPreview('dosyalar/Örnek Ders planı.docx')"><i class="far fa-eye"></i> Görüntüle</button>
                     <a href="dosyalar/Örnek Ders planı.docx" class="btn-action btn-download" download><i class="fas fa-download"></i> İndir</a>
-                    <button class="btn-action btn-info" onclick="toggleDesc('desc4')"><i class="fas fa-info"></i></button>
+                    <button class="btn-action btn-info" onclick="toggleDesc('d4')"><i class="fas fa-info"></i></button>
                 </div>
             </div>
-            <div id="desc4" class="file-description">
-                [cite_start]<strong>Açıklama:</strong> Moleküller arası etkileşimler konusunu içeren, TYMM uyumlu, keşfetme ve derinleşme aşamalarıyla hazırlanmış 4 saatlik ders planı. [cite: 477]
-            </div>
+            <div id="d4" class="file-description">9. Sınıf Moleküller Arası Etkileşimler konusu için hazırlanmış, TYMM uyumlu, keşfetme ve derinleşme aşamalarını içeren ders planı.</div>
 
         </div>
     </div>
@@ -260,10 +288,10 @@
                 <span class="modal-close" onclick="closePreview()"><i class="fas fa-times"></i></span>
             </div>
             <div class="modal-body">
-                <div style="text-align: center; color: #64748b;">
-                    <i class="fas fa-file-word" style="font-size: 3rem; margin-bottom: 10px;"></i>
-                    <p>Dosya önizlemesi yükleniyor...</p>
-                    <small>(Not: Bu bir demo olduğu için gerçek dosya içeriği gösterilemez)</small>
+                <iframe id="docFrame" src=""></iframe>
+                <div id="docError" style="display:none; text-align: center; color: #64748b; padding-top: 50px;">
+                    <i class="fas fa-exclamation-circle" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                    <p>Word (.docx) dosyaları tarayıcıda önizlenemez.<br>Lütfen dosyayı PDF'e çevirin veya indirip açın.</p>
                 </div>
             </div>
         </div>
@@ -271,18 +299,51 @@
 
     <script>
         function toggleSidebar() { document.body.classList.toggle("menu-open"); }
+        
+        // Sayfa Değişimi (Single Page Logic)
+        function showDocuments(branch) {
+            document.getElementById('category-section').style.display = 'none';
+            document.getElementById('documents-section').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showCategories() {
+            document.getElementById('documents-section').style.display = 'none';
+            document.getElementById('category-section').style.display = 'block';
+        }
+
         function toggleDesc(id) {
             var desc = document.getElementById(id);
             desc.style.display = (desc.style.display === "block") ? "none" : "block";
         }
-        function openPreview(fileName) {
-            document.getElementById('modalFileName').innerText = fileName;
+
+        // Önizleme Mantığı
+        function openPreview(filePath) {
+            var extension = filePath.split('.').pop().toLowerCase();
             document.getElementById('previewModal').style.display = 'flex';
+            document.getElementById('modalFileName').innerText = filePath.split('/').pop();
+
+            if (extension === 'pdf') {
+                // PDF ise iframe içinde göster
+                document.getElementById('docFrame').style.display = 'block';
+                document.getElementById('docError').style.display = 'none';
+                document.getElementById('docFrame').src = filePath;
+            } else {
+                // Word ise hata mesajı göster
+                document.getElementById('docFrame').style.display = 'none';
+                document.getElementById('docError').style.display = 'block';
+            }
         }
-        function closePreview() { document.getElementById('previewModal').style.display = 'none'; }
+
+        function closePreview() {
+            document.getElementById('previewModal').style.display = 'none';
+            document.getElementById('docFrame').src = "";
+        }
+
         window.onclick = function(event) {
-            var modal = document.getElementById('previewModal');
-            if (event.target == modal) { modal.style.display = "none"; }
+            if (event.target == document.getElementById('previewModal')) {
+                closePreview();
+            }
         }
     </script>
 
