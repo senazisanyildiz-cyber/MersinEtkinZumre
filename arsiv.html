@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zümre Arşivi - Mersin Etkin Zümre</title>
+    
+    <link rel="preload" as="image" href="EZKLogo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    
-    <style>
-        /* --- TEMEL AYARLAR (INDEX İLE AYNI) --- */
-        :root {
-            --meb-red: #E30A17;
-            --corporate-dark: #0F172A;
-            --bg-light: #f8fafc;
-            --text-gray: #333;
-        }
 
+    <style>
+        /* --- MASTER CSS (AYNEN KORUNDU) --- */
+        :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
+        html { overflow-y: scroll; } 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Inter", sans-serif; background-color: var(--bg-light); color: var(--text-gray); display: flex; flex-direction: column; min-height: 100vh; }
+        body { font-family: "Inter", sans-serif; background-color: var(--bg-light); color: var(--text-gray); }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* --- HEADER & NAV (INDEX İLE BİREBİR AYNI) --- */
-        .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; }
-        .top-content { display: flex; justify-content: space-between; align-items: center; min-height: 90px; }
-        .brand-area { display: flex; align-items: center; gap: 20px; }
-        .meb-logo { height: 85px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
-        .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; }
-        .brand-text h1 { font-size: 1.8rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; }
+        /* HEADER */
+        .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 110px; display: flex; align-items: center; }
+        .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
+        .brand-area { display: flex; align-items: center; gap: 5px; height: 90px; flex-shrink: 0; }
+        .logo-fixed { width: 90px; height: 90px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
+        .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
+        .brand-text h1 { font-size: 1.7rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
         .brand-text span { font-size: 0.95rem; color: #64748b; font-weight: 600; margin-top: 3px; }
-        .slogan-area { text-align: right; }
-        .slogan-text { font-family: "Playfair Display", serif; font-size: 1.4rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
+        .slogan-area { text-align: right; min-width: 200px; }
+        .slogan-text { font-family: "Playfair Display", serif; font-size: 1.35rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
 
+        /* NAVİGASYON */
         .main-nav { background-color: var(--corporate-dark); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
         .nav-container { width: 94%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; }
         .desktop-nav { display: flex; height: 100%; align-items: center; }
@@ -40,83 +38,66 @@
         .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.06); text-transform: uppercase; letter-spacing: 0.5px; }
         .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link { background-color: var(--meb-red); color: white; }
         .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
-        
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border-top: 3px solid var(--meb-red); padding: 5px 0; z-index: 9999; }
         .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
         .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
+        .dropdown-item a i { margin-right: 10px; color: #64748b; width: 20px; text-align: center; }
         .dropdown-item a:hover { background-color: #f8fafc; color: var(--meb-red); padding-left: 25px; }
+        .dropdown-item a:hover i { color: var(--meb-red); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
         .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
-        
-        /* Sidebar Mobil */
+
+        /* ARŞİV STİLLERİ */
+        .archive-header { padding: 40px 0 30px; border-bottom: 1px solid #e2e8f0; margin-bottom: 30px; }
+        .archive-header h2 { font-size: 2rem; color: var(--corporate-dark); margin-bottom: 10px; }
+        .archive-path { color: #64748b; font-size: 0.9rem; }
+        .archive-path span { color: var(--meb-red); font-weight: 600; }
+
+        .file-list { display: flex; flex-direction: column; gap: 20px; padding-bottom: 60px; }
+        .file-card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; gap: 20px; transition: 0.3s; position: relative; overflow: hidden; }
+        .file-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-color: #cbd5e1; }
+        .file-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background-color: #cbd5e1; transition: 0.3s; }
+        .file-card:hover::before { background-color: var(--meb-red); }
+
+        .file-main { display: flex; align-items: center; gap: 20px; flex: 1; }
+        .file-icon { width: 60px; height: 60px; background-color: #eff6ff; color: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
+        .file-info h3 { font-size: 1.1rem; color: var(--corporate-dark); font-weight: 700; margin-bottom: 5px; }
+        .file-meta { font-size: 0.85rem; color: #64748b; display: flex; gap: 15px; align-items: center; }
+        .file-meta i { margin-right: 5px; color: #94a3b8; }
+
+        .file-actions { display: flex; gap: 10px; align-items: center; }
+        .btn-action { padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: 0.2s; border: 1px solid transparent; display: flex; align-items: center; gap: 8px; }
+        .btn-preview { background-color: #f1f5f9; color: var(--corporate-dark); }
+        .btn-preview:hover { background-color: #e2e8f0; }
+        .btn-download { background-color: var(--corporate-dark); color: white; }
+        .btn-download:hover { background-color: var(--meb-red); }
+        .btn-info { width: 40px; height: 40px; border-radius: 50%; background-color: #fff; border: 1px solid #e2e8f0; color: #64748b; display: flex; align-items: center; justify-content: center; padding: 0; }
+        .btn-info:hover { color: var(--meb-red); border-color: var(--meb-red); }
+
+        .file-description { display: none; background-color: #f8fafc; padding: 15px; border-radius: 8px; font-size: 0.9rem; color: #475569; border-left: 3px solid #cbd5e1; margin-top: -10px; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .modal-content { background: white; width: 80%; height: 85%; border-radius: 10px; position: relative; display: flex; flex-direction: column; }
+        .modal-header { padding: 15px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { font-weight: 700; color: var(--corporate-dark); }
+        .modal-close { cursor: pointer; font-size: 1.5rem; color: #64748b; }
+        .modal-body { flex: 1; padding: 0; background: #f1f5f9; display: flex; align-items: center; justify-content: center; }
+
+        @media screen and (min-width: 768px) { .file-card { flex-direction: row; align-items: flex-start; } .file-actions { margin-left: auto; } }
+        @media screen and (max-width: 1000px) {
+            .top-header { height: auto; padding: 10px 0; }
+            .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; height: auto; }
+            .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; height: auto; }
+            .logo-fixed { width: 70px; height: 70px; }
+            .brand-text h1 { font-size: 1.2rem; } .brand-text span { font-size: 0.75rem; }
+            .slogan-area { display: none; }
+            .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; color: white; }
+        }
         .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; }
         .sidebar-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background-color: var(--corporate-dark); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
-        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; }
-        body.menu-open .sidebar-menu { left: 0; }
-        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; }
-        .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
-        .sidebar-list { padding: 10px 0; }
-        .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); }
-        .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; }
-        .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
-
-        /* --- ARŞİV SAYFASI ÖZEL STİLLER --- */
-        .archive-layout { display: flex; gap: 30px; margin: 40px auto; align-items: flex-start; }
-        .archive-sidebar { flex: 0 0 300px; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow: hidden; border: 1px solid #e2e8f0; }
-        .filter-header { background-color: var(--corporate-dark); color: white; padding: 15px 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .category-list { padding: 10px; }
-        .cat-item { margin-bottom: 5px; }
-        .cat-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; color: #334155; font-weight: 600; border-radius: 6px; cursor: pointer; transition: 0.2s; background-color: white; }
-        .cat-header:hover { background-color: #f1f5f9; color: var(--meb-red); }
-        .cat-header.active { background-color: #fee2e2; color: var(--meb-red); }
-        .cat-header .arrow { font-size: 0.8rem; color: #94a3b8; transition: transform 0.3s ease; }
-        .cat-header.active .arrow { transform: rotate(180deg); color: var(--meb-red); }
-        
-        .submenu { list-style: none; display: none; padding: 5px 10px 10px 25px; background-color: #fff; animation: slideDown 0.3s ease; }
-        .submenu.open { display: block; }
-        .submenu-link { display: block; padding: 8px 12px; color: #64748b; font-size: 0.9rem; border-radius: 4px; transition: 0.2s; cursor: pointer; border-left: 2px solid transparent; }
-        .submenu-link:hover, .submenu-link.active { color: var(--meb-red); background-color: #f8fafc; border-left-color: var(--meb-red); padding-left: 16px; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-
-        .archive-content { flex: 1; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); min-height: 600px; padding: 30px; border: 1px solid #e2e8f0; }
-        .content-header { border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px; }
-        .content-title { font-size: 1.5rem; font-weight: 800; color: var(--corporate-dark); }
-        
-        .file-group { display: none; animation: fadeIn 0.4s ease; }
-        .file-group.active { display: block; }
-        
-        .file-row { display: flex; align-items: center; justify-content: space-between; padding: 16px; border: 1px solid #f1f5f9; border-radius: 8px; margin-bottom: 10px; transition: all 0.2s; background: #fff; }
-        .file-row:hover { border-color: #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transform: translateY(-2px); }
-        .file-left { display: flex; align-items: center; gap: 15px; }
-        .file-icon { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.4rem; }
-        .icon-pdf { background-color: #fee2e2; color: #dc2626; }
-        .file-details h4 { font-size: 1rem; color: var(--corporate-dark); font-weight: 600; margin-bottom: 3px; }
-        .file-details span { font-size: 0.8rem; color: #94a3b8; font-weight: 500; }
-        .file-right { display: flex; align-items: center; gap: 15px; }
-        .badge { padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; background-color: #f1f5f9; color: #64748b; text-transform: uppercase; }
-        .btn-download { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #94a3b8; border: 1px solid #e2e8f0; transition: 0.3s; }
-        .btn-download:hover { background-color: var(--meb-red); color: white; border-color: var(--meb-red); }
-        .empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; }
-
-        footer { background-color: #0b1120; color: #94a3b8; text-align: center; padding: 40px 0; border-top: 4px solid var(--meb-red); margin-top: auto; }
-
-        /* --- MOBİL UYUM (LOGO SOLDA) --- */
-        @media screen and (max-width: 1000px) {
-            .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; }
-            .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; }
-            .meb-logo { height: 75px; margin-bottom: 0; }
-            .brand-text { align-items: flex-start; }
-            .brand-text h1 { font-size: 1.25rem; text-align: left; margin: 0; }
-            .brand-text span { font-size: 0.75rem; text-align: left; display: block; }
-            .slogan-area { display: none; }
-            .desktop-nav { display: none; }
-            .hamburger { display: block; margin-left: auto; color: white; }
-            .archive-layout { flex-direction: column; }
-            .archive-sidebar { width: 100%; flex: none; }
-            .archive-content { width: 100%; }
-        }
+        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; } body.menu-open .sidebar-menu { left: 0; }
+        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); } .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; } .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
+        .sidebar-list { padding: 10px 0; } .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); } .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; } .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
     </style>
 </head>
 <body>
@@ -124,7 +105,7 @@
     <div class="top-header">
         <div class="container top-content">
             <div class="brand-area">
-                <img src="EZKLogo.png" alt="Logo" class="meb-logo" />
+                <a href="index.html" class="logo-fixed" title="Anasayfa"></a>
                 <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
                     <span>Eğitimde Birlik ve İlerleme Platformu</span>
@@ -139,23 +120,18 @@
     <nav class="main-nav">
         <div class="container nav-container">
             <ul class="desktop-nav">
+                <li class="nav-item"><a href="index.html" class="nav-link">ANASAYFA</a></li>
+                <li class="nav-item active"><a href="arsiv.html" class="nav-link" style="background-color: var(--meb-red); color: white;">ZÜMRE ARŞİVİ</a></li>
+                <li class="nav-item"><a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a></li>
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> ANASAYFA</a>
-                </li>
-                <li class="nav-item active">
-                    <a href="arsiv.html" class="nav-link">ZÜMRE ARŞİVİ</a>
-                </li>
-                <li class="nav-item">
-                    <a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a>
-                </li>
-                <li class="nav-item">
-                    <a href="tutanak.html" class="nav-link">
-                        EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i>
-                    </a>
+                    <a href="tutanak.html" class="nav-link">EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="doc-zumre.html">Zümre Tutanağı</a></li>
-                        <li class="dropdown-item"><a href="doc-plan.html">Yıllık Plan</a></li>
-                        <li class="dropdown-item"><a href="doc-sinav.html">Yazılı Sınav</a></li>
+                        <li class="dropdown-item"><a href="doc-zumre.html"><i class="fas fa-users"></i> Zümre Tutanağı</a></li>
+                        <li class="dropdown-item"><a href="doc-plan.html"><i class="fas fa-calendar-alt"></i> Yıllık Plan</a></li>
+                        <li class="dropdown-item"><a href="doc-sinav.html"><i class="fas fa-file-alt"></i> Yazılı Sınav</a></li>
+                        <li class="dropdown-item"><a href="doc-olcme.html"><i class="fas fa-tasks"></i> Ölçme Değerlendirme</a></li>
+                        <li class="dropdown-item"><a href="doc-kulup.html"><i class="fas fa-hands-helping"></i> Kulüp Evrakları</a></li>
+                        <li class="dropdown-item"><a href="doc-sinif.html"><i class="fas fa-chalkboard-teacher"></i> Sınıf Rehberlik</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
@@ -169,12 +145,7 @@
 
     <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
     <div class="sidebar-menu">
-        <div class="sidebar-header">
-            <span class="sidebar-brand">MENÜ</span>
-            <div class="close-btn" onclick="toggleSidebar()">
-                <i class="fas fa-times"></i>
-            </div>
-        </div>
+        <div class="sidebar-header"><span class="sidebar-brand">MENÜ</span><div class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div>
         <ul class="sidebar-list">
             <li><a href="index.html" class="sidebar-link">ANASAYFA</a></li>
             <li><a href="arsiv.html" class="sidebar-link active">ZÜMRE ARŞİVİ</a></li>
@@ -187,172 +158,131 @@
         </ul>
     </div>
 
-    <div class="container archive-layout">
-        
-        <aside class="archive-sidebar">
-            <div class="filter-header">
-                <i class="fas fa-filter"></i> Kademeler
-            </div>
-            <div class="category-list">
-                
-                <div class="cat-item">
-                    <div class="cat-header" onclick="showFiles('yonergeler', 'Yönergeler')">
-                        <span><i class="fas fa-file-contract"></i> Yönergeler</span>
-                        <i class="fas fa-chevron-right arrow"></i>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="archive-header">
+            <h2>Lise Kimya Zümre Arşivi</h2>
+            <div class="archive-path">Anasayfa > Zümre Arşivi > <span>Lise Kimya</span></div>
+        </div>
 
-                <div class="cat-item">
-                    <div class="cat-header" onclick="showFiles('okuloncesi', 'Okul Öncesi Zümreleri')">
-                        <span><i class="fas fa-shapes"></i> Okul Öncesi</span>
-                        <i class="fas fa-chevron-right arrow"></i>
-                    </div>
-                </div>
-
-                <div class="cat-item">
-                    <div class="cat-header" onclick="toggleSubmenu(this)">
-                        <span><i class="fas fa-school"></i> İlkokul</span>
-                        <i class="fas fa-chevron-down arrow"></i>
-                    </div>
-                    <ul class="submenu">
-                        <li class="submenu-link" onclick="showFiles('ilk-1', 'İlkokul 1. Sınıf')">1. Sınıf</li>
-                        <li class="submenu-link" onclick="showFiles('ilk-2', 'İlkokul 2. Sınıf')">2. Sınıf</li>
-                        <li class="submenu-link" onclick="showFiles('ilk-3', 'İlkokul 3. Sınıf')">3. Sınıf</li>
-                        <li class="submenu-link" onclick="showFiles('ilk-4', 'İlkokul 4. Sınıf')">4. Sınıf</li>
-                    </ul>
-                </div>
-
-                <div class="cat-item">
-                    <div class="cat-header" onclick="toggleSubmenu(this)">
-                        <span><i class="fas fa-book-reader"></i> Ortaokul</span>
-                        <i class="fas fa-chevron-down arrow"></i>
-                    </div>
-                    <ul class="submenu">
-                        <li class="submenu-link" onclick="showFiles('orta-turkce', 'Ortaokul Türkçe')">Türkçe</li>
-                        <li class="submenu-link" onclick="showFiles('orta-mat', 'Ortaokul Matematik')">Matematik</li>
-                        <li class="submenu-link" onclick="showFiles('orta-fen', 'Ortaokul Fen Bilimleri')">Fen Bilimleri</li>
-                        <li class="submenu-link" onclick="showFiles('orta-sosyal', 'Ortaokul Sosyal Bil.')">Sosyal Bilgiler</li>
-                        <li class="submenu-link" onclick="showFiles('orta-ing', 'Ortaokul İngilizce')">Yabancı Dil (İng)</li>
-                    </ul>
-                </div>
-
-                <div class="cat-item">
-                    <div class="cat-header" onclick="toggleSubmenu(this)">
-                        <span><i class="fas fa-university"></i> Lise</span>
-                        <i class="fas fa-chevron-down arrow"></i>
-                    </div>
-                    <ul class="submenu">
-                        <li class="submenu-link" onclick="showFiles('lise-edebiyat', 'Lise Edebiyat')">Türk Dili ve Edb.</li>
-                        <li class="submenu-link" onclick="showFiles('lise-mat', 'Lise Matematik')">Matematik</li>
-                        <li class="submenu-link" onclick="showFiles('lise-fizik', 'Lise Fizik')">Fizik</li>
-                        <li class="submenu-link" onclick="showFiles('lise-kimya', 'Lise Kimya')">Kimya</li>
-                        <li class="submenu-link" onclick="showFiles('lise-biyo', 'Lise Biyoloji')">Biyoloji</li>
-                        <li class="submenu-link" onclick="showFiles('lise-cografya', 'Lise Coğrafya')">Coğrafya</li>
-                    </ul>
-                </div>
-
-            </div>
-        </aside>
-
-        <main class="archive-content">
-            <div class="content-header">
-                <div class="content-title" id="mainTitle">Arşiv Dosyaları</div>
-            </div>
+        <div class="file-list">
             
-            <div id="group-empty" class="file-group active">
-                <div class="empty-state">
-                    <i class="fas fa-folder-open" style="font-size:4rem; margin-bottom:20px; color:#cbd5e1;"></i>
-                    <p style="font-size:1.1rem;">Görüntülemek için soldaki menüden bir kademe veya ders seçiniz.</p>
-                </div>
-            </div>
-
-            <div id="group-yonergeler" class="file-group">
-                <div class="file-row">
-                    <div class="file-left">
-                        <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
-                        <div class="file-details">
-                            <h4>Eğitim Kurulları ve Zümreleri Yönergesi</h4>
-                            <span>PDF Dosyası - Güncel</span>
+            <div class="file-card">
+                <div class="file-main">
+                    <div class="file-icon"><i class="fas fa-file-word"></i></div>
+                    <div class="file-info">
+                        <h3>2025-2026 Sene Başı Kimya Zümre Tutanağı</h3>
+                        <div class="file-meta">
+                            <span><i class="far fa-calendar"></i> 06.09.2025</span>
+                            <span><i class="far fa-user"></i> Arif EMERÖZ</span>
                         </div>
                     </div>
-                    <div class="file-right">
-                        <span class="badge">RESMİ YAZI</span>
-                        <a href="dosyalar/zumreyonergesi.pdf" class="btn-download" download title="İndir">
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </div>
+                </div>
+                <div class="file-actions">
+                    <button class="btn-action btn-preview" onclick="openPreview('dosyalar/Ders Yılı Başı Örnek Zümre 2025.docx')"><i class="far fa-eye"></i> Görüntüle</button>
+                    <a href="dosyalar/Ders Yılı Başı Örnek Zümre 2025.docx" class="btn-action btn-download" download><i class="fas fa-download"></i> İndir</a>
+                    <button class="btn-action btn-info" onclick="toggleDesc('desc1')"><i class="fas fa-info"></i></button>
                 </div>
             </div>
-            
-            <div id="group-okuloncesi" class="file-group">
-                <div class="empty-state">
-                    <i class="fas fa-info-circle" style="font-size:2rem; margin-bottom:10px;"></i>
-                    <p>Okul öncesi zümre dosyaları yakında sisteme yüklenecektir.</p>
-                </div>
+            <div id="desc1" class="file-description">
+                <strong>Açıklama:</strong> 2025-2026 Eğitim-Öğretim yılı başlangıcında yapılan zümre toplantı tutanağı. [cite_start]Müfredat, yıllık planlar ve TYMM uyum çalışmaları hakkında alınan kararları içerir. [cite: 1]
             </div>
 
-             <div id="group-orta-fen" class="file-group">
-                <div class="file-row">
-                    <div class="file-left">
-                        <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
-                        <div class="file-details">
-                            <h4>Fen Bilimleri İlçe Zümre Tutanağı (Eylül)</h4>
-                            <span>Yenişehir İlçesi</span>
+            <div class="file-card">
+                <div class="file-main">
+                    <div class="file-icon"><i class="fas fa-file-word"></i></div>
+                    <div class="file-info">
+                        <h3>1. Dönem 1. Yazılı Sınav Tutanağı (Senaryolar)</h3>
+                        <div class="file-meta">
+                            <span><i class="far fa-calendar"></i> 17.10.2025</span>
+                            <span><i class="far fa-file-alt"></i> 9-12. Sınıflar</span>
                         </div>
                     </div>
-                    <div class="file-right">
-                        <span class="badge">İLÇE</span>
-                        <a href="#" class="btn-download" download>
-                            <i class="fas fa-download"></i>
-                        </a>
-                    </div>
+                </div>
+                <div class="file-actions">
+                    <button class="btn-action btn-preview" onclick="openPreview('dosyalar/Sınav Tutanağı.docx')"><i class="far fa-eye"></i> Görüntüle</button>
+                    <a href="dosyalar/Sınav Tutanağı.docx" class="btn-action btn-download" download><i class="fas fa-download"></i> İndir</a>
+                    <button class="btn-action btn-info" onclick="toggleDesc('desc2')"><i class="fas fa-info"></i></button>
                 </div>
             </div>
+            <div id="desc2" class="file-description">
+                [cite_start]<strong>Açıklama:</strong> 9, 10, 11 ve 12. sınıflar için belirlenen ortak sınav senaryoları ve konu soru dağılım tabloları. [cite: 460]
+            </div>
 
-        </main>
+            <div class="file-card">
+                <div class="file-main">
+                    <div class="file-icon"><i class="fas fa-file-word"></i></div>
+                    <div class="file-info">
+                        <h3>Kasım 2025 Ara Dönem Kimya Zümre Tutanağı</h3>
+                        <div class="file-meta">
+                            <span><i class="far fa-calendar"></i> 18.11.2025</span>
+                            <span><i class="fas fa-chart-line"></i> Sınav Analizleri</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="file-actions">
+                    <button class="btn-action btn-preview" onclick="openPreview('dosyalar/Kasım 2025 Kimya zümreleri örneği.docx')"><i class="far fa-eye"></i> Görüntüle</button>
+                    <a href="dosyalar/Kasım 2025 Kimya zümreleri örneği.docx" class="btn-action btn-download" download><i class="fas fa-download"></i> İndir</a>
+                    <button class="btn-action btn-info" onclick="toggleDesc('desc3')"><i class="fas fa-info"></i></button>
+                </div>
+            </div>
+            <div id="desc3" class="file-description">
+                [cite_start]<strong>Açıklama:</strong> 1. Yazılı sınav sonuçlarının analizi, öğrenci başarı durumları ve telafi eğitim planlamalarını içeren ara dönem zümre tutanağı. [cite: 354]
+            </div>
+
+            <div class="file-card">
+                <div class="file-main">
+                    <div class="file-icon"><i class="fas fa-file-word"></i></div>
+                    <div class="file-info">
+                        <h3>9. Sınıf Kimya Örnek Ders Planı</h3>
+                        <div class="file-meta">
+                            <span><i class="far fa-clock"></i> 160 dk</span>
+                            <span><i class="fas fa-atom"></i> Moleküller Arası Etkileşimler</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="file-actions">
+                    <button class="btn-action btn-preview" onclick="openPreview('dosyalar/Örnek Ders planı.docx')"><i class="far fa-eye"></i> Görüntüle</button>
+                    <a href="dosyalar/Örnek Ders planı.docx" class="btn-action btn-download" download><i class="fas fa-download"></i> İndir</a>
+                    <button class="btn-action btn-info" onclick="toggleDesc('desc4')"><i class="fas fa-info"></i></button>
+                </div>
+            </div>
+            <div id="desc4" class="file-description">
+                [cite_start]<strong>Açıklama:</strong> Moleküller arası etkileşimler konusunu içeren, TYMM uyumlu, keşfetme ve derinleşme aşamalarıyla hazırlanmış 4 saatlik ders planı. [cite: 477]
+            </div>
+
+        </div>
     </div>
 
-    <footer>
-        <div class="container">
-            &copy; 2024 Mersin Etkin Zümre. Tüm hakları saklıdır.
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="modalFileName">Dosya Önizleme</span>
+                <span class="modal-close" onclick="closePreview()"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; color: #64748b;">
+                    <i class="fas fa-file-word" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                    <p>Dosya önizlemesi yükleniyor...</p>
+                    <small>(Not: Bu bir demo olduğu için gerçek dosya içeriği gösterilemez)</small>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
 
     <script>
         function toggleSidebar() { document.body.classList.toggle("menu-open"); }
-        
-        function toggleSubmenu(headerElement) {
-            var submenu = headerElement.nextElementSibling;
-            if (submenu && submenu.classList.contains('submenu')) {
-                if (submenu.classList.contains('open')) {
-                    submenu.classList.remove('open');
-                    headerElement.classList.remove('active');
-                } else {
-                    var allSubmenus = document.querySelectorAll('.submenu');
-                    var allHeaders = document.querySelectorAll('.cat-header');
-                    allSubmenus.forEach(function(el) { el.classList.remove('open'); });
-                    allHeaders.forEach(function(el) { el.classList.remove('active'); });
-                    submenu.classList.add('open');
-                    headerElement.classList.add('active');
-                }
-            }
+        function toggleDesc(id) {
+            var desc = document.getElementById(id);
+            desc.style.display = (desc.style.display === "block") ? "none" : "block";
         }
-
-        function showFiles(groupId, title) {
-            document.getElementById('mainTitle').innerText = title;
-            var groups = document.getElementsByClassName('file-group');
-            for(var i=0; i<groups.length; i++) { groups[i].classList.remove('active'); }
-            
-            var selectedGroup = document.getElementById('group-' + groupId);
-            if (selectedGroup) {
-                selectedGroup.classList.add('active');
-            } else {
-                document.getElementById('group-empty').classList.add('active');
-                document.querySelector('#group-empty p').textContent = "'" + title + "' kategorisinde henüz dosya bulunamadı.";
-            }
-            
-            var links = document.getElementsByClassName('submenu-link');
-            for(var j=0; j<links.length; j++) { links[j].classList.remove('active'); }
+        function openPreview(fileName) {
+            document.getElementById('modalFileName').innerText = fileName;
+            document.getElementById('previewModal').style.display = 'flex';
+        }
+        function closePreview() { document.getElementById('previewModal').style.display = 'none'; }
+        window.onclick = function(event) {
+            var modal = document.getElementById('previewModal');
+            if (event.target == modal) { modal.style.display = "none"; }
         }
     </script>
 
