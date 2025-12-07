@@ -3,124 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zümre Tutanağı - Mersin Etkin Zümre</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Times+New+Roman&display=swap" rel="stylesheet">
+    <title>Zümre Tutanağı Oluştur - Mersin Etkin Zümre</title>
+    
+    <link rel="preload" as="image" href="EZKLogo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #e2e8f0; margin: 0; color: #0F172A; }
-        * { box-sizing: border-box; } a { text-decoration: none; }
+        /* --- MASTER CSS (TÜM SAYFALARDA AYNI) --- */
+        :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
+        html { overflow-y: scroll; } 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        .container { width: 94%; max-width: 1400px; margin: 0 auto; }
+
+        /* HEADER (100px Yükseklik) */
+        .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
+        .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
+        .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
         
-        /* Header */
-        header { background-color: #0F172A; color: white; padding: 1.2rem 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo h1 { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 700; border-left: 5px solid #E30A17; padding-left: 15px; margin: 0; }
-        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; margin: 0; padding: 0; }
-        nav a { font-family: 'Inter', sans-serif; color: #cbd5e1; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
-        nav a:hover { color: #E30A17; }
-        .active-page { color: #E30A17 !important; }
-        .btn-forum { background-color: #E30A17; padding: 10px 20px; border-radius: 6px; color: white !important; font-weight: 600; }
-
-        /* Editor */
-        .editor-layout { display: flex; gap: 20px; padding: 30px 0; height: calc(100vh - 80px); }
-        .input-panel { flex: 0 0 400px; background: white; padding: 25px; border-radius: 10px; overflow-y: auto; }
-        .preview-panel { flex: 1; background: #94a3b8; padding: 20px; display: flex; justify-content: center; overflow-y: auto; }
-        .a4-page { width: 210mm; min-height: 297mm; background: white; padding: 20mm; font-family: 'Times New Roman', serif; font-size: 12pt; box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+        /* LOGO KUTUSU (80px) */
+        .logo-fixed { width: 80px; height: 80px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
         
-        /* Form Elemanları */
-        label { font-size: 0.85rem; font-weight: 700; color: #64748b; display: block; margin-bottom: 5px; }
-        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: 'Inter', sans-serif; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .box-container { background-color: #f8fafc; border: 1px dashed #cbd5e1; padding: 15px; border-radius: 8px; margin-bottom:10px; }
-        .btn-add { background-color: #22c55e; color: white; width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: 700; }
-        .btn-print { background-color: #0F172A; color: white; width: 100%; padding: 15px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 20px; }
-        .mini-list { list-style: none; padding: 0; margin: 0; }
-        .mini-item { background: #fff; border: 1px solid #e2e8f0; padding: 8px; margin-bottom: 5px; font-size: 0.85rem; display: flex; justify-content: space-between; }
-        .btn-del { color: #ef4444; cursor: pointer; }
+        .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
+        .brand-text h1 { font-size: 1.6rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
+        .brand-text span { font-size: 0.9rem; color: #64748b; font-weight: 600; margin-top: 2px; }
+        
+        .slogan-area { text-align: right; min-width: 200px; }
+        .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
 
-        /* Kağıt İçi */
-        .paper-header { text-align: center; margin-bottom: 25px; }
-        .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        .info-table td { border: 1px solid #000; padding: 5px 10px; }
-        .print-list { padding-left: 25px; margin: 0; }
-        .signatures-area { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
+        /* NAVİGASYON */
+        .main-nav { background-color: var(--corporate-dark); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
+        .nav-container { width: 94%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; }
+        .desktop-nav { display: flex; height: 100%; align-items: center; }
+        .nav-item { height: 100%; position: relative; display: flex; align-items: center; }
+        .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link { background-color: var(--meb-red); color: white; }
+        .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
+        
+        /* Dropdown */
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border-top: 3px solid var(--meb-red); padding: 5px 0; z-index: 9999; }
+        .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
+        .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
+        .dropdown-item a i { margin-right: 10px; color: #64748b; width: 20px; text-align: center; }
+        .dropdown-item a:hover { background-color: #f8fafc; color: var(--meb-red); padding-left: 25px; }
+        .dropdown-item a:hover i { color: var(--meb-red); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
 
-        @media screen and (max-width: 768px) { 
-            .header-content { flex-direction: column; } nav ul { flex-direction: column; gap: 10px; width:100%; padding-bottom:10px; }
-            .editor-layout { flex-direction: column; height: auto; } .preview-panel { display: none; }
+        /* MOBİL MENÜ */
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; }
+        .sidebar-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background-color: var(--corporate-dark); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
+        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; } body.menu-open .sidebar-menu { left: 0; }
+        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); } .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; } .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
+        .sidebar-list { padding: 10px 0; } .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); } .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; } .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
+
+        @media screen and (max-width: 1100px) {
+            .top-header { height: auto; padding: 10px 0; }
+            .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; height: auto; }
+            .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; height: auto; }
+            .logo-fixed { width: 60px; height: 60px; }
+            .brand-text h1 { font-size: 1.1rem; text-align: left; margin: 0; } .brand-text span { font-size: 0.75rem; text-align: left; display: block; }
+            .slogan-area { display: none; }
+            .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; color: white; }
         }
-        @media print { .input-panel, header { display: none; } .a4-page { position: absolute; left: 0; top: 0; margin: 0; box-shadow: none; } }
+
+        /* --- EDİTÖR ÖZEL STİLLERİ --- */
+        .editor-layout { display: flex; gap: 30px; padding: 40px 0; min-height: calc(100vh - 160px); }
+        
+        /* Sol Panel */
+        .input-panel { flex: 0 0 380px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; }
+        .panel-title { color: var(--corporate-dark); margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid var(--meb-red); padding-bottom: 10px; margin-bottom: 20px; }
+        
+        label { font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 5px; margin-top: 15px; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: 0.2s; }
+        input:focus, select:focus, textarea:focus { border-color: var(--meb-red); outline: none; box-shadow: 0 0 0 3px rgba(227, 10, 23, 0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        .box-container { background-color: #f8fafc; border: 1px dashed #cbd5e1; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        .btn-add { background-color: #22c55e; color: white; width: 100%; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.2s; margin-top: 10px; }
+        .btn-add:hover { background-color: #16a34a; }
+        
+        .mini-list { list-style: none; padding: 0; margin: 10px 0 0; }
+        .mini-item { background: white; border: 1px solid #e2e8f0; padding: 10px; margin-bottom: 5px; font-size: 0.85rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .btn-del { color: #ef4444; cursor: pointer; padding: 5px; transition: 0.2s; }
+        .btn-del:hover { background-color: #fef2f2; border-radius: 4px; }
+
+        .btn-print { background-color: var(--corporate-dark); color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 25px; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-print:hover { background-color: var(--meb-red); }
+
+        /* Sağ Panel (Önizleme) */
+        .preview-panel { flex: 1; background: #cbd5e1; padding: 40px; border-radius: 12px; display: flex; justify-content: center; overflow-y: auto; }
+        
+        /* A4 Kağıt Tasarımı */
+        .a4-page { 
+            width: 210mm; 
+            min-height: 297mm; 
+            background: white; 
+            padding: 20mm; 
+            font-family: 'Times New Roman', serif; 
+            font-size: 12pt; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            color: black;
+            line-height: 1.4;
+        }
+        
+        .paper-header { text-align: center; margin-bottom: 25px; text-transform: uppercase; }
+        .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .info-table td { border: 1px solid #000; padding: 8px; }
+        
+        .section-title { text-decoration: underline; font-weight: bold; margin-top: 20px; margin-bottom: 10px; font-size: 13pt; }
+        .print-list { padding-left: 25px; margin: 0; }
+        .print-list li { margin-bottom: 8px; text-align: justify; }
+        
+        .signatures-area { margin-top: 60px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 30px; page-break-inside: avoid; }
+        .signature-box { text-align: center; min-width: 150px; }
+        .signature-name { font-weight: bold; display: block; margin-bottom: 5px; }
+        .signature-title { font-size: 11pt; }
+
+        @media screen and (max-width: 1000px) {
+            .editor-layout { flex-direction: column; }
+            .input-panel { position: static; width: 100%; }
+            .preview-panel { padding: 10px; background: white; }
+            .a4-page { width: 100%; box-shadow: none; padding: 10px; min-height: auto; }
+        }
+
+        /* YAZDIRMA AYARLARI */
+        @media print {
+            .top-header, .main-nav, .input-panel, .hamburger { display: none !important; }
+            body { background: white; }
+            .container { width: 100%; max-width: none; margin: 0; padding: 0; }
+            .editor-layout { display: block; padding: 0; margin: 0; height: auto; }
+            .preview-panel { background: white; padding: 0; margin: 0; display: block; }
+            .a4-page { width: 100%; margin: 0; padding: 0; box-shadow: none; border: none; }
+            @page { margin: 20mm; size: A4; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <div class="logo"><h1>Mersin Etkin Zümre</h1></div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Anasayfa</a></li>
-                    <li><a href="arsiv.html">Zümre Arşivi</a></li>
-                    <li><a href="yonetmelik.html">Yönetmelik</a></li>
-                    <li><a href="ornekler.html">İyi Örnekler</a></li>
-                    <li><a href="tutanak.html" class="active-page">Evrak Oluştur</a></li>
-                    <li><a href="ilceler.html">İlçe Ziyaretleri</a></li>
-                    <li><a href="forum.html" class="btn-forum">Forum</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <div class="container editor-layout">
-        <div class="input-panel">
-            <h3 style="margin-top:0; color:#E30A17;">Zümre Tutanağı Bilgileri</h3>
-            <input type="text" id="inpTitle" placeholder="Toplantı Başlığı" oninput="updateView()">
-            <input type="text" id="inpSchool" placeholder="Okul Adı" oninput="updateView()">
-            <div class="form-row">
-                <input type="text" id="inpDate" placeholder="Tarih" oninput="updateView()">
-                <select id="inpNo" onchange="updateView()"><option value="1">No: 1</option><option value="2">No: 2</option></select>
-            </div>
-            <input type="text" id="inpPlace" placeholder="Yer" oninput="updateView()">
-            <div class="box-container">
-                <input type="text" id="newAgenda" placeholder="Gündem Maddesi">
-                <textarea id="newDecision" placeholder="Alınan Karar" style="height:60px; margin-top:5px;"></textarea>
-                <button class="btn-add" onclick="addItem()" style="margin-top:10px;">+ Madde Ekle</button>
-            </div>
-            <ul class="mini-list" id="miniListItems"></ul>
-            <div class="box-container" style="margin-top:15px;">
-                <label>İmzalar</label>
-                <input type="text" id="memName" placeholder="Ad Soyad">
-                <input type="text" id="memTitle" placeholder="Ünvan" style="margin-top:5px;">
-                <button class="btn-add" onclick="addMember()" style="margin-top:10px; background-color:#3b82f6;">+ Kişi Ekle</button>
-            </div>
-            <ul class="mini-list" id="miniListMembers"></ul>
-            <input type="text" id="inpPrincipal" placeholder="Okul Müdürü" style="margin-top:15px;" oninput="updateView()">
-            <button class="btn-print" onclick="window.print()">🖨️ Yazdır</button>
-        </div>
-        <div class="preview-panel">
-            <div class="a4-page">
-                <div class="paper-header"><h3 id="outTitle" style="margin:0;">TOPLANTI BAŞLIĞI</h3><p id="outSchool" style="margin:5px 0;">OKUL ADI</p></div>
-                <table class="info-table"><tr><td><strong>Tarih:</strong> <span id="outDate">...</span></td><td><strong>No:</strong> <span id="outNo">1</span></td><td><strong>Yer:</strong> <span id="outPlace">...</span></td></tr></table>
-                <h4 style="text-decoration:underline;">GÜNDEM MADDELERİ</h4><ol id="outAgendaList" class="print-list"><li>...</li></ol>
-                <h4 style="text-decoration:underline;">ALINAN KARARLAR</h4><ol id="outDecisionList" class="print-list"><li>...</li></ol>
-                <div class="signatures-area">
-                    <div id="outMembers" style="display:flex; gap:20px; flex-wrap:wrap;"></div>
-                    <div style="text-align:center; min-width:150px;"><span id="outPrincipal" style="font-weight:bold; display:block;">Ad Soyad</span><span>Okul Müdürü</span></div>
+    <div class="top-header">
+        <div class="container top-content">
+            <div class="brand-area">
+                <a href="index.html" class="logo-fixed" title="Anasayfa"></a>
+                <div class="brand-text">
+                    <h1>MERSİN ETKİN ZÜMRE</h1>
+                    <span>Eğitimde Birlik ve İlerleme Platformu</span>
                 </div>
+            </div>
+            <div class="slogan-area">
+                <span class="slogan-text">"Köklerden Geleceğe..."</span>
             </div>
         </div>
     </div>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="desktop-nav">
+                <li class="nav-item"><a href="index.html" class="nav-link">ANASAYFA</a></li>
+                <li class="nav-item"><a href="arsiv.html" class="nav-link">ZÜMRE ARŞİVİ</a></li>
+                <li class="nav-item"><a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a></li>
+                <li class="nav-item">
+                    <a href="tutanak.html" class="nav-link" style="background-color:#E30A17;">EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="doc-zumre.html"><i class="fas fa-users"></i> Zümre Tutanağı</a></li>
+                        <li class="dropdown-item"><a href="doc-plan.html"><i class="fas fa-calendar-alt"></i> Yıllık Plan</a></li>
+                        <li class="dropdown-item"><a href="doc-sinav.html"><i class="fas fa-file-alt"></i> Yazılı Sınav</a></li>
+                        <li class="dropdown-item"><a href="doc-olcme.html"><i class="fas fa-tasks"></i> Ölçme Değerlendirme</a></li>
+                        <li class="dropdown-item"><a href="doc-kulup.html"><i class="fas fa-hands-helping"></i> Kulüp Evrakları</a></li>
+                        <li class="dropdown-item"><a href="doc-sinif.html"><i class="fas fa-chalkboard-teacher"></i> Sınıf Rehberlik</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
+                <li class="nav-item"><a href="ilceler.html" class="nav-link">İLÇE ZİYARETLERİ</a></li>
+                <li class="nav-item"><a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a></li>
+                <li class="nav-item"><a href="forum.html" class="nav-link">FORUM</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar-menu">
+        <div class="sidebar-header"><span class="sidebar-brand">MENÜ</span><div class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div>
+        <ul class="sidebar-list">
+            <li><a href="index.html" class="sidebar-link">ANASAYFA</a></li>
+            <li><a href="arsiv.html" class="sidebar-link">ZÜMRE ARŞİVİ</a></li>
+            <li><a href="yonetmelik.html" class="sidebar-link">YÖNETMELİK</a></li>
+            <li><a href="tutanak.html" class="sidebar-link active">EVRAK OLUŞTUR</a></li>
+            <li><a href="maarif.html" class="sidebar-link">MAARİFİ ANLAMAK</a></li>
+            <li><a href="ilceler.html" class="sidebar-link">İLÇE ZİYARETLERİ</a></li>
+            <li><a href="ornekler.html" class="sidebar-link">İYİ ÖRNEKLER</a></li>
+            <li><a href="forum.html" class="sidebar-link">FORUM</a></li>
+        </ul>
+    </div>
+
+    <div class="container editor-layout">
+        
+        <div class="input-panel">
+            <h3 class="panel-title">Zümre Tutanağı Bilgileri</h3>
+            
+            <label>Toplantı Başlığı</label>
+            <input type="text" id="inpTitle" placeholder="Örn: 2025-2026 Sene Başı Kimya Zümresi" oninput="updateView()">
+            
+            <label>Okul Adı</label>
+            <input type="text" id="inpSchool" placeholder="Örn: Mersin Anadolu Lisesi" oninput="updateView()">
+            
+            <div class="form-row">
+                <div>
+                    <label>Tarih</label>
+                    <input type="text" id="inpDate" placeholder="GG.AA.YYYY" oninput="updateView()">
+                </div>
+                <div>
+                    <label>Toplantı No</label>
+                    <select id="inpNo" onchange="updateView()">
+                        <option value="1">No: 1</option>
+                        <option value="2">No: 2</option>
+                        <option value="3">No: 3</option>
+                    </select>
+                </div>
+            </div>
+            
+            <label>Toplantı Yeri</label>
+            <input type="text" id="inpPlace" placeholder="Örn: Öğretmenler Odası" oninput="updateView()">
+            
+            <div class="box-container">
+                <label style="margin-top:0;">Gündem ve Kararlar</label>
+                <input type="text" id="newAgenda" placeholder="Gündem Maddesi (Örn: Açılış)">
+                <textarea id="newDecision" placeholder="Alınan Karar (Örn: Toplantı açıldı...)" style="height:60px; margin-top:5px;"></textarea>
+                <button class="btn-add" onclick="addItem()">+ Madde Ekle</button>
+            </div>
+            <ul class="mini-list" id="miniListItems"></ul>
+            
+            <div class="box-container">
+                <label style="margin-top:0;">Katılımcılar (İmza)</label>
+                <input type="text" id="memName" placeholder="Ad Soyad">
+                <input type="text" id="memTitle" placeholder="Ünvan (Örn: Zümre Başkanı)" style="margin-top:5px;">
+                <button class="btn-add" onclick="addMember()" style="background-color:#3b82f6;">+ Kişi Ekle</button>
+            </div>
+            <ul class="mini-list" id="miniListMembers"></ul>
+            
+            <label>Okul Müdürü</label>
+            <input type="text" id="inpPrincipal" placeholder="Ad Soyad" oninput="updateView()">
+            
+            <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Yazdır / PDF Kaydet</button>
+        </div>
+
+        <div class="preview-panel">
+            <div class="a4-page">
+                <div class="paper-header">
+                    <h3 id="outTitle" style="margin:0;">TOPLANTI BAŞLIĞI</h3>
+                    <p id="outSchool" style="margin:5px 0;">OKUL ADI</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td><strong>Tarih:</strong> <span id="outDate">...</span></td>
+                        <td><strong>No:</strong> <span id="outNo">1</span></td>
+                        <td><strong>Yer:</strong> <span id="outPlace">...</span></td>
+                    </tr>
+                </table>
+                
+                <div class="section-title">GÜNDEM MADDELERİ</div>
+                <ol id="outAgendaList" class="print-list"><li>Henüz madde eklenmedi...</li></ol>
+                
+                <div class="section-title">ALINAN KARARLAR</div>
+                <ol id="outDecisionList" class="print-list"><li>Henüz karar eklenmedi...</li></ol>
+                
+                <div class="signatures-area">
+                    <div id="outMembers" style="display:flex; gap:30px; flex-wrap:wrap; width:100%;"></div>
+                    <div class="signature-box" style="margin-left:auto; margin-top:40px;">
+                        <span style="display:block; margin-bottom:30px;">UYGUNDUR <br> .../.../2025</span>
+                        <span id="outPrincipal" class="signature-name">Ad Soyad</span>
+                        <span class="signature-title">Okul Müdürü</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <script>
         let items = [], members = [];
-        function updateView() { document.getElementById('outTitle').innerText = (document.getElementById('inpTitle').value || "BAŞLIK").toUpperCase(); document.getElementById('outSchool').innerText = (document.getElementById('inpSchool').value || "OKUL ADI").toUpperCase(); document.getElementById('outDate').innerText = document.getElementById('inpDate').value; document.getElementById('outNo').innerText = document.getElementById('inpNo').value; document.getElementById('outPlace').innerText = document.getElementById('inpPlace').value; document.getElementById('outPrincipal').innerText = document.getElementById('inpPrincipal').value || "Ad Soyad"; }
-        function addItem() { items.push({ ag: document.getElementById('newAgenda').value, dec: document.getElementById('newDecision').value }); document.getElementById('newAgenda').value = ""; document.getElementById('newDecision').value = ""; render(); }
-        function addMember() { members.push({ name: document.getElementById('memName').value, title: document.getElementById('memTitle').value }); document.getElementById('memName').value = ""; document.getElementById('memTitle').value = ""; render(); }
+
+        function toggleSidebar() {
+            document.body.classList.toggle("menu-open");
+        }
+
+        function updateView() {
+            document.getElementById('outTitle').innerText = (document.getElementById('inpTitle').value || "TOPLANTI BAŞLIĞI").toUpperCase();
+            document.getElementById('outSchool').innerText = (document.getElementById('inpSchool').value || "OKUL ADI").toUpperCase();
+            document.getElementById('outDate').innerText = document.getElementById('inpDate').value || "...";
+            document.getElementById('outNo').innerText = document.getElementById('inpNo').value;
+            document.getElementById('outPlace').innerText = document.getElementById('inpPlace').value || "...";
+            document.getElementById('outPrincipal').innerText = document.getElementById('inpPrincipal').value || "Ad Soyad";
+        }
+
+        function addItem() {
+            const ag = document.getElementById('newAgenda').value;
+            const dec = document.getElementById('newDecision').value;
+            if(!ag || !dec) return alert("Lütfen hem gündem maddesini hem kararı yazınız.");
+            
+            items.push({ ag, dec });
+            document.getElementById('newAgenda').value = "";
+            document.getElementById('newDecision').value = "";
+            render();
+        }
+
+        function addMember() {
+            const name = document.getElementById('memName').value;
+            const title = document.getElementById('memTitle').value;
+            if(!name) return alert("Lütfen isim giriniz.");
+            
+            members.push({ name, title });
+            document.getElementById('memName').value = "";
+            document.getElementById('memTitle').value = "";
+            render();
+        }
+
         function render() { 
-            document.getElementById('miniListItems').innerHTML = items.map(i => `<li class="mini-item">${i.ag.substring(0,20)}...</li>`).join('');
+            // Sol Panel Listeleri
+            document.getElementById('miniListItems').innerHTML = items.map((i, idx) => 
+                `<li class="mini-item"><span>${idx+1}. ${i.ag.substring(0,20)}...</span> <i class="fas fa-trash btn-del" onclick="deleteItem(${idx})"></i></li>`
+            ).join('');
+            
+            document.getElementById('miniListMembers').innerHTML = members.map((m, idx) => 
+                `<li class="mini-item"><span>${m.name}</span> <i class="fas fa-trash btn-del" onclick="deleteMember(${idx})"></i></li>`
+            ).join('');
+
+            // A4 Önizleme Listeleri
             document.getElementById('outAgendaList').innerHTML = items.map(i => `<li>${i.ag}</li>`).join('');
             document.getElementById('outDecisionList').innerHTML = items.map(i => `<li>${i.dec}</li>`).join('');
-            document.getElementById('miniListMembers').innerHTML = members.map(m => `<li class="mini-item">${m.name}</li>`).join('');
-            document.getElementById('outMembers').innerHTML = members.map(m => `<div style="text-align:center; min-width:120px;"><span style="font-weight:bold; display:block;">${m.name}</span><span>${m.title}</span></div>`).join('');
+            
+            document.getElementById('outMembers').innerHTML = members.map(m => 
+                `<div class="signature-box"><span class="signature-name">${m.name}</span><span class="signature-title">${m.title}</span></div>`
+            ).join('');
         }
+
+        function deleteItem(index) { items.splice(index, 1); render(); }
+        function deleteMember(index) { members.splice(index, 1); render(); }
     </script>
+
 </body>
 </html>
