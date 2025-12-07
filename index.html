@@ -8,53 +8,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
     <style>
+        /* --- TEMEL AYARLAR --- */
         :root {
-            --meb-red: #E30A17;      /* MEB Kırmızısı */
-            --corporate-dark: #0F172A; /* Kurumsal Koyu */
+            --meb-red: #E30A17;
+            --corporate-dark: #0F172A;
             --bg-light: #f8fafc;
             --text-gray: #333;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Inter", sans-serif; background-color: var(--bg-light); color: var(--text-gray); }
+        body { font-family: "Inter", sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* --- 1. YENİ HEADER (LOGO BÜYÜTÜLDÜ) --- */
+        /* --- 1. ÜST HEADER (YAN YANA VE DÜZGÜN) --- */
         .top-header {
             background: white;
-            padding: 12px 0; /* Biraz daha ferahlık */
+            padding: 10px 0;
             border-bottom: 1px solid #e2e8f0;
         }
-        
-        .header-inner {
+
+        .top-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: center; /* Dikeyde ortala */
+            min-height: 90px;
         }
 
-        .brand-group {
+        /* Sol Taraf: Logo ve Yazı Grubu */
+        .brand-area {
             display: flex;
             align-items: center;
-            gap: 15px; /* Logo ile yazı arası mesafe arttı */
+            gap: 20px; /* Logo ile yazı arası boşluk */
         }
 
-        .logo-img {
-            height: 85px; /* GÜNCELLENDİ: Logo büyütüldü */
+        .meb-logo {
+            height: 85px; /* Logo boyutu ideal */
             width: auto;
-            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
-        .brand-titles {
+        .brand-text {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             line-height: 1.1;
-            gap: 2px;
         }
 
-        .brand-titles h1 {
-            font-size: 1.6rem; /* GÜNCELLENDİ: Yazı logoya uyum için büyüdü */
+        .brand-text h1 {
+            font-size: 1.8rem; /* Yazı boyutu büyütüldü */
             font-weight: 900;
             color: var(--corporate-dark);
             text-transform: uppercase;
@@ -62,21 +65,26 @@
             margin: 0;
         }
 
-        .brand-titles span {
-            font-size: 0.9rem;
+        .brand-text span {
+            font-size: 0.95rem;
             color: #64748b;
             font-weight: 600;
+            margin-top: 3px;
         }
 
-        .slogan-right {
+        /* Sağ Taraf: Slogan */
+        .slogan-area {
+            text-align: right;
+        }
+        .slogan-text {
             font-family: "Playfair Display", serif;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-style: italic;
             color: var(--meb-red);
             font-weight: 600;
         }
 
-        /* --- 2. GÜÇLÜ NAVİGASYON (DEĞİŞMEDİ) --- */
+        /* --- 2. MENÜ (NAVBAR) - ESKİ BEĞENDİĞİN HALİ --- */
         .main-nav {
             background-color: var(--corporate-dark);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -97,18 +105,8 @@
             height: 100%;
         }
 
-        .desktop-nav {
-            display: flex;
-            height: 100%;
-            align-items: center;
-        }
-        
-        .nav-item {
-            height: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
+        .desktop-nav { display: flex; height: 100%; align-items: center; }
+        .nav-item { height: 100%; position: relative; display: flex; align-items: center; }
 
         .nav-link {
             color: rgba(255, 255, 255, 0.9);
@@ -119,35 +117,22 @@
             display: flex;
             align-items: center;
             border-right: 1px solid rgba(255, 255, 255, 0.06);
-            transition: 0.3s;
             text-transform: uppercase;
-            letter-spacing: 0.35px;
+            letter-spacing: 0.5px;
         }
 
-        .nav-link:hover,
-        .nav-item:hover .nav-link,
-        .nav-item.active .nav-link {
+        .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link {
             background-color: var(--meb-red);
-            color: #fff;
+            color: white;
         }
 
-        .nav-link i {
-            margin-left: 6px;
-            font-size: 0.75rem;
-            opacity: 0.8;
-            transition: transform 0.3s;
-        }
-        
-        .nav-item:hover .nav-link i {
-            transform: rotate(180deg);
-        }
+        .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
 
-        /* DROPDOWN */
+        /* Dropdown */
         .dropdown-menu {
             display: none;
             position: absolute;
-            top: 100%;
-            left: 0;
+            top: 100%; left: 0;
             background-color: white;
             min-width: 250px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
@@ -155,135 +140,194 @@
             padding: 5px 0;
             z-index: 9999;
         }
-        .nav-item:hover .dropdown-menu {
-            display: block;
-            animation: fadeIn 0.2s ease;
-        }
+        .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
         .dropdown-item a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: #333;
-            font-size: 0.9rem;
-            font-weight: 500;
+            display: flex; align-items: center; padding: 12px 20px;
+            color: #333; font-size: 0.9rem; font-weight: 500;
             border-bottom: 1px solid #f1f5f9;
-            transition: 0.2s;
         }
-        .dropdown-item a:hover {
-            background-color: #f8fafc;
-            color: var(--meb-red);
-            padding-left: 25px;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .dropdown-item a:hover { background-color: #f8fafc; color: var(--meb-red); padding-left: 25px; }
 
-        /* Hamburger */
-        .hamburger {
-            display: none;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-            padding: 10px;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
 
-        /* --- HERO --- */
+        /* --- 3. HERO (GENİŞ VE KAYAN RESİM) - ESKİ BEĞENDİĞİN HALİ --- */
         .hero {
-            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.7)), url('mersin.jpg');
+            /* 'mersin.jpg' dosyanın klasörde olduğundan emin ol */
+            background-image: linear-gradient(
+                    to bottom,
+                    rgba(15, 23, 42, 0.85),
+                    rgba(15, 23, 42, 0.6)
+                ),
+                url("mersin.jpg");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Parallax (Kayma Efekti) */
             text-align: center;
-            padding: 100px 20px;
+            padding: 160px 20px; /* Genişlik verildi */
+            min-height: 70vh;    /* Ekranın %70'i */
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-bottom: 5px solid var(--meb-red);
+            margin-bottom: 0;
         }
-        .hero h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; }
-        .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 25px; opacity: 0.95; }
-        .hero-btn {
-            background-color: var(--meb-red); color: white; padding: 12px 35px;
-            border-radius: 5px; font-weight: 700; transition: 0.3s;
-        }
-        .hero-btn:hover { background-color: #c20813; transform: translateY(-3px); }
 
-        /* --- HIZLI ERİŞİM KARTLARI --- */
-        .links-section {
-            background-color: #f1f5f9;
-            padding: 40px 0;
+        .hero-content h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            letter-spacing: -1.5px;
+            line-height: 1.1;
         }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--meb-red);
+            color: white;
+            padding: 15px 45px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(227, 10, 23, 0.4);
+            transition: 0.3s;
+        }
+        .hero-btn:hover {
+            background-color: #c20813;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(227, 10, 23, 0.6);
+        }
+
+        /* --- 4. HIZLI ERİŞİM (PROFESYONEL GRID) --- */
+        .quick-links-section {
+            background-color: #fff;
+            padding: 40px 0 60px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
         .section-title {
-            font-size: 1.2rem; font-weight: 700; color: var(--corporate-dark); margin-bottom: 20px;
-            display: flex; align-items: center; gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--corporate-dark);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
         }
         .section-title i { color: var(--meb-red); }
 
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Geniş kutular */
             gap: 20px;
         }
 
         .link-card {
-            background: white;
+            background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
-            transition: 0.3s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
         }
+
         .link-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
             border-color: var(--meb-red);
         }
-        .card-icon-box {
-            width: 50px; height: 50px;
-            background: #f1f5f9; color: var(--corporate-dark);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; transition: 0.3s;
+
+        /* Hover Çizgisi */
+        .link-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0; width: 4px;
+            background: var(--meb-red);
+            opacity: 0; transition: 0.2s;
         }
-        .link-card:hover .card-icon-box { background: var(--meb-red); color: white; }
-        .card-text { font-weight: 600; color: #334155; font-size: 0.95rem; }
+        .link-card:hover::before { opacity: 1; }
+
+        .card-icon {
+            width: 55px; height: 55px;
+            background: #f8fafc;
+            color: var(--corporate-dark);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+        
+        .link-card:hover .card-icon {
+            background: var(--meb-red);
+            color: white;
+        }
+
+        .card-content { display: flex; flex-direction: column; }
+        .card-title { font-weight: 700; color: #1e293b; font-size: 1rem; }
+        .card-desc { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
 
         /* Footer */
-        footer { background: #0b1120; color: #94a3b8; text-align: center; padding: 40px 0; border-top: 4px solid var(--meb-red); }
+        footer {
+            background-color: #0b1120;
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 4px solid var(--meb-red);
+        }
 
         /* MOBİL UYUM */
-        @media (max-width: 900px) {
-            .header-inner { flex-direction: column; gap: 15px; text-align: center; padding: 10px 0; }
-            .brand-group { flex-direction: column; gap: 10px; }
-            .logo-img { height: 80px; } /* Mobilde logo boyutu */
-            .brand-titles h1 { font-size: 1.5rem; }
-            .slogan-right { display: none; }
+        @media screen and (max-width: 1000px) {
+            .top-content { flex-direction: column; gap: 15px; text-align: center; }
+            .brand-area { flex-direction: column; gap: 10px; }
+            .brand-text h1 { font-size: 1.6rem; text-align: center; }
+            .slogan-area { width: 100%; text-align: center; }
             
             .desktop-nav { display: none; }
             .hamburger { display: block; margin-left: auto; }
             
-            .hero h2 { font-size: 2rem; }
+            .hero { padding: 100px 20px; min-height: 50vh; }
+            .hero-content h2 { font-size: 2rem; }
+            
             .links-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header class="top-header">
-        <div class="container header-inner">
-            <div class="brand-group">
-                <img src="EZKLogo.png" alt="Logo" class="logo-img">
-                <div class="brand-titles">
+    <div class="top-header">
+        <div class="container top-content">
+            <div class="brand-area">
+                <img src="EZKLogo.png" alt="Mersin Etkin Zümre Logosu" class="meb-logo" />
+                <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
                     <span>Eğitimde Birlik ve İlerleme Platformu</span>
                 </div>
             </div>
-            <div class="slogan-right">
-                "Köklerden Geleceğe..."
+            
+            <div class="slogan-area">
+                <span class="slogan-text">"Köklerden Geleceğe..."</span>
             </div>
         </div>
-    </header>
+    </div>
 
     <nav class="main-nav">
         <div class="container nav-container">
@@ -297,83 +341,89 @@
                 <li class="nav-item">
                     <a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a>
                 </li>
-
                 <li class="nav-item">
                     <a href="tutanak.html" class="nav-link">
                         EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="doc-zumre.html"><i class="fas fa-users"></i> Zümre Tutanağı</a></li>
-                        <li class="dropdown-item"><a href="doc-plan.html"><i class="fas fa-calendar-alt"></i> Yıllık Plan</a></li>
-                        <li class="dropdown-item"><a href="doc-sinav.html"><i class="fas fa-file-alt"></i> Yazılı Sınav</a></li>
-                        <li class="dropdown-item"><a href="doc-olcme.html"><i class="fas fa-tasks"></i> Ölçme Değerlendirme</a></li>
-                        <li class="dropdown-item"><a href="doc-kulup.html"><i class="fas fa-hands-helping"></i> Kulüp Evrakları</a></li>
-                        <li class="dropdown-item"><a href="doc-sinif.html"><i class="fas fa-chalkboard-teacher"></i> Sınıf Rehberlik</a></li>
+                        <li class="dropdown-item"><a href="doc-zumre.html">Zümre Tutanağı</a></li>
+                        <li class="dropdown-item"><a href="doc-plan.html">Yıllık Plan</a></li>
+                        <li class="dropdown-item"><a href="doc-sinav.html">Yazılı Sınav</a></li>
                     </ul>
                 </li>
-
-                <li class="nav-item">
-                    <a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a>
-                </li>
-                <li class="nav-item">
-                    <a href="ilceler.html" class="nav-link">İLÇE ZİYARETLERİ</a>
-                </li>
-                <li class="nav-item">
-                    <a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a>
-                </li>
-                <li class="nav-item">
-                    <a href="forum.html" class="nav-link">FORUM</a>
-                </li>
+                <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
+                <li class="nav-item"><a href="ilceler.html" class="nav-link">İLÇE ZİYARETLERİ</a></li>
+                <li class="nav-item"><a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a></li>
+                <li class="nav-item"><a href="forum.html" class="nav-link">FORUM</a></li>
             </ul>
-
-            <div class="hamburger" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="hamburger" onclick="alert('Mobil Menü JS')"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="container">
-            <h2>Türkiye Yüzyılı Maarif Modeli</h2>
-            <p>Okul temelli planlama, zümre işbirliği ve dijital içerik üretimi için öğretmenlerimizin ortak buluşma noktası.</p>
-            <a href="arsiv.html" class="hero-btn">Arşive Git</a>
+        <div class="container hero-content">
+            <h2>Türkiye Yüzyılı Maarif Modeli <br> Mersin Etkin Zümre’de</h2>
+            <p>
+                Mersin'de görev yapan öğretmenlerimiz için; yeni müfredat, okul temelli planlama, 
+                ölçme-değerlendirme araçları ve zümre işbirliğine yönelik tüm kaynakların 
+                buluştuğu ortak dijital platform.
+            </p>
+            <a href="arsiv.html" class="hero-btn">Dokümanlara Göz At</a>
         </div>
     </section>
 
-    <section class="links-section">
+    <section class="quick-links-section">
         <div class="container">
             <div class="section-title"><i class="fas fa-rocket"></i> Hızlı Erişim Menüsü</div>
             
             <div class="links-grid">
                 
                 <a href="https://mersin.meb.gov.tr" target="_blank" class="link-card">
-                    <div class="card-icon-box"><i class="fas fa-building"></i></div>
-                    <div class="card-text">Mersin İl MEM</div>
+                    <div class="card-icon"><i class="fas fa-building"></i></div>
+                    <div class="card-content">
+                        <div class="card-title">Mersin İl MEM</div>
+                        <div class="card-desc">Resmi Web Sitesi</div>
+                    </div>
                 </a>
 
                 <a href="https://tymm.meb.gov.tr" target="_blank" class="link-card">
-                    <div class="card-icon-box"><i class="fas fa-bullseye"></i></div>
-                    <div class="card-text">Türkiye Yüzyılı Maarif Modeli</div>
+                    <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="card-content">
+                        <div class="card-title">Maarif Modeli</div>
+                        <div class="card-desc">TYMM Platformu</div>
+                    </div>
                 </a>
 
                 <a href="https://tymm.meb.gov.tr/sinif-ici-etkinlik-videolari" target="_blank" class="link-card">
-                    <div class="card-icon-box"><i class="fas fa-video"></i></div>
-                    <div class="card-text">Sınıf İçi Etkinlik Videoları</div>
+                    <div class="card-icon"><i class="fas fa-video"></i></div>
+                    <div class="card-content">
+                        <div class="card-title">Etkinlik Videoları</div>
+                        <div class="card-desc">Sınıf İçi Uygulamalar</div>
+                    </div>
                 </a>
 
                 <a href="https://mufredat.meb.gov.tr" target="_blank" class="link-card">
-                    <div class="card-icon-box"><i class="fas fa-book-open"></i></div>
-                    <div class="card-text">Müfredat Programları</div>
+                    <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="card-content">
+                        <div class="card-title">Müfredat</div>
+                        <div class="card-desc">Öğretim Programları</div>
+                    </div>
                 </a>
 
                 <a href="https://ogmmateryal.eba.gov.tr" target="_blank" class="link-card">
-                    <div class="card-icon-box"><i class="fas fa-cubes"></i></div>
-                    <div class="card-text">OGM Materyal & Planlama</div>
+                    <div class="card-icon"><i class="fas fa-cubes"></i></div>
+                    <div class="card-content">
+                        <div class="card-title">OGM Materyal</div>
+                        <div class="card-desc">Ders İçerikleri</div>
+                    </div>
                 </a>
 
                 <a href="http://kitapinceleme.meb.gov.tr" target="_blank" class="link-card">
-                    <div class="card-icon-box"><i class="fas fa-search"></i></div>
-                    <div class="card-text">TTKB Kitap İnceleme</div>
+                    <div class="card-icon"><i class="fas fa-search"></i></div>
+                    <div class="card-content">
+                        <div class="card-title">Kitap İnceleme</div>
+                        <div class="card-desc">TTKB Sistemi</div>
+                    </div>
                 </a>
 
             </div>
@@ -385,12 +435,6 @@
             &copy; 2024 Mersin Etkin Zümre. Tüm hakları saklıdır.
         </div>
     </footer>
-
-    <script>
-        function toggleSidebar() {
-            alert("Mobil menü JS gerekli.");
-        }
-    </script>
 
 </body>
 </html>
