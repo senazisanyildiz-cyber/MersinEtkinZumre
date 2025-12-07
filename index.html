@@ -294,19 +294,65 @@
             border-top: 4px solid var(--meb-red);
         }
 
-        /* MOBİL UYUM */
+       /* --- MOBİL UYUM (SADECE BU KISIM DÜZELDİ) --- */
         @media screen and (max-width: 1000px) {
-            .top-content { flex-direction: column; gap: 15px; text-align: center; }
-            .brand-area { flex-direction: column; gap: 10px; }
-            .brand-text h1 { font-size: 1.6rem; text-align: center; }
-            .slogan-area { width: 100%; text-align: center; }
-            
+            /* Üst bantı yan yana tut */
+            .top-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 5px;
+            }
+
+            /* Logo ve Yazı Alanını YAN YANA (row) zorla */
+            .brand-area {
+                flex-direction: row !important; /* Alt alta olmayı engeller */
+                align-items: center;
+                gap: 12px;
+                text-align: left; /* Yazıyı sola yasla */
+                width: auto;
+            }
+
+            /* Mobilde logo boyutu */
+            .meb-logo {
+                height: 55px; /* Mobilde logoyu biraz küçültüyoruz ki sığsın */
+                margin-bottom: 0;
+            }
+
+            /* Yazı ayarları */
+            .brand-text {
+                align-items: flex-start; /* Yazı bloğunu sola yasla */
+            }
+
+            .brand-text h1 {
+                font-size: 1.25rem; /* Mobilde başlık boyutu */
+                text-align: left;
+                line-height: 1.1;
+                margin: 0;
+            }
+
+            .brand-text span {
+                font-size: 0.75rem;
+                text-align: left;
+                display: block;
+            }
+
+            /* Mobilde sloganı gizle (yer kalmadığı için) */
+            .slogan-area {
+                display: none; 
+            }
+
+            /* Menü Ayarları */
             .desktop-nav { display: none; }
-            .hamburger { display: block; margin-left: auto; }
+            .hamburger { 
+                display: block; 
+                margin-left: auto; /* Hamburgeri en sağa it */
+                color: #333; /* Beyaz arka planda görünmesi için koyu renk */
+                font-size: 1.4rem;
+            }
             
             .hero { padding: 100px 20px; min-height: 50vh; }
-            .hero-content h2 { font-size: 2rem; }
-            
+            .hero-content h2 { font-size: 1.8rem; }
             .links-grid { grid-template-columns: 1fr; }
         }
     </style>
