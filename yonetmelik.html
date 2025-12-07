@@ -3,137 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yönetmelik ve Mevzuat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
+    <title>Yönetmelik ve Mevzuat - Mersin Etkin Zümre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     
     <style>
-        :root { --primary: #E30A17; --dark: #0F172A; --light: #f8fafc; --gray: #64748b; }
+        /* --- TEMEL AYARLAR (INDEX İLE AYNI) --- */
+        :root {
+            --meb-red: #E30A17;
+            --corporate-dark: #0F172A;
+            --bg-light: #f8fafc;
+            --text-gray: #333;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Inter", sans-serif; background-color: var(--light); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        body { font-family: "Inter", sans-serif; background-color: var(--bg-light); color: var(--text-gray); display: flex; flex-direction: column; min-height: 100vh; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
+        /* --- HEADER & NAV (INDEX İLE AYNI) --- */
         .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .brand-group { display: flex; align-items: center; gap: 12px; }
-        .logo-img { height: 60px; width: auto; }
-        .brand-titles { display: flex; flex-direction: column; line-height: 1.2; }
-        .brand-titles h1 { font-size: 1.4rem; font-weight: 800; color: var(--dark); text-transform: uppercase; }
-        .brand-titles span { font-size: 0.85rem; color: var(--gray); font-weight: 500; }
-        .slogan-right { font-family: "Playfair Display", serif; font-size: 1.1rem; font-style: italic; color: var(--primary); font-weight: 600; }
+        .top-content { display: flex; justify-content: space-between; align-items: center; min-height: 90px; }
+        .brand-area { display: flex; align-items: center; gap: 20px; }
+        .meb-logo { height: 85px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; }
+        .brand-text h1 { font-size: 1.8rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; }
+        .brand-text span { font-size: 0.95rem; color: #64748b; font-weight: 600; margin-top: 3px; }
+        .slogan-area { text-align: right; }
+        .slogan-text { font-family: "Playfair Display", serif; font-size: 1.4rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
 
-        .navbar { background-color: var(--dark); height: 55px; position: sticky; top: 0; z-index: 1000; border-top: 3px solid var(--primary); }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; }
-        .nav-list { display: flex; height: 100%; }
-        .nav-item a { display: flex; align-items: center; height: 100%; padding: 0 18px; color: rgba(255,255,255,0.9); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; }
-        .nav-item a:hover, .nav-item.active a { background-color: var(--primary); color: white; }
+        .main-nav { background-color: var(--corporate-dark); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
+        .nav-container { width: 94%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; }
+        .desktop-nav { display: flex; height: 100%; align-items: center; }
+        .nav-item { height: 100%; position: relative; display: flex; align-items: center; }
+        .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link { background-color: var(--meb-red); color: white; }
+        .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
         
-        .hamburger { display: none; color: white; font-size: 1.4rem; }
-
-        .page-layout { display: flex; gap: 30px; margin: 30px auto; align-items: flex-start; }
-        .sidebar-box { flex: 0 0 280px; background: white; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; }
-        .sidebar-header { background: var(--dark); color: white; padding: 12px 20px; font-weight: 700; }
-        .sidebar-menu { padding: 10px; }
-        .menu-btn { display: block; width: 100%; padding: 12px 15px; text-align: left; background: none; border: none; border-radius: 6px; color: #475569; font-weight: 600; cursor: pointer; transition: 0.2s; display: flex; gap: 10px; align-items: center; }
-        .menu-btn:hover { background: #f1f5f9; color: var(--primary); }
-        .menu-btn.active { background: #fee2e2; color: var(--primary); }
-
-        .content-box { flex: 1; background: white; border-radius: 8px; border: 1px solid #e2e8f0; padding: 25px; min-height: 500px; }
-        .content-title { font-size: 1.4rem; font-weight: 800; color: var(--dark); border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border-top: 3px solid var(--meb-red); padding: 5px 0; z-index: 9999; }
+        .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
+        .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
+        .dropdown-item a:hover { background-color: #f8fafc; color: var(--meb-red); padding-left: 25px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .file-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid #f1f5f9; border-radius: 8px; margin-bottom: 10px; transition: 0.2s; }
-        .file-row:hover { border-color: #cbd5e1; transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
+
+        /* Sidebar Mobil */
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; }
+        .sidebar-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background-color: var(--corporate-dark); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
+        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; }
+        body.menu-open .sidebar-menu { left: 0; }
+        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; }
+        .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
+        .sidebar-list { padding: 10px 0; }
+        .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; }
+        .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
+
+        /* --- YÖNETMELİK ÖZEL İÇERİK --- */
+        .page-layout { display: flex; gap: 30px; margin: 40px auto; align-items: flex-start; }
+        .page-sidebar { flex: 0 0 300px; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow: hidden; border: 1px solid #e2e8f0; }
+        .sidebar-title { background-color: var(--corporate-dark); color: white; padding: 15px 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .category-menu { padding: 10px; }
+        .cat-btn { display: flex; align-items: center; width: 100%; padding: 14px 15px; margin-bottom: 5px; border: none; background: none; text-align: left; font-size: 0.95rem; color: #475569; font-weight: 600; cursor: pointer; border-radius: 6px; transition: 0.2s; font-family: 'Inter', sans-serif; }
+        .cat-btn i { width: 25px; color: #94a3b8; font-size: 1rem; }
+        .cat-btn:hover { background-color: #f1f5f9; color: var(--meb-red); }
+        .cat-btn:hover i { color: var(--meb-red); }
+        .cat-btn.active { background-color: #fee2e2; color: var(--meb-red); }
+        .cat-btn.active i { color: var(--meb-red); }
+
+        .page-content { flex: 1; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); min-height: 500px; padding: 30px; border: 1px solid #e2e8f0; }
+        .section-header { border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px; }
+        .section-title { font-size: 1.4rem; font-weight: 800; color: var(--corporate-dark); }
+        .content-group { display: none; animation: fadeIn 0.4s ease; }
+        .content-group.show { display: block; }
+
+        .file-card { display: flex; align-items: center; justify-content: space-between; padding: 18px; border: 1px solid #f1f5f9; border-radius: 8px; margin-bottom: 12px; transition: all 0.2s; background: #fff; }
+        .file-card:hover { border-color: #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transform: translateY(-2px); }
         .file-left { display: flex; align-items: center; gap: 15px; }
-        .icon-box { width: 40px; height: 40px; background: #fee2e2; color: #dc2626; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-        .file-info h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 2px; }
-        .file-info span { font-size: 0.75rem; color: var(--gray); font-weight: 600; }
-        .dl-btn { width: 35px; height: 35px; border-radius: 50%; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: var(--gray); }
-        .dl-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .file-icon { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.4rem; }
+        .icon-pdf { background-color: #fee2e2; color: #dc2626; }
+        .file-info h4 { font-size: 1rem; color: var(--corporate-dark); font-weight: 600; margin-bottom: 3px; }
+        .file-info span { font-size: 0.8rem; color: #94a3b8; font-weight: 500; }
+        .file-right { display: flex; align-items: center; gap: 15px; }
+        .badge { padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; background-color: #f1f5f9; color: #64748b; text-transform: uppercase; }
+        .btn-dl { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #94a3b8; border: 1px solid #e2e8f0; transition: 0.3s; }
+        .btn-dl:hover { background-color: var(--meb-red); color: white; border-color: var(--meb-red); }
+        .empty-msg { text-align: center; padding: 50px 20px; color: #94a3b8; }
 
-        footer { background: var(--dark); color: #94a3b8; text-align: center; padding: 30px 0; margin-top: auto; }
+        footer { background-color: #0b1120; color: #94a3b8; text-align: center; padding: 40px 0; border-top: 4px solid var(--meb-red); margin-top: auto; }
 
-        @media (max-width: 900px) {
-            .header-inner { flex-direction: column; text-align: center; }
-            .slogan-right { display: none; }
-            .nav-list { display: none; } .hamburger { display: block; }
-            .page-layout { flex-direction: column; } .sidebar-box { width: 100%; }
+        /* --- MOBİL UYUM (LOGO SOLDA) --- */
+        @media screen and (max-width: 1000px) {
+            .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; }
+            .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; }
+            .meb-logo { height: 75px; margin-bottom: 0; }
+            .brand-text { align-items: flex-start; }
+            .brand-text h1 { font-size: 1.25rem; text-align: left; margin: 0; }
+            .brand-text span { font-size: 0.75rem; text-align: left; display: block; }
+            .slogan-area { display: none; }
+            .desktop-nav { display: none; }
+            .hamburger { display: block; margin-left: auto; color: white; }
+            .page-layout { flex-direction: column; }
+            .page-sidebar { width: 100%; flex: none; }
+            .page-content { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <header class="top-header">
-        <div class="container header-inner">
-            <div class="brand-group">
-                <img src="EZKLogo.png" alt="Logo" class="logo-img">
-                <div class="brand-titles">
+    <div class="top-header">
+        <div class="container top-content">
+            <div class="brand-area">
+                <img src="EZKLogo.png" alt="Logo" class="meb-logo" />
+                <div class="brand-text">
                     <h1>MERSİN ETKİN ZÜMRE</h1>
                     <span>Eğitimde Birlik ve İlerleme Platformu</span>
                 </div>
             </div>
-            <div class="slogan-right">"Köklerden Geleceğe..."</div>
+            <div class="slogan-area">
+                <span class="slogan-text">"Köklerden Geleceğe..."</span>
+            </div>
         </div>
-    </header>
+    </div>
 
-    <nav class="navbar">
-        <div class="container nav-inner">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="index.html">ANASAYFA</a></li>
-                <li class="nav-item"><a href="arsiv.html">ZÜMRE ARŞİVİ</a></li>
-                <li class="nav-item active"><a href="yonetmelik.html">YÖNETMELİK</a></li>
-                <li class="nav-item"><a href="tutanak.html">EVRAK OLUŞTUR</a></li>
-                <li class="nav-item"><a href="maarif.html">MAARİFİ ANLAMAK</a></li>
-                <li class="nav-item"><a href="ilceler.html">İLÇE ZİYARETLERİ</a></li>
-                <li class="nav-item"><a href="ornekler.html">İYİ ÖRNEKLER</a></li>
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="desktop-nav">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> ANASAYFA</a>
+                </li>
+                <li class="nav-item">
+                    <a href="arsiv.html" class="nav-link">ZÜMRE ARŞİVİ</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tutanak.html" class="nav-link">
+                        EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="doc-zumre.html">Zümre Tutanağı</a></li>
+                        <li class="dropdown-item"><a href="doc-plan.html">Yıllık Plan</a></li>
+                        <li class="dropdown-item"><a href="doc-sinav.html">Yazılı Sınav</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
+                <li class="nav-item"><a href="ilceler.html" class="nav-link">İLÇE ZİYARETLERİ</a></li>
+                <li class="nav-item"><a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a></li>
+                <li class="nav-item"><a href="forum.html" class="nav-link">FORUM</a></li>
             </ul>
-            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
 
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar-menu">
+        <div class="sidebar-header">
+            <span class="sidebar-brand">MENÜ</span>
+            <div class="close-btn" onclick="toggleSidebar()">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <ul class="sidebar-list">
+            <li><a href="index.html" class="sidebar-link">ANASAYFA</a></li>
+            <li><a href="arsiv.html" class="sidebar-link">ZÜMRE ARŞİVİ</a></li>
+            <li><a href="yonetmelik.html" class="sidebar-link active">YÖNETMELİK</a></li>
+            <li><a href="tutanak.html" class="sidebar-link">EVRAK OLUŞTUR</a></li>
+            <li><a href="maarif.html" class="sidebar-link">MAARİFİ ANLAMAK</a></li>
+            <li><a href="ilceler.html" class="sidebar-link">İLÇE ZİYARETLERİ</a></li>
+            <li><a href="ornekler.html" class="sidebar-link">İYİ ÖRNEKLER</a></li>
+            <li><a href="forum.html" class="sidebar-link">FORUM</a></li>
+        </ul>
+    </div>
+
     <div class="container page-layout">
-        <aside class="sidebar-box">
-            <div class="sidebar-header"><i class="fas fa-book"></i> Mevzuat</div>
-            <div class="sidebar-menu">
-                <button class="menu-btn active"><i class="fas fa-bullhorn"></i> Genelgeler</button>
-                <button class="menu-btn"><i class="fas fa-child"></i> Temel Eğitim</button>
-                <button class="menu-btn"><i class="fas fa-graduation-cap"></i> Ortaöğretim</button>
-                <button class="menu-btn"><i class="fas fa-landmark"></i> Maarif Modeli</button>
+        
+        <aside class="page-sidebar">
+            <div class="sidebar-title"><i class="fas fa-book-open"></i> Mevzuat</div>
+            <div class="category-menu">
+                <button class="cat-btn active" onclick="openTab(event, 'sec-genelge')">
+                    <i class="fas fa-bullhorn"></i> Genelgeler
+                </button>
+                <button class="cat-btn" onclick="openTab(event, 'sec-temel')">
+                    <i class="fas fa-child"></i> Temel Eğitim
+                </button>
+                <button class="cat-btn" onclick="openTab(event, 'sec-orta')">
+                    <i class="fas fa-graduation-cap"></i> Ortaöğretim
+                </button>
+                <button class="cat-btn" onclick="openTab(event, 'sec-maarif')">
+                    <i class="fas fa-landmark"></i> Maarif Modeli
+                </button>
             </div>
         </aside>
 
-        <main class="content-box">
-            <div class="content-title">Yayınlanan Genelgeler</div>
+        <main class="page-content">
             
-            <div class="file-row">
-                <div class="file-left">
-                    <div class="icon-box"><i class="fas fa-file-pdf"></i></div>
-                    <div class="file-info">
-                        <h4>Milli Eğitim Bakanlığı 63 Sayılı Genelge</h4>
-                        <span>PDF Dosyası - Mevzuat</span>
+            <div id="sec-genelge" class="content-group show">
+                <div class="section-header">
+                    <div class="section-title">Yayınlanan Genelgeler</div>
+                </div>
+                
+                <div class="file-card">
+                    <div class="file-left">
+                        <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+                        <div class="file-info">
+                            <h4>Milli Eğitim Bakanlığı 63 Sayılı Genelge</h4>
+                            <span>PDF Dosyası - Mevzuat</span>
+                        </div>
+                    </div>
+                    <div class="file-right">
+                        <span class="badge">GENELGE</span>
+                        <a href="dosyalar/genelge.pdf" class="btn-dl" download title="İndir">
+                            <i class="fas fa-download"></i>
+                        </a>
                     </div>
                 </div>
-                <a href="dosyalar/genelge.pdf" class="dl-btn" download><i class="fas fa-download"></i></a>
             </div>
 
-            <div class="file-row">
-                <div class="file-left">
-                    <div class="icon-box"><i class="fas fa-file-pdf"></i></div>
-                    <div class="file-info">
-                        <h4>Temel Eğitim Genelgesi (2024)</h4>
-                        <span>PDF Dosyası</span>
-                    </div>
+            <div id="sec-temel" class="content-group">
+                <div class="section-header">
+                    <div class="section-title">Temel Eğitim Yönetmelikleri</div>
                 </div>
-                <a href="#" class="dl-btn"><i class="fas fa-download"></i></a>
+                <div class="empty-msg">
+                    <i class="fas fa-folder-open" style="font-size:2rem; margin-bottom:10px;"></i>
+                    <p>Bu kategoriye henüz dosya eklenmemiştir.</p>
+                </div>
+            </div>
+
+            <div id="sec-orta" class="content-group">
+                <div class="section-header">
+                    <div class="section-title">Ortaöğretim Yönetmelikleri</div>
+                </div>
+                <div class="empty-msg">
+                    <i class="fas fa-folder-open" style="font-size:2rem; margin-bottom:10px;"></i>
+                    <p>Bu kategoriye henüz dosya eklenmemiştir.</p>
+                </div>
+            </div>
+
+             <div id="sec-maarif" class="content-group">
+                <div class="section-header">
+                    <div class="section-title">Türkiye Yüzyılı Maarif Modeli</div>
+                </div>
+                <div class="empty-msg">
+                    <i class="fas fa-folder-open" style="font-size:2rem; margin-bottom:10px;"></i>
+                    <p>Model ile ilgili ortak metinler buraya eklenecektir.</p>
+                </div>
             </div>
 
         </main>
     </div>
 
     <footer>
-        <div class="container">&copy; 2024 Mersin Etkin Zümre.</div>
+        <div class="container">
+            &copy; 2024 Mersin Etkin Zümre. Tüm hakları saklıdır.
+        </div>
     </footer>
 
+    <script>
+        function toggleSidebar() {
+            document.body.classList.toggle("menu-open");
+        }
+
+        function openTab(evt, categoryName) {
+            var contents = document.getElementsByClassName("content-group");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("show");
+            }
+            var menuItems = document.getElementsByClassName("cat-btn");
+            for (var i = 0; i < menuItems.length; i++) {
+                menuItems[i].classList.remove("active");
+            }
+            document.getElementById(categoryName).classList.add("show");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
