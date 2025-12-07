@@ -4,119 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maarif Modelini Anlamak - Mersin Etkin Zümre</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="preload" as="image" href="EZKLogo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- GENEL AYARLAR --- */
+        /* --- MASTER CSS (TÜM SAYFALARDA AYNI) --- */
+        :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
+        html { overflow-y: scroll; } 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #0F172A; line-height: 1.6; }
-        a { text-decoration: none; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        .container { width: 94%; max-width: 1400px; margin: 0 auto; }
+
+        /* HEADER (100px Yükseklik) */
+        .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
+        .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
+        .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
         
-        /* --- AKILLI HEADER (SIKIŞMAYAN MENÜ) --- */
-        header {
-            background-color: #0F172A;
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .container { width: 92%; max-width: 1400px; margin: 0 auto; }
+        /* LOGO KUTUSU (80px) */
+        .logo-fixed { width: 80px; height: 80px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
         
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
+        .brand-text h1 { font-size: 1.6rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
+        .brand-text span { font-size: 0.9rem; color: #64748b; font-weight: 600; margin-top: 2px; }
+        
+        .slogan-area { text-align: right; min-width: 200px; }
+        .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
+
+        /* NAVİGASYON */
+        .main-nav { background-color: var(--corporate-dark); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
+        .nav-container { width: 94%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; }
+        .desktop-nav { display: flex; height: 100%; align-items: center; }
+        .nav-item { height: 100%; position: relative; display: flex; align-items: center; }
+        .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link { background-color: var(--meb-red); color: white; }
+        .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
+        
+        /* Dropdown */
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border-top: 3px solid var(--meb-red); padding: 5px 0; z-index: 9999; }
+        .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
+        .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
+        .dropdown-item a i { margin-right: 10px; color: #64748b; width: 20px; text-align: center; }
+        .dropdown-item a:hover { background-color: #f8fafc; color: var(--meb-red); padding-left: 25px; }
+        .dropdown-item a:hover i { color: var(--meb-red); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hamburger { display: none; font-size: 1.5rem; color: white; cursor: pointer; padding: 10px; }
+
+        /* MOBİL MENÜ */
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s; }
+        .sidebar-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background-color: var(--corporate-dark); z-index: 2001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
+        body.menu-open .sidebar-overlay { opacity: 1; visibility: visible; } body.menu-open .sidebar-menu { left: 0; }
+        .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); } .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; } .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
+        .sidebar-list { padding: 10px 0; } .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); } .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; } .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
+
+        @media screen and (max-width: 1100px) {
+            .top-header { height: auto; padding: 10px 0; }
+            .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; height: auto; }
+            .brand-area { flex-direction: row !important; align-items: center; gap: 12px; text-align: left; width: auto; height: auto; }
+            .logo-fixed { width: 60px; height: 60px; }
+            .brand-text h1 { font-size: 1.1rem; text-align: left; margin: 0; } .brand-text span { font-size: 0.75rem; text-align: left; display: block; }
+            .slogan-area { display: none; }
+            .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; color: white; }
         }
 
-        .logo h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border-left: 5px solid #E30A17;
-            padding-left: 15px;
-            margin: 0;
-            white-space: nowrap; /* Logo satır atlamasın */
-        }
-
-        /* Menü Linkleri */
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 15px; /* Boşluğu biraz azalttık */
-            align-items: center;
-            margin: 0; padding: 0;
-        }
-
-        nav a {
-            color: #cbd5e1;
-            font-weight: 500;
-            font-size: 0.9rem; /* Fontu bir tık küçülttük, sığsın diye */
-            transition: 0.3s;
-            white-space: nowrap; /* Linkler satır atlamasın */
-            padding: 5px 8px;
-            border-radius: 5px;
-        }
-        nav a:hover { color: #E30A17; background: rgba(255,255,255,0.05); }
-        .active-page { color: #E30A17 !important; font-weight: 700; }
-
-        .btn-forum {
-            background-color: #E30A17;
-            padding: 8px 16px;
-            border-radius: 6px;
-            color: white !important;
-            font-weight: 600;
-        }
-
-        /* Hamburger İkonu (Başlangıçta Gizli) */
-        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: white; }
-
-        /* --- MAARİF MODEL İÇERİĞİ --- */
-        .maarif-hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: white;
-            border-bottom: 1px solid #e2e8f0;
-        }
+        /* --- MAARİF MODELİ ÖZEL İÇERİĞİ --- */
+        .maarif-hero { text-align: center; padding: 80px 20px; background: white; border-bottom: 1px solid #e2e8f0; }
         .maarif-hero h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 15px; }
         .maarif-hero p { color: #64748b; font-size: 1.2rem; max-width: 800px; margin: 0 auto; }
 
-        /* 3 Sütunlu Bilgi Kartları */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 60px 0;
-        }
-
-        .info-card {
-            background: white;
-            border-radius: 16px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: 0.3s;
-            border-top: 5px solid transparent;
-        }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 60px 0; }
+        
+        .info-card { background: white; border-radius: 16px; padding: 40px 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; border-top: 5px solid transparent; }
         .info-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px rgba(0,0,0,0.1); }
 
-        /* Kart Renkleri */
         .card-erdem { border-color: #3b82f6; }
         .card-deger { border-color: #E30A17; }
         .card-eylem { border-color: #10b981; }
 
-        .icon-circle {
-            width: 70px; height: 70px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 20px auto;
-            color: white;
-        }
-
+        .icon-circle { width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px auto; color: white; }
         .card-erdem .icon-circle { background: #3b82f6; }
         .card-deger .icon-circle { background: #E30A17; }
         .card-eylem .icon-circle { background: #10b981; }
@@ -124,85 +93,68 @@
         .info-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #0F172A; }
         .info-card p { color: #64748b; line-height: 1.7; }
 
-        /* Alt Bilgi Kutusu */
-        .download-section {
-            background: #0F172A;
-            color: white;
-            padding: 50px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        .btn-download {
-            display: inline-block;
-            background-color: #E30A17;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
+        .download-section { background: #0F172A; color: white; padding: 50px; border-radius: 20px; text-align: center; margin-bottom: 80px; }
+        .btn-download { display: inline-block; background-color: #E30A17; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 700; margin-top: 20px; transition: 0.3s; }
         .btn-download:hover { background-color: white; color: #E30A17; }
-
-        /* --- MOBİL VE TABLET UYUMLULUK (MENÜ SIKIŞMASINI ÖNLER) --- */
-        @media screen and (max-width: 1150px) { /* 1150px altındaki her ekranda hamburger çıkar */
-            
-            .hamburger { display: block; } /* İkonu göster */
-
-            /* Menüyü Gizle ve Mobilleştir */
-            nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: #0F172A;
-                padding: 20px 0;
-                border-top: 1px solid rgba(255,255,255,0.1);
-            }
-            
-            nav.active { display: block; animation: slideDown 0.3s ease; }
-
-            nav ul { flex-direction: column; gap: 0; }
-            nav a { 
-                display: block; 
-                padding: 15px 20px; 
-                width: 100%; 
-                text-align: center;
-                font-size: 1.1rem; 
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-            .btn-forum { width: 80%; margin: 10px auto; display: block; text-align: center; }
-        }
-
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container header-content">
-            <div class="logo"><h1>Mersin Etkin Zümre</h1></div>
-            
-            <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-
-            <nav id="nav-menu">
-                <ul>
-                    <li><a href="index.html">Anasayfa</a></li>
-                    <li><a href="arsiv.html">Zümre Arşivi</a></li>
-                    <li><a href="yonetmelik.html">Yönetmelik</a></li>
-                    
-                    <li><a href="maarif.html" class="active-page">Maarifi Anlamak</a></li>
-                    
-                    <li><a href="ornekler.html">İyi Örnekler</a></li>
-                    <li><a href="tutanak.html">Evrak Oluştur</a></li>
-                    <li><a href="ilceler.html">İlçe Ziyaretleri</a></li>
-                    <li><a href="forum.html" class="btn-forum">Forum</a></li>
-                </ul>
-            </nav>
+    <div class="top-header">
+        <div class="container top-content">
+            <div class="brand-area">
+                <a href="index.html" class="logo-fixed" title="Anasayfa"></a>
+                <div class="brand-text">
+                    <h1>MERSİN ETKİN ZÜMRE</h1>
+                    <span>Eğitimde Birlik ve İlerleme Platformu</span>
+                </div>
+            </div>
+            <div class="slogan-area">
+                <span class="slogan-text">"Köklerden Geleceğe..."</span>
+            </div>
         </div>
-    </header>
+    </div>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul class="desktop-nav">
+                <li class="nav-item"><a href="index.html" class="nav-link">ANASAYFA</a></li>
+                <li class="nav-item"><a href="arsiv.html" class="nav-link">ZÜMRE ARŞİVİ</a></li>
+                <li class="nav-item"><a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a></li>
+                <li class="nav-item">
+                    <a href="tutanak.html" class="nav-link">EVRAK OLUŞTUR <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="doc-zumre.html"><i class="fas fa-users"></i> Zümre Tutanağı</a></li>
+                        <li class="dropdown-item"><a href="doc-plan.html"><i class="fas fa-calendar-alt"></i> Yıllık Plan</a></li>
+                        <li class="dropdown-item"><a href="doc-sinav.html"><i class="fas fa-file-alt"></i> Yazılı Sınav</a></li>
+                        <li class="dropdown-item"><a href="doc-olcme.html"><i class="fas fa-tasks"></i> Ölçme Değerlendirme</a></li>
+                        <li class="dropdown-item"><a href="doc-kulup.html"><i class="fas fa-hands-helping"></i> Kulüp Evrakları</a></li>
+                        <li class="dropdown-item"><a href="doc-sinif.html"><i class="fas fa-chalkboard-teacher"></i> Sınıf Rehberlik</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item active"><a href="maarif.html" class="nav-link" style="background-color:#E30A17; color:white;">MAARİFİ ANLAMAK</a></li>
+                <li class="nav-item"><a href="ilceler.html" class="nav-link">İLÇE ZİYARETLERİ</a></li>
+                <li class="nav-item"><a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a></li>
+                <li class="nav-item"><a href="forum.html" class="nav-link">FORUM</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar-menu">
+        <div class="sidebar-header"><span class="sidebar-brand">MENÜ</span><div class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div>
+        <ul class="sidebar-list">
+            <li><a href="index.html" class="sidebar-link">ANASAYFA</a></li>
+            <li><a href="arsiv.html" class="sidebar-link">ZÜMRE ARŞİVİ</a></li>
+            <li><a href="yonetmelik.html" class="sidebar-link">YÖNETMELİK</a></li>
+            <li><a href="tutanak.html" class="sidebar-link">EVRAK OLUŞTUR</a></li>
+            <li><a href="maarif.html" class="sidebar-link active">MAARİFİ ANLAMAK</a></li>
+            <li><a href="ilceler.html" class="sidebar-link">İLÇE ZİYARETLERİ</a></li>
+            <li><a href="ornekler.html" class="sidebar-link">İYİ ÖRNEKLER</a></li>
+            <li><a href="forum.html" class="sidebar-link">FORUM</a></li>
+        </ul>
+    </div>
 
     <section class="maarif-hero">
         <div class="container">
@@ -245,8 +197,8 @@
     </div>
 
     <script>
-        function toggleMenu() {
-            document.getElementById("nav-menu").classList.toggle("active");
+        function toggleSidebar() {
+            document.body.classList.toggle("menu-open");
         }
     </script>
 
