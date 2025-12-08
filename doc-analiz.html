@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        /* --- MASTER CSS (STANDART) --- */
+        /* --- MASTER CSS (TÜM SAYFALARDA AYNI) --- */
         :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
         html { overflow-y: scroll; } 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,7 +23,7 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* HEADER (100px) */
+        /* HEADER (100px - STANDART) */
         .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
         .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
         .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
@@ -357,52 +357,105 @@ Zeynep Çelik 78
             // Çan Eğrisi Verisi (0-100 arası dağılım fonksiyonu)
             const bellCurveData = [];
             const labels = [];
-            for(let x=0; x<=100; x+=5) {
-                // Normal Dağılım Formülü: (1 / (stdDev * sqrt(2pi))) * e^(-0.5 * ((x-mean)/stdDev)^2)
-                // Çarpanı artırarak grafikte görünür hale getiriyoruz
-                const y = (1 / (stdDev * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - mean) / stdDev, 2));
-                bellCurveData.push(y * grades.length * 50); // Ölçeklendirme
-                labels.push(x);
+            
+            // Eğer standart sapma çok küçükse (örneğin herkes aynı notu aldıysa), eğri çizilemez.
+            // Bu durumda sadece histogramı göstermek daha güvenlidir.
+            const canDrawCurve = stdDev > 0.5;
+
+            if (canDrawCurve) {
+                 // Çan eğrisinin yüksekliğini histogram çubuklarıyla ölçeklemek için çarpan
+                 // Histogramın toplam alanı = Toplam Öğrenci * Bin Genişliği (10)
+                 // Normal dağılımın alanı = 1
+                 // Ölçek Faktörü = Toplam Öğrenci * 10
+                 const scaleFactor = grades.length * 10;
+
+                 for(let x=0; x<=100; x+=5) { // 5'er 5'er nokta koyarak yumuşak çizgi
+                    // Gauss Formülü: (1 / (σ * sqrt(2π))) * e^(-0.5 * ((x-μ)/σ)^2)
+                    const exponent = -0.5 * Math.pow((x - mean) / stdDev, 2);
+                    const y = (1 / (stdDev * Math.sqrt(2 * Math.PI))) * Math.exp(exponent);
+                    bellCurveData.push(y * scaleFactor);
+                    labels.push(x);
+                }
             }
 
-            myChart = new Chart(ctx, {
-                data: {
-                    labels: ['0-10','10-20','20-30','30-40','40-50','50-60','60-70','70-80','80-90','90-100'],
-                    datasets: [
-                        {
-                            type: 'line',
-                            label: 'Çan Eğrisi (Normal Dağılım)',
-                            data: bellCurveData, // X ekseni uyuşmazlığı için yaklaşık gösterim
-                            borderColor: '#E30A17',
-                            borderWidth: 2,
-                            pointRadius: 0,
-                            fill: false,
-                            tension: 0.4,
-                            // Bu veri seti için özel X ekseni etiketleri gerekebilir, basitleştirilmiş görünüm:
-                            hidden: true // Şimdilik gizleyelim, histogram daha önemli
-                        },
-                        {
-                            type: 'bar',
-                            label: 'Öğrenci Sayısı',
-                            data: bins,
-                            backgroundColor: '#3b82f6',
-                            borderRadius: 4
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: true },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
-                    scales: {
-                        y: { beginAtZero: true, title: { display: true, text: 'Öğrenci Sayısı' } },
-                        x: { title: { display: true, text: 'Puan Aralıkları' } }
-                    }
+            // Grafik Konfigürasyonu
+            const datasets = [
+                {
+                    type: 'bar',
+                    label: 'Öğrenci Sayısı (Histogram)',
+                    data: bins,
+                    backgroundColor: '#3b82f6',
+                    borderRadius: 4,
+                    barPercentage: 1.0,
+                    categoryPercentage: 1.0
                 }
-            });
+            ];
+
+            // Çan eğrisi verisi varsa ekle
+            if (canDrawCurve) {
+                // Chart.js'de line ve bar grafiklerin x ekseni etiketleri uyuşmazsa sorun olabilir.
+                // Basit bir yaklaşım: Line grafiği için x eksenini histogram etiketlerine (0-10, 10-20...) uydurmak zordur.
+                // Bu yüzden, profesyonel bir "Scatter" (Nokta) grafiği ile çizgi çizeceğiz.
+                
+                // Ancak Chart.js combo chart'ta line ve bar'ı karıştırmak için x eksenini ortaklaştırmalıyız.
+                // Histogramı "merkez noktalarına" (5, 15, 25...) oturtup, eğriyi de buna göre çizeceğiz.
+                
+                // Histogram için etiketler (Bar'ların altı)
+                const binLabels = ['5', '15', '25', '35', '45', '55', '65', '75', '85', '95'];
+                
+                // Eğri verilerini bu etiketlere denk gelecek şekilde (5, 15...) tekrar hesaplayalım
+                const alignedBellData = [];
+                for(let x=5; x<=95; x+=10) {
+                     const exponent = -0.5 * Math.pow((x - mean) / stdDev, 2);
+                     const y = (1 / (stdDev * Math.sqrt(2 * Math.PI))) * Math.exp(exponent);
+                     alignedBellData.push(y * grades.length * 10);
+                }
+
+                 datasets.unshift({
+                    type: 'line',
+                    label: 'Çan Eğrisi (İdeal Dağılım)',
+                    data: alignedBellData,
+                    borderColor: '#E30A17',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false,
+                    tension: 0.4
+                });
+                
+                myChart = new Chart(ctx, {
+                    data: {
+                        labels: binLabels, // X ekseni (Puan Ortaları)
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true },
+                            tooltip: { mode: 'index', intersect: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, title: { display: true, text: 'Öğrenci Sayısı' } },
+                            x: { title: { display: true, text: 'Puan Aralığı (Ortalama)' } }
+                        }
+                    }
+                });
+
+            } else {
+                // Sadece Histogram (Çan eğrisi çizilemediğinde)
+                myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-89', '90-100'],
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+            }
         }
     </script>
 
