@@ -7,26 +7,25 @@
     
     <link rel="preload" as="image" href="EZKLogo.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- TEMEL AYARLAR (MASTER CSS - INDEX İLE AYNI) --- */
+        /* --- MASTER CSS (TÜM SAYFALARDA AYNI) --- */
         :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
         html { overflow-y: scroll; } 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0F172A; line-height: 1.5; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* HEADER (100px Yükseklik - KISALTILMIŞ STANDART) */
+        /* HEADER (100px Yükseklik) */
         .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
         .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
-        
         .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
         
-        /* LOGO KUTUSU (80px - STANDART) */
+        /* LOGO KUTUSU (80px) */
         .logo-fixed { width: 80px; height: 80px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
         
         .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
@@ -62,23 +61,6 @@
         .sidebar-header { padding: 25px 20px; background: #0b1120; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); } .sidebar-brand { font-weight: 800; color: white; font-size: 1.2rem; } .close-btn { color: #cbd5e1; font-size: 1.5rem; cursor: pointer; }
         .sidebar-list { padding: 10px 0; } .sidebar-link { display: block; padding: 14px 20px; color: #cbd5e1; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,0.03); } .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--meb-red); padding-left: 28px; } .sidebar-link.active { color: var(--meb-red); background: rgba(227,10,23,0.1); border-left: 4px solid var(--meb-red); }
 
-        /* DASHBOARD ÖZEL STİLLERİ */
-        .dashboard-header { text-align: center; padding: 60px 0 40px 0; }
-        .dashboard-header h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; font-weight: 800; }
-        .dashboard-header p { color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding-bottom: 80px; }
-        .tool-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; height: 100%; position: relative; overflow: hidden; }
-        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); border-color: #E30A17; }
-        
-        .icon-bg { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 2rem; transition: 0.3s; }
-        .bg-zumre { background-color: #fee2e2; color: #E30A17; } .bg-plan { background-color: #dbeafe; color: #1e40af; } .bg-kulup { background-color: #dcfce7; color: #16a34a; } .bg-sinif { background-color: #fef3c7; color: #d97706; } .bg-maarif { background-color: #f3e8ff; color: #7e22ce; } .bg-sinav { background-color: #cffafe; color: #0891b2; }
-        
-        .tool-card h3 { font-size: 1.4rem; color: #0F172A; margin-bottom: 12px; font-weight: 700; }
-        .tool-card p { color: #64748b; font-size: 0.95rem; margin-bottom: 30px; flex: 1; line-height: 1.6; }
-        .btn-tool { background-color: #0F172A; color: white; padding: 14px 30px; border-radius: 50px; font-weight: 600; width: 100%; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
-        .tool-card:hover .btn-tool { background-color: #E30A17; }
-
         @media screen and (max-width: 1100px) {
             .top-header { height: auto; padding: 10px 0; }
             .top-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 10px 5px; height: auto; }
@@ -89,6 +71,34 @@
             .desktop-nav { display: none; } .hamburger { display: block; margin-left: auto; color: white; }
             .dashboard-header h2 { font-size: 2rem; }
         }
+
+        /* --- DASHBOARD (KARTLAR) --- */
+        .dashboard-header { text-align: center; padding: 60px 0 40px 0; }
+        .dashboard-header h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; font-weight: 800; }
+        .dashboard-header p { color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding-bottom: 80px; }
+        
+        .tool-card { 
+            background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px 30px; 
+            text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02); 
+            display: flex; flex-direction: column; align-items: center; height: 100%; position: relative; overflow: hidden; 
+        }
+        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); border-color: #E30A17; }
+        
+        .icon-bg { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 2rem; transition: 0.3s; }
+        .bg-zumre { background-color: #fee2e2; color: #E30A17; } 
+        .bg-plan { background-color: #dbeafe; color: #1e40af; } 
+        .bg-kulup { background-color: #dcfce7; color: #16a34a; } 
+        .bg-sinif { background-color: #fef3c7; color: #d97706; } 
+        .bg-maarif { background-color: #f3e8ff; color: #7e22ce; } 
+        .bg-sinav { background-color: #cffafe; color: #0891b2; }
+        
+        .tool-card h3 { font-size: 1.4rem; color: #0F172A; margin-bottom: 12px; font-weight: 700; }
+        .tool-card p { color: #64748b; font-size: 0.95rem; margin-bottom: 30px; flex: 1; line-height: 1.6; }
+        
+        .btn-tool { background-color: #0F172A; color: white; padding: 14px 30px; border-radius: 50px; font-weight: 600; width: 100%; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+        .tool-card:hover .btn-tool { background-color: #E30A17; }
     </style>
 </head>
 <body>
@@ -123,6 +133,7 @@
                         <li class="dropdown-item"><a href="doc-olcme.html"><i class="fas fa-tasks"></i> Ölçme Değerlendirme</a></li>
                         <li class="dropdown-item"><a href="doc-kulup.html"><i class="fas fa-hands-helping"></i> Kulüp Evrakları</a></li>
                         <li class="dropdown-item"><a href="doc-sinif.html"><i class="fas fa-chalkboard-teacher"></i> Sınıf Rehberlik</a></li>
+                        <li class="dropdown-item"><a href="doc-analiz.html"><i class="fas fa-chart-bar"></i> Sınav Analizi</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
@@ -156,17 +167,18 @@
         </div>
 
         <div class="tools-grid">
+            
             <div class="tool-card">
                 <div class="icon-bg bg-zumre"><i class="fas fa-users"></i></div>
                 <h3>Zümre Tutanağı</h3>
-                <p>Sene başı, dönem sonu veya aylık zümre toplantı tutanaklarınızı gündem maddeleriyle hızlıca hazırlayın.</p>
+                <p>Sene başı, dönem sonu veya aylık zümre toplantı tutanaklarınızı <b>hazır şablonlarla</b> hızlıca hazırlayın.</p>
                 <a href="doc-zumre.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <div class="tool-card">
                 <div class="icon-bg bg-plan"><i class="fas fa-calendar-alt"></i></div>
-                <h3>Yıllık Plan</h3>
-                <p>Türkiye Yüzyılı Maarif Modeli'ne uygun, kazanım bazlı ünitelendirilmiş yıllık plan taslakları.</p>
+                <h3>Yıllık Plan ve Okul Temelli Planlama</h3>
+                <p>Maarif Modeli'ne uygun, kazanım bazlı ünitelendirilmiş yıllık plan ve <b>Okul Temelli Planlama</b> taslakları.</p>
                 <a href="doc-plan.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
             </div>
 
@@ -197,6 +209,14 @@
                 <p>Okul başlığı ve puanlama tablosu hazır olan, klasik veya test usulü sınav kağıdı şablonları.</p>
                 <a href="doc-sinav.html" class="btn-tool">Oluştur <i class="fas fa-arrow-right"></i></a>
             </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-sinav" style="background-color:#fff1f2; color:#E30A17;"><i class="fas fa-chart-line"></i></div>
+                <h3>Sınav Analiz Modülü</h3>
+                <p>Sınav notlarını kopyalayıp yapıştırın; ortalama, başarı yüzdesi ve grafikleri anında alın.</p>
+                <a href="doc-analiz.html" class="btn-tool">Analiz Et <i class="fas fa-arrow-right"></i></a>
+            </div>
+
         </div>
     </div>
 
