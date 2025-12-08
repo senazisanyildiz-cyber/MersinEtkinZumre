@@ -21,18 +21,14 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* HEADER (100px Yükseklik) */
+        /* HEADER (100px Yükseklik - STANDART) */
         .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
         .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
         .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
-        
-        /* LOGO KUTUSU (80px) */
         .logo-fixed { width: 80px; height: 80px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; flex-shrink: 0; display: block; }
-        
         .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; overflow: hidden; }
         .brand-text h1 { font-size: 1.6rem; font-weight: 900; color: var(--corporate-dark); text-transform: uppercase; letter-spacing: -0.5px; margin: 0; white-space: nowrap; }
         .brand-text span { font-size: 0.9rem; color: #64748b; font-weight: 600; margin-top: 2px; }
-        
         .slogan-area { text-align: right; min-width: 200px; }
         .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
 
@@ -44,8 +40,6 @@
         .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 100%; display: flex; align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.06); text-transform: uppercase; letter-spacing: 0.5px; }
         .nav-link:hover, .nav-item:hover .nav-link, .nav-item.active .nav-link { background-color: var(--meb-red); color: white; }
         .nav-link i { margin-left: 6px; font-size: 0.75rem; opacity: 0.8; }
-        
-        /* Dropdown */
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: white; min-width: 250px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); border-top: 3px solid var(--meb-red); padding: 5px 0; z-index: 9999; }
         .nav-item:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease; }
         .dropdown-item a { display: flex; align-items: center; padding: 12px 20px; color: #333; font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
@@ -75,40 +69,62 @@
         /* --- EDİTÖR ÖZEL STİLLERİ --- */
         .editor-layout { display: flex; gap: 30px; padding: 40px 0; min-height: calc(100vh - 160px); }
         
-        .input-panel { flex: 0 0 350px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; }
+        /* Sol Panel */
+        .input-panel { flex: 0 0 380px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; overflow-y: auto; max-height: 85vh; }
         .input-panel h3 { margin-top: 0; color: var(--corporate-dark); border-bottom: 2px solid var(--meb-red); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.2rem; }
         
-        input, textarea { width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #64748b; display: block; margin-bottom: 5px; margin-top: 15px; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; transition: 0.2s; }
         input:focus, textarea:focus { border-color: var(--meb-red); outline: none; }
+        
+        .row-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
         
         .btn-add { background-color: #22c55e; color: white; width: 100%; padding: 12px; border: none; border-radius: 6px; cursor: pointer; margin-top: 15px; font-weight: 600; transition: 0.2s; }
         .btn-add:hover { background-color: #16a34a; }
         
-        .btn-print { background-color: var(--corporate-dark); color: white; width: 100%; padding: 15px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .action-buttons { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-print { background-color: var(--corporate-dark); color: white; flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
         .btn-print:hover { background-color: var(--meb-red); }
+        .btn-excel { background-color: #107c41; color: white; flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        .btn-excel:hover { background-color: #0c5e31; }
 
-        .preview-panel { flex: 1; background: #cbd5e1; padding: 40px; border-radius: 12px; display: flex; justify-content: center; overflow-y: auto; }
+        .preview-panel { flex: 1; background: #cbd5e1; padding: 20px; border-radius: 12px; display: flex; justify-content: center; overflow-y: auto; }
         
-        /* A4 YATAY (LANDSCAPE) */
+        /* A4 YATAY (LANDSCAPE) EXCEL GÖRÜNÜMÜ */
         .a4-page { 
             width: 297mm; 
-            height: 210mm; 
+            min-height: 210mm; 
             background: white; 
-            padding: 20mm; 
+            padding: 15mm; 
             font-family: 'Times New Roman', serif; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
             color: black;
+            font-size: 10pt; /* Excel yoğunluğu için font küçültüldü */
         }
         
-        table { width: 100%; border-collapse: collapse; font-size: 11pt; margin-top: 20px; } 
-        th, td { border: 1px solid black; padding: 8px; text-align: center; vertical-align: middle; } 
-        th { background-color: #f0f0f0; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; table-layout: fixed; } 
+        th, td { border: 1px solid black; padding: 5px; text-align: center; vertical-align: middle; word-wrap: break-word; } 
+        th { background-color: #f0f0f0; font-weight: bold; font-size: 9pt; }
+        td { text-align: left; vertical-align: top; }
+        
+        [cite_start]/* Maarif Modeli Sütun Genişlikleri [cite: 512, 513] */
+        .col-ay { width: 5%; text-align: center; }
+        .col-hafta { width: 5%; text-align: center; }
+        .col-saat { width: 4%; text-align: center; }
+        .col-tema { width: 12%; }
+        .col-konu { width: 12%; }
+        .col-kazanim { width: 20%; }
+        .col-yontem { width: 15%; }
+        .col-olcme { width: 10%; }
+        /* Okul Temelli Planlama için özel renk ve genişlik */
+        .col-okul { width: 12%; background-color: #fffbeb; } 
 
         @media screen and (max-width: 1000px) {
             .editor-layout { flex-direction: column; }
             .input-panel { position: static; width: 100%; }
-            .preview-panel { padding: 10px; background: white; }
-            .a4-page { width: 100%; height: auto; min-height: 210mm; box-shadow: none; padding: 10px; overflow-x: auto; }
+            .preview-panel { padding: 5px; background: white; }
+            .a4-page { width: 100%; height: auto; min-height: 210mm; box-shadow: none; padding: 5px; overflow-x: auto; }
+            table { min-width: 800px; } /* Mobilde tablo kaydırılabilir olsun */
         }
 
         /* YAZDIRMA AYARLARI */
@@ -116,7 +132,7 @@
             @page { size: landscape; margin: 10mm; } 
             .top-header, .main-nav, .input-panel, .hamburger { display: none !important; } 
             body, .container, .editor-layout, .preview-panel { background: white; margin: 0; padding: 0; width: 100%; display: block; }
-            .a4-page { position: absolute; left: 0; top: 0; width: 100%; margin: 0; box-shadow: none; border: none; } 
+            .a4-page { position: absolute; left: 0; top: 0; width: 100%; margin: 0; box-shadow: none; border: none; padding: 0; } 
         }
     </style>
 </head>
@@ -182,27 +198,53 @@
         
         <div class="input-panel">
             <h3>Yıllık Plan Satırı Ekle</h3>
-            <input type="text" id="inAy" placeholder="Ay (Örn: EYLÜL)">
-            <input type="text" id="inHafta" placeholder="Hafta (Örn: 1. Hafta)">
-            <input type="text" id="inSaat" placeholder="Saat (Örn: 4)">
-            <textarea id="inKonu" placeholder="Konu / Kazanım" rows="3"></textarea>
-            <textarea id="inEtkinlik" placeholder="Yöntem / Etkinlik / Açıklama" rows="3"></textarea>
             
-            <button class="btn-add" onclick="addRow()"><i class="fas fa-plus"></i> Satır Ekle</button>
-            <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Yazdır / PDF Kaydet</button>
+            <div class="row-inputs">
+                <input type="text" id="inAy" placeholder="Ay">
+                <input type="text" id="inHafta" placeholder="Hafta">
+                <input type="text" id="inSaat" placeholder="Saat">
+            </div>
+            
+            <label>Ünite / Tema</label>
+            <input type="text" id="inTema" placeholder="Örn: 1. TEMA: ETKİLEŞİM">
+            
+            <label>Konu (İçerik Çerçevesi)</label>
+            <textarea id="inKonu" rows="2" placeholder="Örn: Güneş Sistemi"></textarea>
+
+            <label>Öğrenme Çıktısı (Kazanım) ve Süreç Bileşenleri</label>
+            <textarea id="inKazanim" rows="3" placeholder="Örn: FB.6.1.1.1. Güneş sistemindeki gezegenleri sınıflandırır."></textarea>
+            
+            <label>Öğrenme-Öğretme Süreci (Yöntem-Teknik)</label>
+            <textarea id="inYontem" rows="2" placeholder="Örn: Sınıf içi tartışma, video gösterimi..."></textarea>
+
+            <label>Ölçme ve Değerlendirme</label>
+            <textarea id="inOlcme" rows="2" placeholder="Örn: Açık uçlu sorular..."></textarea>
+
+            <label style="color:#b45309; border-left:3px solid #b45309; padding-left:5px;">Okul Temelli Planlama (Zorunlu)</label>
+            <textarea id="inOkul" rows="3" placeholder="Örn: Okul bahçesinde gözlem yapılması..."></textarea>
+            
+            <div class="action-buttons">
+                <button class="btn-add" onclick="addRow()"><i class="fas fa-plus"></i> Ekle</button>
+                <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Yazdır</button>
+                <button class="btn-excel" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Excel İndir</button>
+            </div>
         </div>
 
         <div class="preview-panel">
-            <div class="a4-page">
-                <h2 style="text-align:center; margin-bottom: 20px;">ÜNİTELENDİRİLMİŞ YILLIK PLAN</h2>
-                <table>
+            <div class="a4-page" id="planArea">
+                <h2 style="text-align:center; margin-bottom: 20px;">2025-2026 EĞİTİM ÖĞRETİM YILI ÜNİTELENDİRİLMİŞ YILLIK PLANI</h2>
+                <table id="planTable">
                     <thead>
                         <tr>
-                            <th width="10%">AY</th>
-                            <th width="10%">HAFTA</th>
-                            <th width="5%">SAAT</th>
-                            <th>KONU / KAZANIM</th>
-                            <th>ETKİNLİK / YÖNTEM</th>
+                            <th class="col-ay">AY</th>
+                            <th class="col-hafta">HAFTA</th>
+                            <th class="col-saat">SAAT</th>
+                            <th class="col-tema">ÜNİTE / TEMA</th>
+                            <th class="col-konu">KONU / İÇERİK</th>
+                            <th class="col-kazanim">ÖĞRENME ÇIKTISI (KAZANIM)</th>
+                            <th class="col-yontem">ÖĞRENME-ÖĞRETME SÜRECİ</th>
+                            <th class="col-olcme">ÖLÇME VE DEĞERLENDİRME</th>
+                            <th class="col-okul">OKUL TEMELLİ PLANLAMA</th>
                         </tr>
                     </thead>
                     <tbody id="planBody">
@@ -222,24 +264,42 @@
             var ay = document.getElementById('inAy').value;
             var hafta = document.getElementById('inHafta').value;
             var saat = document.getElementById('inSaat').value;
+            var tema = document.getElementById('inTema').value;
             var konu = document.getElementById('inKonu').value;
-            var etkinlik = document.getElementById('inEtkinlik').value;
-
-            if(!konu && !etkinlik) return alert("Lütfen en azından bir konu veya etkinlik giriniz.");
+            var kazanim = document.getElementById('inKazanim').value;
+            var yontem = document.getElementById('inYontem').value;
+            var olcme = document.getElementById('inOlcme').value;
+            var okul = document.getElementById('inOkul').value;
 
             var row = `<tr>
-                <td>${ay}</td>
-                <td>${hafta}</td>
-                <td>${saat}</td>
-                <td style="text-align:left">${konu}</td>
-                <td style="text-align:left">${etkinlik}</td>
+                <td class="col-ay">${ay}</td>
+                <td class="col-hafta">${hafta}</td>
+                <td class="col-saat">${saat}</td>
+                <td>${tema}</td>
+                <td>${konu}</td>
+                <td>${kazanim}</td>
+                <td>${yontem}</td>
+                <td>${olcme}</td>
+                <td class="col-okul">${okul}</td>
             </tr>`;
             
             document.getElementById('planBody').innerHTML += row;
             
             // Temizle
-            document.getElementById('inKonu').value = "";
-            document.getElementById('inEtkinlik').value = "";
+            document.getElementById('inKazanim').value = "";
+            document.getElementById('inYontem').value = "";
+            document.getElementById('inOlcme').value = "";
+            document.getElementById('inOkul').value = "";
+        }
+
+        function exportToExcel() {
+            var table = document.getElementById("planTable");
+            var html = table.outerHTML;
+            var url = 'data:application/vnd.ms-excel,' + escape(html);
+            var link = document.createElement("a");
+            link.href = url;
+            link.download = "Yillik_Plan.xls";
+            link.click();
         }
     </script>
 
