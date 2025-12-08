@@ -14,7 +14,7 @@
     <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
     
     <style>
-        /* --- MASTER CSS (STANDART) --- */
+        /* --- MASTER CSS (TÜM SAYFALARDA AYNI) --- */
         :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
         html { overflow-y: scroll; } 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,7 +23,7 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* HEADER (100px) */
+        /* HEADER (100px - STANDART) */
         .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
         .top-content { display: flex; justify-content: space-between; align-items: center; height: 100%; width: 100%; }
         .brand-area { display: flex; align-items: center; gap: 5px; height: 80px; flex-shrink: 0; }
@@ -71,15 +71,13 @@
         /* --- EDİTÖR ÖZEL STİLLERİ --- */
         .editor-layout { display: flex; gap: 30px; padding: 40px 0; min-height: calc(100vh - 160px); }
         
-        /* Sol Panel (Giriş) */
-        .input-panel { flex: 0 0 400px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; overflow-y: auto; max-height: 85vh; }
+        .input-panel { flex: 0 0 380px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; overflow-y: auto; max-height: 85vh; }
         .input-panel h3 { margin-top: 0; color: var(--corporate-dark); border-bottom: 2px solid var(--meb-red); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.2rem; }
         
         label { font-size: 0.8rem; font-weight: 700; color: #475569; display: block; margin-bottom: 5px; margin-top: 15px; }
         input, textarea, select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9rem; transition: 0.2s; }
         input:focus, textarea:focus { border-color: var(--meb-red); outline: none; box-shadow: 0 0 0 3px rgba(227, 10, 23, 0.1); }
-        textarea { resize: vertical; }
-
+        
         .row-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
         
         .btn-add { background-color: #22c55e; color: white; width: 100%; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; margin-top: 15px; }
@@ -103,30 +101,25 @@
             font-family: 'Times New Roman', serif; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
             color: black;
-            font-size: 9pt; /* Maarif modeli çok sütunlu olduğu için font küçültüldü */
+            font-size: 10pt;
         }
         
         table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: fixed; } 
         th, td { border: 1px solid black; padding: 4px; text-align: center; vertical-align: middle; word-wrap: break-word; } 
-        th { background-color: #e5e7eb; font-weight: bold; font-size: 8pt; height: 40px; vertical-align: middle; }
+        th { background-color: #f3f4f6; font-weight: bold; font-size: 9pt; height: 40px; }
         td { text-align: left; vertical-align: top; }
         
-        /* TYMM Sütun Genişlikleri */
-        .col-ay { width: 40px; text-align: center; }
-        .col-hafta { width: 40px; text-align: center; }
-        .col-saat { width: 30px; text-align: center; }
-        .col-tema { width: 80px; }
-        .col-konu { width: 90px; }
-        .col-cikti { width: 120px; }
-        .col-surec { width: 100px; }
-        .col-kanit { width: 80px; }
-        .col-sdb { width: 80px; }
-        .col-deger { width: 60px; }
-        .col-okur { width: 80px; }
-        .col-ozel { width: 60px; }
-        .col-fark { width: 80px; }
-        /* Okul Temelli Planlama Vurgusu */
-        .col-otp { width: 100px; background-color: #fffbeb; font-weight: bold; } 
+        /* SADELEŞTİRİLMİŞ GENEL SÜTUNLAR */
+        .col-ay { width: 5%; text-align: center; }
+        .col-hafta { width: 5%; text-align: center; }
+        .col-saat { width: 5%; text-align: center; }
+        .col-tema { width: 12%; }
+        .col-konu { width: 15%; }
+        .col-kazanim { width: 23%; }
+        .col-yontem { width: 15%; }
+        .col-olcme { width: 10%; }
+        /* Okul Temelli Planlama (Vurgulu) */
+        .col-otp { width: 10%; background-color: #fffbeb; font-weight: bold; } 
 
         @media screen and (max-width: 1200px) {
             .editor-layout { flex-direction: column; }
@@ -137,11 +130,10 @@
 
         /* YAZDIRMA AYARLARI */
         @media print { 
-            @page { size: landscape; margin: 5mm; } 
+            @page { size: landscape; margin: 10mm; } 
             .top-header, .main-nav, .input-panel, .hamburger { display: none !important; } 
             body, .container, .editor-layout, .preview-panel { background: white; margin: 0; padding: 0; width: 100%; display: block; }
             .a4-page { position: absolute; left: 0; top: 0; width: 100%; margin: 0; box-shadow: none; border: none; padding: 0; } 
-            table { font-size: 8pt; } /* Yazdırırken daha da küçült */
         }
     </style>
 </head>
@@ -217,32 +209,20 @@
             <label>Ünite / Tema</label>
             <input type="text" id="inTema" placeholder="Tema Adı">
             
-            <label>Konu (İçerik Çerçevesi)</label>
-            <textarea id="inKonu" rows="2" placeholder="Konu içeriği..."></textarea>
+            <label>Konu (İçerik)</label>
+            <textarea id="inKonu" rows="2" placeholder="Konu başlıkları..."></textarea>
 
-            <label>Öğrenme Çıktısı (Kazanım)</label>
-            <textarea id="inKazanim" rows="2" placeholder="Örn: FB.5.1.1.1..."></textarea>
+            <label>Kazanım (Öğrenme Çıktısı)</label>
+            <textarea id="inKazanim" rows="3" placeholder="Kazanım açıklaması..."></textarea>
             
-            <label>Süreç Bileşenleri</label>
-            <textarea id="inSurec" rows="2" placeholder="Örn: a) Gözlem yapar..."></textarea>
+            <label>Yöntem ve Teknikler</label>
+            <textarea id="inYontem" rows="2" placeholder="Anlatım, Soru-Cevap, Deney vb."></textarea>
 
-            <label>Ölçme ve Değerlendirme (Öğrenme Kanıtları)</label>
-            <textarea id="inOlcme" rows="2" placeholder="Örn: Performans görevi..."></textarea>
-
-            <div class="row-inputs">
-                 <input type="text" id="inSdb" placeholder="SDB">
-                 <input type="text" id="inDeger" placeholder="Değerler">
-                 <input type="text" id="inOkur" placeholder="Okuryazarlık">
-            </div>
-            
-            <label>Belirli Gün / Farklılaştırma</label>
-            <div class="row-inputs">
-                <input type="text" id="inOzel" placeholder="Belirli Gün">
-                <input type="text" id="inFark" placeholder="Farklılaştırma">
-            </div>
+            <label>Ölçme ve Değerlendirme</label>
+            <textarea id="inOlcme" rows="2" placeholder="Yazılı yoklama, Performans vb."></textarea>
 
             <label style="color:#b45309; border-left:3px solid #b45309; padding-left:5px;">Okul Temelli Planlama</label>
-            <textarea id="inOtp" rows="2" placeholder="Okul dışı etkinlik, proje vb..."></textarea>
+            <textarea id="inOtp" rows="2" placeholder="Okul dışı etkinlik, gezi, gözlem vb..."></textarea>
             
             <div class="action-buttons">
                 <button class="btn-add" onclick="addRow()"><i class="fas fa-plus"></i> Ekle</button>
@@ -253,7 +233,7 @@
 
         <div class="preview-panel">
             <div class="a4-page" id="planArea">
-                <h2 style="text-align:center; margin-bottom: 10px; font-size:14pt;">TÜRKİYE YÜZYILI MAARİF MODELİ ÇERÇEVE YILLIK PLANI</h2>
+                <h2 style="text-align:center; margin-bottom: 20px; font-size:14pt;">ÜNİTELENDİRİLMİŞ YILLIK PLAN</h2>
                 <table id="planTable">
                     <thead>
                         <tr>
@@ -261,15 +241,10 @@
                             <th class="col-hafta">HF</th>
                             <th class="col-saat">SA</th>
                             <th class="col-tema">ÜNİTE / TEMA</th>
-                            <th class="col-konu">KONU / İÇERİK</th>
-                            <th class="col-kazanim">ÖĞRENME ÇIKTISI</th>
-                            <th class="col-surec">SÜREÇ BİLEŞENLERİ</th>
-                            <th class="col-kanit">ÖĞRENME KANITLARI</th>
-                            <th class="col-sdb">SDB</th>
-                            <th class="col-deger">DEĞERLER</th>
-                            <th class="col-okur">OKURYAZARLIK</th>
-                            <th class="col-ozel">BELİRLİ GÜN</th>
-                            <th class="col-fark">FARKLILAŞTIRMA</th>
+                            <th class="col-konu">KONU</th>
+                            <th class="col-kazanim">KAZANIM</th>
+                            <th class="col-yontem">YÖNTEM VE TEKNİKLER</th>
+                            <th class="col-olcme">ÖLÇME VE DEĞERLENDİRME</th>
                             <th class="col-otp">OKUL TEMELLİ PLANLAMA</th>
                         </tr>
                     </thead>
@@ -291,13 +266,8 @@
             var tema = document.getElementById('inTema').value;
             var konu = document.getElementById('inKonu').value;
             var kazanim = document.getElementById('inKazanim').value;
-            var surec = document.getElementById('inSurec').value;
+            var yontem = document.getElementById('inYontem').value;
             var olcme = document.getElementById('inOlcme').value;
-            var sdb = document.getElementById('inSdb').value;
-            var deger = document.getElementById('inDeger').value;
-            var okur = document.getElementById('inOkur').value;
-            var ozel = document.getElementById('inOzel').value;
-            var fark = document.getElementById('inFark').value;
             var otp = document.getElementById('inOtp').value;
 
             var row = `<tr>
@@ -307,26 +277,22 @@
                 <td>${tema}</td>
                 <td>${konu}</td>
                 <td>${kazanim}</td>
-                <td>${surec}</td>
+                <td>${yontem}</td>
                 <td>${olcme}</td>
-                <td>${sdb}</td>
-                <td>${deger}</td>
-                <td>${okur}</td>
-                <td>${ozel}</td>
-                <td>${fark}</td>
                 <td class="col-otp">${otp}</td>
             </tr>`;
             
             document.getElementById('planBody').innerHTML += row;
             
-            // Temizleme (Bazı alanlar sabit kalsın diye sadece detayları temizliyoruz)
+            // Sadece detayları temizle, Ay ve Hafta kalabilir (pratiklik için)
             document.getElementById('inKazanim').value = "";
-            document.getElementById('inSurec').value = "";
+            document.getElementById('inYontem').value = "";
+            document.getElementById('inOlcme').value = "";
         }
 
         function exportToExcel() {
             var wb = XLSX.utils.table_to_book(document.getElementById('planTable'), {sheet:"Yıllık Plan"});
-            XLSX.writeFile(wb, 'Maarif_Modeli_Yillik_Plan.xlsx');
+            XLSX.writeFile(wb, 'Yillik_Plan.xlsx');
         }
     </script>
 
