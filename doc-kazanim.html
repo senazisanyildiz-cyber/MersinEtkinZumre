@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evrak Oluşturucu - Mersin Etkin Zümre</title>
+    <title>Kazanım Bazlı Analiz - Mersin Etkin Zümre</title>
     
     <link rel="preload" as="image" href="EZKLogo.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
-        /* --- MASTER CSS (AYNI) --- */
+        /* --- MASTER CSS --- */
         :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
-        html { overflow-y: scroll; } 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* HEADER */
+        /* HEADER & NAV (Standart) */
         .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
         .top-content { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .brand-area { display: flex; align-items: center; gap: 5px; }
@@ -34,27 +35,51 @@
         .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 60px; display: flex; align-items: center; border-right: 1px solid rgba(255,255,255,0.06); }
         .nav-link:hover, .nav-item:hover .nav-link { background-color: var(--meb-red); color: white; }
         
+        /* Dropdown */
         .nav-item { position: relative; height: 100%; display: flex; align-items: center; }
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 260px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-top: 3px solid var(--meb-red); z-index: 9999; }
         .nav-item:hover .dropdown-menu { display: block; }
         .dropdown-item a { display: block; padding: 12px 20px; color: #333; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; font-weight: 500; }
         .dropdown-item a:hover { background: #f8fafc; color: var(--meb-red); padding-left: 25px; }
 
-        /* DASHBOARD */
-        .dashboard-header { text-align: center; padding: 60px 0 40px 0; }
-        .dashboard-header h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; font-weight: 800; }
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding-bottom: 80px; }
-        .tool-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px 30px; text-align: center; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; height: 100%; }
-        .tool-card:hover { transform: translateY(-8px); border-color: var(--meb-red); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
-        .icon-bg { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 2rem; background-color: #f3f4f6; color: #4b5563; }
-        .btn-tool { background: var(--corporate-dark); color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; margin-top: auto; display: inline-block; transition:0.3s; }
-        .tool-card:hover .btn-tool { background: var(--meb-red); }
+        /* --- SAYFA ÖZEL STİLLERİ --- */
+        .layout { display: flex; gap: 30px; padding: 40px 0; min-height: 80vh; }
+        
+        /* Sol Panel (Ayarlar) */
+        .config-panel { flex: 0 0 350px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; }
+        .panel-title { color: var(--corporate-dark); border-bottom: 2px solid var(--meb-red); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.2rem; }
+        
+        label { font-size: 0.85rem; font-weight: 700; color: #475569; display: block; margin-bottom: 5px; margin-top: 15px; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+        
+        .kazanim-row { display: grid; grid-template-columns: 40px 1fr 60px; gap: 10px; align-items: center; margin-bottom: 8px; }
+        .kazanim-row span { font-weight: bold; color: var(--meb-red); }
+        
+        .btn-action { background: var(--corporate-dark); color: white; width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: 0.2s; }
+        .btn-action:hover { background: var(--meb-red); }
 
-        /* İKON RENKLERİ */
-        .bg-zumre { background:#fee2e2; color:#E30A17; }
-        .bg-plan { background:#dbeafe; color:#1e40af; }
-        .bg-analiz { background:#dcfce7; color:#16a34a; } /* Yeşil */
-        .bg-kazanim { background:#fff7ed; color:#ea580c; } /* Turuncu */
+        /* Sağ Panel (Veri & Sonuç) */
+        .content-panel { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+        
+        /* Adım 1: Veri Girişi */
+        .step-box { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .paste-area { width: 100%; height: 200px; font-family: monospace; font-size: 0.85rem; background: #f8fafc; border: 2px dashed #cbd5e1; padding: 15px; resize: vertical; }
+        
+        /* Adım 2: Sonuçlar */
+        .result-section { display: none; }
+        
+        /* Başarı Tablosu */
+        .success-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .success-table th { text-align: left; padding: 12px; background: #f1f5f9; border-bottom: 2px solid #cbd5e1; font-size: 0.85rem; color: #475569; }
+        .success-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
+        
+        .progress-bar-bg { width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+        
+        .chart-wrapper { background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; height: 400px; position: relative; }
+
+        @media (max-width: 1000px) { .layout { flex-direction: column; } .config-panel { position: static; width: 100%; } }
+        @media print { .top-header, .main-nav, .config-panel, .step-box { display: none; } .result-section { display: block; } .chart-wrapper { page-break-inside: avoid; border: none; } }
     </style>
 </head>
 <body>
@@ -84,11 +109,7 @@
                         <li class="dropdown-item"><a href="doc-zumre.html">Zümre Tutanağı</a></li>
                         <li class="dropdown-item"><a href="doc-plan.html">Yıllık Plan</a></li>
                         <li class="dropdown-item"><a href="doc-sinav.html">Yazılı Sınav</a></li>
-                        <li class="dropdown-item"><a href="doc-olcme.html">Ölçme Değerlendirme</a></li>
-                        <li class="dropdown-item"><a href="doc-kulup.html">Kulüp Evrakları</a></li>
-                        <li class="dropdown-item"><a href="doc-sinif.html">Sınıf Rehberlik</a></li>
-                        <li class="dropdown-item"><a href="doc-analiz.html">Sınav Analizi (Genel)</a></li>
-                        <li class="dropdown-item"><a href="doc-kazanim.html" style="font-weight:700; color:#E30A17;">Kazanım Analizi (Yeni)</a></li>
+                        <li class="dropdown-item"><a href="doc-kazanim.html" style="color:#E30A17; font-weight:700;">Kazanım Analizi</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
@@ -99,58 +120,228 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="dashboard-header">
-            <h2>Dijital Evrak Asistanı</h2>
-            <p>Eğitim süreçlerinizde ihtiyacınız olan tüm belgeleri ve analizleri tek tıkla oluşturun.</p>
+    <div class="container layout">
+        
+        <div class="config-panel">
+            <h3 class="panel-title">1. Sınav Ayarları</h3>
+            
+            <label>Soru Sayısı</label>
+            <input type="number" id="qCount" value="10" min="1" max="50" onchange="generateOutcomeInputs()">
+            
+            <label>Sınav Başlığı</label>
+            <input type="text" id="examTitle" placeholder="Örn: 9. Sınıf Kimya 1. Dönem 1. Yazılı">
+
+            <div style="margin-top:20px; max-height:400px; overflow-y:auto; border-top:1px solid #e2e8f0; padding-top:10px;">
+                <label style="margin-bottom:10px;">Soru Kazanımları ve Puanları</label>
+                <div id="outcomeInputs">
+                    </div>
+            </div>
         </div>
 
-        <div class="tools-grid">
+        <div class="content-panel">
             
-            <div class="tool-card">
-                <div class="icon-bg bg-zumre"><i class="fas fa-users"></i></div>
-                <h3>Zümre Tutanağı</h3>
-                <p>Hazır gündem maddeleriyle toplantı tutanağı oluşturun.</p>
-                <a href="doc-zumre.html" class="btn-tool">Oluştur</a>
+            <div class="step-box">
+                <h3 style="color:#0F172A; margin-bottom:10px;">2. Öğrenci Sonuçlarını Yapıştır</h3>
+                <p style="color:#64748b; font-size:0.9rem; margin-bottom:15px;">
+                    Excel'den şu sırayla kopyalayın: <b>Ad Soyad</b> | <b>Soru 1</b> | <b>Soru 2</b> | ... | <b>Soru N</b> <br>
+                    (Not: Toplam puanı kopyalamayın, sistem hesaplar.)
+                </p>
+                <textarea id="dataArea" class="paste-area" placeholder="Örnek Veri:
+Ali Yılmaz  10  5  10  0  ...
+Ayşe Demir  10  10 10  10 ..."></textarea>
+                <button class="btn-action" onclick="analyzeOutcomes()"><i class="fas fa-chart-pie"></i> Analiz Et ve Raporla</button>
             </div>
 
-            <div class="tool-card">
-                <div class="icon-bg bg-plan"><i class="fas fa-calendar-alt"></i></div>
-                <h3>Yıllık Plan</h3>
-                <p>Maarif Modeli ve Okul Temelli Planlamaya uygun şablon.</p>
-                <a href="doc-plan.html" class="btn-tool">Oluştur</a>
-            </div>
+            <div id="results" class="result-section">
+                
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 id="reportTitle" style="color:#0F172A;">Sınav Analiz Raporu</h2>
+                    <button onclick="window.print()" style="padding:10px 20px; border:1px solid #ccc; background:white; border-radius:5px; cursor:pointer;"><i class="fas fa-print"></i> Yazdır</button>
+                </div>
 
-            <div class="tool-card">
-                <div class="icon-bg bg-analiz"><i class="fas fa-chart-line"></i></div>
-                <h3>Sınav Analizi (Genel)</h3>
-                <p>Notları yapıştırın, sınıfın çan eğrisini ve başarı grafiğini görün.</p>
-                <a href="doc-analiz.html" class="btn-tool">Analiz Et</a>
-            </div>
+                <div class="chart-wrapper">
+                    <canvas id="outcomeChart"></canvas>
+                </div>
 
-            <div class="tool-card">
-                <div class="icon-bg bg-kazanim"><i class="fas fa-bullseye"></i></div>
-                <h3>Kazanım Bazlı Analiz</h3>
-                <p>Hangi konunun ne kadar öğrenildiğini soru bazlı analiz edin.</p>
-                <a href="doc-kazanim.html" class="btn-tool">Analiz Et</a>
-            </div>
+                <h3 style="margin-top:30px; color:#0F172A;">Kazanım Başarı Tablosu</h3>
+                <table class="success-table">
+                    <thead>
+                        <tr>
+                            <th width="50">Soru</th>
+                            <th>Kazanım / Konu</th>
+                            <th width="80">Puan</th>
+                            <th width="100">Sınıf Ort.</th>
+                            <th width="200">Başarı Düzeyi</th>
+                            <th width="60">%</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        </tbody>
+                </table>
 
-            <div class="tool-card">
-                <div class="icon-bg"><i class="fas fa-file-alt"></i></div>
-                <h3>Yazılı Sınav Kağıdı</h3>
-                <p>Klasik veya test sınav kağıdı şablonu hazırlayın.</p>
-                <a href="doc-sinav.html" class="btn-tool">Oluştur</a>
-            </div>
-
-            <div class="tool-card">
-                <div class="icon-bg"><i class="fas fa-hands-helping"></i></div>
-                <h3>Kulüp Evrakları</h3>
-                <p>Sosyal kulüp planı ve karar defteri tutanakları.</p>
-                <a href="doc-kulup.html" class="btn-tool">Oluştur</a>
             </div>
 
         </div>
     </div>
+
+    <script>
+        // Sayfa yüklendiğinde varsayılan 10 soruyu oluştur
+        window.onload = function() { generateOutcomeInputs(); };
+
+        let myChart = null;
+
+        function generateOutcomeInputs() {
+            const count = document.getElementById('qCount').value;
+            const container = document.getElementById('outcomeInputs');
+            container.innerHTML = "";
+
+            for(let i=1; i<=count; i++) {
+                container.innerHTML += `
+                    <div class="kazanim-row">
+                        <span>S.${i}</span>
+                        <input type="text" id="kazanim_${i}" placeholder="Kazanım/Konu giriniz">
+                        <input type="number" id="puan_${i}" value="10" placeholder="Pn">
+                    </div>
+                `;
+            }
+        }
+
+        function analyzeOutcomes() {
+            const qCount = parseInt(document.getElementById('qCount').value);
+            const rawData = document.getElementById('dataArea').value.trim();
+            const lines = rawData.split('\n');
+            
+            if(!rawData) { alert("Lütfen veri yapıştırın."); return; }
+
+            // Kazanım ve Max Puanları Al
+            let questions = [];
+            for(let i=1; i<=qCount; i++) {
+                questions.push({
+                    id: i,
+                    text: document.getElementById(`kazanim_${i}`).value || `Soru ${i}`,
+                    max: parseInt(document.getElementById(`puan_${i}`).value) || 0,
+                    totalScore: 0 // Sınıfın bu sorudan aldığı toplam puan
+                });
+            }
+
+            let studentCount = 0;
+
+            // Veriyi İşle
+            lines.forEach(line => {
+                // Satırı boşluklara veya sekmelere (tab) göre böl
+                // İsim soyisim (metin) ve ardından gelen sayıları ayır
+                // Basit regex: Sondaki N tane sayıyı yakala
+                
+                // Güvenli yöntem: Satırı tab veya çoklu boşlukla böl
+                const parts = line.trim().split(/\s+/); 
+                
+                // Sondan soru sayısı kadar eleman notlardır
+                // Geriye kalan baştaki kısım isimdir
+                if(parts.length > qCount) {
+                    const scores = parts.slice(-qCount); // Son N parça
+                    // Notları topla
+                    for(let i=0; i<qCount; i++) {
+                        let s = parseFloat(scores[i]);
+                        if(!isNaN(s)) {
+                            questions[i].totalScore += s;
+                        }
+                    }
+                    studentCount++;
+                }
+            });
+
+            if(studentCount === 0) { alert("Veri formatı anlaşılamadı. Lütfen kontrol edip tekrar deneyin."); return; }
+
+            // Hesaplama ve Tablo
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = "";
+            
+            const chartLabels = [];
+            const chartData = [];
+            const chartColors = [];
+
+            questions.forEach(q => {
+                const classAvg = q.totalScore / studentCount;
+                const successRate = q.max > 0 ? (classAvg / q.max) * 100 : 0;
+                
+                // Renk belirleme
+                let color = '#ef4444'; // Kırmızı (0-49)
+                if(successRate >= 50) color = '#f59e0b'; // Sarı (50-69)
+                if(successRate >= 70) color = '#22c55e'; // Yeşil (70-100)
+
+                chartLabels.push(`S.${q.id}`);
+                chartData.push(successRate.toFixed(1));
+                chartColors.push(color);
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${q.id}</strong></td>
+                        <td>${q.text}</td>
+                        <td>${q.max}</td>
+                        <td>${classAvg.toFixed(1)}</td>
+                        <td>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" style="width:${successRate}%; background-color:${color};"></div>
+                            </div>
+                        </td>
+                        <td><strong>%${successRate.toFixed(0)}</strong></td>
+                    </tr>
+                `;
+            });
+
+            // Başlık Güncelle
+            const title = document.getElementById('examTitle').value;
+            if(title) document.getElementById('reportTitle').innerText = title + " - Kazanım Analizi";
+
+            // Grafiği Çiz
+            renderChart(chartLabels, chartData, chartColors, questions);
+            
+            // Sonucu Göster
+            document.getElementById('results').style.display = 'block';
+            // Sayfayı aşağı kaydır
+            document.getElementById('results').scrollIntoView({behavior: 'smooth'});
+        }
+
+        function renderChart(labels, data, colors, questions) {
+            const ctx = document.getElementById('outcomeChart').getContext('2d');
+            if(myChart) myChart.destroy();
+
+            // Tooltip için soru metinlerini hazırlayalım
+            const tooltips = questions.map(q => q.text);
+
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Başarı Oranı (%)',
+                        data: data,
+                        backgroundColor: colors,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                // Tooltip'te soru kazanımını göster
+                                title: function(context) {
+                                    const idx = context[0].dataIndex;
+                                    return `Soru ${idx+1}: ${tooltips[idx]}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, title: {display:true, text:'Başarı %'} }
+                    }
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
