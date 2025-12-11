@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        /* --- MASTER CSS --- */
+        /* --- MASTER CSS (Aynı) --- */
         :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
@@ -21,7 +21,7 @@
         ul { list-style: none; }
         .container { width: 94%; max-width: 1400px; margin: 0 auto; }
 
-        /* HEADER & NAV (Standart) */
+        /* HEADER & NAV */
         .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
         .top-content { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .brand-area { display: flex; align-items: center; gap: 5px; }
@@ -35,17 +35,14 @@
         .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 60px; display: flex; align-items: center; border-right: 1px solid rgba(255,255,255,0.06); }
         .nav-link:hover, .nav-item:hover .nav-link { background-color: var(--meb-red); color: white; }
         
-        /* Dropdown */
         .nav-item { position: relative; height: 100%; display: flex; align-items: center; }
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 260px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-top: 3px solid var(--meb-red); z-index: 9999; }
         .nav-item:hover .dropdown-menu { display: block; }
         .dropdown-item a { display: block; padding: 12px 20px; color: #333; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; font-weight: 500; }
         .dropdown-item a:hover { background: #f8fafc; color: var(--meb-red); padding-left: 25px; }
 
-        /* --- SAYFA ÖZEL STİLLERİ --- */
+        /* LAYOUT */
         .layout { display: flex; gap: 30px; padding: 40px 0; min-height: 80vh; }
-        
-        /* Sol Panel (Ayarlar) */
         .config-panel { flex: 0 0 350px; background: white; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; position: sticky; top: 80px; }
         .panel-title { color: var(--corporate-dark); border-bottom: 2px solid var(--meb-red); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.2rem; }
         
@@ -58,17 +55,11 @@
         .btn-action { background: var(--corporate-dark); color: white; width: 100%; padding: 12px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 20px; transition: 0.2s; }
         .btn-action:hover { background: var(--meb-red); }
 
-        /* Sağ Panel (Veri & Sonuç) */
         .content-panel { flex: 1; display: flex; flex-direction: column; gap: 30px; }
-        
-        /* Adım 1: Veri Girişi */
         .step-box { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; }
-        .paste-area { width: 100%; height: 200px; font-family: monospace; font-size: 0.85rem; background: #f8fafc; border: 2px dashed #cbd5e1; padding: 15px; resize: vertical; }
+        .paste-area { width: 100%; height: 200px; font-family: monospace; font-size: 0.85rem; background: #f8fafc; border: 2px dashed #cbd5e1; padding: 15px; resize: vertical; white-space: pre; overflow: auto; }
         
-        /* Adım 2: Sonuçlar */
         .result-section { display: none; }
-        
-        /* Başarı Tablosu */
         .success-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         .success-table th { text-align: left; padding: 12px; background: #f1f5f9; border-bottom: 2px solid #cbd5e1; font-size: 0.85rem; color: #475569; }
         .success-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
@@ -143,12 +134,12 @@
             <div class="step-box">
                 <h3 style="color:#0F172A; margin-bottom:10px;">2. Öğrenci Sonuçlarını Yapıştır</h3>
                 <p style="color:#64748b; font-size:0.9rem; margin-bottom:15px;">
-                    Excel'den şu sırayla kopyalayın: <b>Ad Soyad</b> | <b>Soru 1</b> | <b>Soru 2</b> | ... | <b>Soru N</b> <br>
-                    (Not: Toplam puanı kopyalamayın, sistem hesaplar.)
+                    Excel'den sadece öğrenci isimleri ve soru puanlarını seçip kopyalayın.<br>
+                    <small>İpucu: Eğer notlarda "8,5" gibi virgül varsa sistem otomatik düzeltir.</small>
                 </p>
-                <textarea id="dataArea" class="paste-area" placeholder="Örnek Veri:
-Ali Yılmaz  10  5  10  0  ...
-Ayşe Demir  10  10 10  10 ..."></textarea>
+                <textarea id="dataArea" class="paste-area" placeholder="Excel'den Direkt Yapıştırın:
+Ali Yılmaz	10	5	10	...
+Ayşe Demir	10	10	10	..."></textarea>
                 <button class="btn-action" onclick="analyzeOutcomes()"><i class="fas fa-chart-pie"></i> Analiz Et ve Raporla</button>
             </div>
 
@@ -185,13 +176,13 @@ Ayşe Demir  10  10 10  10 ..."></textarea>
     </div>
 
     <script>
-        // Sayfa yüklendiğinde varsayılan 10 soruyu oluştur
+        // Sayfa yüklendiğinde varsayılan inputları oluştur
         window.onload = function() { generateOutcomeInputs(); };
 
         let myChart = null;
 
         function generateOutcomeInputs() {
-            const count = document.getElementById('qCount').value;
+            const count = parseInt(document.getElementById('qCount').value);
             const container = document.getElementById('outcomeInputs');
             container.innerHTML = "";
 
@@ -199,7 +190,7 @@ Ayşe Demir  10  10 10  10 ..."></textarea>
                 container.innerHTML += `
                     <div class="kazanim-row">
                         <span>S.${i}</span>
-                        <input type="text" id="kazanim_${i}" placeholder="Kazanım/Konu giriniz">
+                        <input type="text" id="kazanim_${i}" placeholder="Konu/Kazanım">
                         <input type="number" id="puan_${i}" value="10" placeholder="Pn">
                     </div>
                 `;
@@ -209,50 +200,69 @@ Ayşe Demir  10  10 10  10 ..."></textarea>
         function analyzeOutcomes() {
             const qCount = parseInt(document.getElementById('qCount').value);
             const rawData = document.getElementById('dataArea').value.trim();
-            const lines = rawData.split('\n');
             
             if(!rawData) { alert("Lütfen veri yapıştırın."); return; }
 
-            // Kazanım ve Max Puanları Al
+            // 1. Kazanım ve Max Puanları Topla
             let questions = [];
             for(let i=1; i<=qCount; i++) {
                 questions.push({
                     id: i,
                     text: document.getElementById(`kazanim_${i}`).value || `Soru ${i}`,
-                    max: parseInt(document.getElementById(`puan_${i}`).value) || 0,
-                    totalScore: 0 // Sınıfın bu sorudan aldığı toplam puan
+                    max: parseFloat(document.getElementById(`puan_${i}`).value) || 0,
+                    totalScore: 0
                 });
             }
 
             let studentCount = 0;
+            const lines = rawData.split('\n');
 
-            // Veriyi İşle
+            // 2. Veriyi Satır Satır İşle
             lines.forEach(line => {
-                // Satırı boşluklara veya sekmelere (tab) göre böl
-                // İsim soyisim (metin) ve ardından gelen sayıları ayır
-                // Basit regex: Sondaki N tane sayıyı yakala
-                
-                // Güvenli yöntem: Satırı tab veya çoklu boşlukla böl
-                const parts = line.trim().split(/\s+/); 
-                
-                // Sondan soru sayısı kadar eleman notlardır
-                // Geriye kalan baştaki kısım isimdir
+                let cleanLine = line.trim();
+                if(cleanLine === "") return;
+
+                // Excel'de sekmeler (\t) veya boşluklarla ayrılmış olabilir.
+                // Regex: Boşluk veya Tab karakterlerine göre böl
+                const parts = cleanLine.split(/\s+/);
+
+                // Eğer parçalanan satır, soru sayısından büyükse veri var demektir.
+                // İsim soyisim başta olacağı için, notlar SONDAKİ qCount kadar elemandır.
                 if(parts.length > qCount) {
-                    const scores = parts.slice(-qCount); // Son N parça
-                    // Notları topla
+                    // Sondan qCount kadar veriyi al (Notlar)
+                    const scoresRaw = parts.slice(-qCount);
+                    
+                    let validLine = true; 
+                    // Geçici toplamları tut
+                    let tempScores = [];
+
                     for(let i=0; i<qCount; i++) {
-                        let s = parseFloat(scores[i]);
-                        if(!isNaN(s)) {
-                            questions[i].totalScore += s;
-                        }
+                        // Virgülü noktaya çevir (TR Excel fix)
+                        let valStr = scoresRaw[i].replace(',', '.');
+                        let score = parseFloat(valStr);
+                        
+                        // Eğer sayı değilse (örn: "G" girdi vb.) 0 kabul et veya hata vermesini engelle
+                        if(isNaN(score)) score = 0;
+                        
+                        tempScores.push(score);
                     }
-                    studentCount++;
+
+                    // Eğer buraya kadar geldiyse bu satır geçerli bir öğrencidir
+                    if(validLine) {
+                        for(let k=0; k<qCount; k++) {
+                            questions[k].totalScore += tempScores[k];
+                        }
+                        studentCount++;
+                    }
                 }
             });
 
-            if(studentCount === 0) { alert("Veri formatı anlaşılamadı. Lütfen kontrol edip tekrar deneyin."); return; }
+            if(studentCount === 0) { 
+                alert("Veri formatı anlaşılamadı. Lütfen 'İsim Puan Puan...' formatında olduğundan emin olun."); 
+                return; 
+            }
 
-            // Hesaplama ve Tablo
+            // 3. Hesaplama ve Tablo Oluşturma
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = "";
             
@@ -262,9 +272,10 @@ Ayşe Demir  10  10 10  10 ..."></textarea>
 
             questions.forEach(q => {
                 const classAvg = q.totalScore / studentCount;
+                // Eğer max puan girilmemişse (0 ise) bölme hatası olmasın
                 const successRate = q.max > 0 ? (classAvg / q.max) * 100 : 0;
                 
-                // Renk belirleme
+                // Renk Skalası
                 let color = '#ef4444'; // Kırmızı (0-49)
                 if(successRate >= 50) color = '#f59e0b'; // Sarı (50-69)
                 if(successRate >= 70) color = '#22c55e'; // Yeşil (70-100)
@@ -278,7 +289,7 @@ Ayşe Demir  10  10 10  10 ..."></textarea>
                         <td><strong>${q.id}</strong></td>
                         <td>${q.text}</td>
                         <td>${q.max}</td>
-                        <td>${classAvg.toFixed(1)}</td>
+                        <td>${classAvg.toFixed(2)}</td>
                         <td>
                             <div class="progress-bar-bg">
                                 <div class="progress-bar-fill" style="width:${successRate}%; background-color:${color};"></div>
@@ -293,20 +304,20 @@ Ayşe Demir  10  10 10  10 ..."></textarea>
             const title = document.getElementById('examTitle').value;
             if(title) document.getElementById('reportTitle').innerText = title + " - Kazanım Analizi";
 
-            // Grafiği Çiz
+            // 4. Grafiği Çiz
             renderChart(chartLabels, chartData, chartColors, questions);
             
-            // Sonucu Göster
-            document.getElementById('results').style.display = 'block';
-            // Sayfayı aşağı kaydır
-            document.getElementById('results').scrollIntoView({behavior: 'smooth'});
+            // Sonuç Alanını Aç
+            const resultDiv = document.getElementById('results');
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({behavior: 'smooth'});
         }
 
         function renderChart(labels, data, colors, questions) {
             const ctx = document.getElementById('outcomeChart').getContext('2d');
             if(myChart) myChart.destroy();
 
-            // Tooltip için soru metinlerini hazırlayalım
+            // Tooltip verisi
             const tooltips = questions.map(q => q.text);
 
             myChart = new Chart(ctx, {
@@ -317,7 +328,7 @@ Ayşe Demir  10  10 10  10 ..."></textarea>
                         label: 'Başarı Oranı (%)',
                         data: data,
                         backgroundColor: colors,
-                        borderRadius: 5
+                        borderRadius: 6
                     }]
                 },
                 options: {
@@ -327,7 +338,6 @@ Ayşe Demir  10  10 10  10 ..."></textarea>
                         legend: { display: false },
                         tooltip: {
                             callbacks: {
-                                // Tooltip'te soru kazanımını göster
                                 title: function(context) {
                                     const idx = context[0].dataIndex;
                                     return `Soru ${idx+1}: ${tooltips[idx]}`;
