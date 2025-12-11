@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evrak Oluşturucu - Mersin Etkin Zümre</title>
+    
+    <link rel="preload" as="image" href="EZKLogo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- MASTER CSS (AYNI) --- */
+        :root { --meb-red: #E30A17; --corporate-dark: #0F172A; --bg-light: #f8fafc; --text-gray: #333; }
+        html { overflow-y: scroll; } 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-gray); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        .container { width: 94%; max-width: 1400px; margin: 0 auto; }
+
+        /* HEADER */
+        .top-header { background: white; padding: 10px 0; border-bottom: 1px solid #e2e8f0; height: 100px; display: flex; align-items: center; }
+        .top-content { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .brand-area { display: flex; align-items: center; gap: 5px; }
+        .logo-fixed { width: 80px; height: 80px; background-image: url('EZKLogo.png'); background-size: contain; background-repeat: no-repeat; background-position: center left; display: block; }
+        .brand-text h1 { font-size: 1.6rem; font-weight: 900; color: var(--corporate-dark); margin: 0; }
+        .brand-text span { font-size: 0.9rem; color: #64748b; font-weight: 600; }
+        .slogan-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--meb-red); font-weight: 600; }
+
+        .main-nav { background-color: var(--corporate-dark); position: sticky; top: 0; z-index: 1000; border-top: 4px solid var(--meb-red); height: 60px; }
+        .nav-container { width: 94%; max-width: 1400px; margin: 0 auto; display: flex; align-items: center; height: 100%; }
+        .nav-link { color: rgba(255, 255, 255, 0.9); font-weight: 600; font-size: 0.9rem; padding: 0 22px; height: 60px; display: flex; align-items: center; border-right: 1px solid rgba(255,255,255,0.06); }
+        .nav-link:hover, .nav-item:hover .nav-link { background-color: var(--meb-red); color: white; }
+        
+        .nav-item { position: relative; height: 100%; display: flex; align-items: center; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 260px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-top: 3px solid var(--meb-red); z-index: 9999; }
+        .nav-item:hover .dropdown-menu { display: block; }
+        .dropdown-item a { display: block; padding: 12px 20px; color: #333; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; font-weight: 500; }
+        .dropdown-item a:hover { background: #f8fafc; color: var(--meb-red); padding-left: 25px; }
+
+        /* DASHBOARD */
+        .dashboard-header { text-align: center; padding: 60px 0 40px 0; }
+        .dashboard-header h2 { font-size: 2.5rem; color: #0F172A; margin-bottom: 10px; font-weight: 800; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding-bottom: 80px; }
+        .tool-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px 30px; text-align: center; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; height: 100%; }
+        .tool-card:hover { transform: translateY(-8px); border-color: var(--meb-red); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .icon-bg { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; font-size: 2rem; background-color: #f3f4f6; color: #4b5563; }
+        .btn-tool { background: var(--corporate-dark); color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; margin-top: auto; display: inline-block; transition:0.3s; }
+        .tool-card:hover .btn-tool { background: var(--meb-red); }
+
+        /* İKON RENKLERİ */
+        .bg-zumre { background:#fee2e2; color:#E30A17; }
+        .bg-plan { background:#dbeafe; color:#1e40af; }
+        .bg-analiz { background:#dcfce7; color:#16a34a; } /* Yeşil */
+        .bg-kazanim { background:#fff7ed; color:#ea580c; } /* Turuncu */
+    </style>
+</head>
+<body>
+
+    <div class="top-header">
+        <div class="container top-content">
+            <div class="brand-area">
+                <a href="index.html" class="logo-fixed"></a>
+                <div class="brand-text">
+                    <h1>MERSİN ETKİN ZÜMRE</h1>
+                    <span>Eğitimde Birlik ve İlerleme Platformu</span>
+                </div>
+            </div>
+            <div class="slogan-area"><span class="slogan-text">"Köklerden Geleceğe..."</span></div>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul style="display:flex; height:100%;">
+                <li class="nav-item"><a href="index.html" class="nav-link">ANASAYFA</a></li>
+                <li class="nav-item"><a href="arsiv.html" class="nav-link">ZÜMRE ARŞİVİ</a></li>
+                <li class="nav-item"><a href="yonetmelik.html" class="nav-link">YÖNETMELİK</a></li>
+                <li class="nav-item">
+                    <a href="tutanak.html" class="nav-link" style="background-color:#E30A17;">EVRAK OLUŞTUR <i class="fas fa-chevron-down" style="margin-left:5px; font-size:0.8rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="doc-zumre.html">Zümre Tutanağı</a></li>
+                        <li class="dropdown-item"><a href="doc-plan.html">Yıllık Plan</a></li>
+                        <li class="dropdown-item"><a href="doc-sinav.html">Yazılı Sınav</a></li>
+                        <li class="dropdown-item"><a href="doc-olcme.html">Ölçme Değerlendirme</a></li>
+                        <li class="dropdown-item"><a href="doc-kulup.html">Kulüp Evrakları</a></li>
+                        <li class="dropdown-item"><a href="doc-sinif.html">Sınıf Rehberlik</a></li>
+                        <li class="dropdown-item"><a href="doc-analiz.html">Sınav Analizi (Genel)</a></li>
+                        <li class="dropdown-item"><a href="doc-kazanim.html" style="font-weight:700; color:#E30A17;">Kazanım Analizi (Yeni)</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="maarif.html" class="nav-link">MAARİFİ ANLAMAK</a></li>
+                <li class="nav-item"><a href="ilceler.html" class="nav-link">İLÇE ZİYARETLERİ</a></li>
+                <li class="nav-item"><a href="ornekler.html" class="nav-link">İYİ ÖRNEKLER</a></li>
+                <li class="nav-item"><a href="forum.html" class="nav-link">FORUM</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h2>Dijital Evrak Asistanı</h2>
+            <p>Eğitim süreçlerinizde ihtiyacınız olan tüm belgeleri ve analizleri tek tıkla oluşturun.</p>
+        </div>
+
+        <div class="tools-grid">
+            
+            <div class="tool-card">
+                <div class="icon-bg bg-zumre"><i class="fas fa-users"></i></div>
+                <h3>Zümre Tutanağı</h3>
+                <p>Hazır gündem maddeleriyle toplantı tutanağı oluşturun.</p>
+                <a href="doc-zumre.html" class="btn-tool">Oluştur</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-plan"><i class="fas fa-calendar-alt"></i></div>
+                <h3>Yıllık Plan</h3>
+                <p>Maarif Modeli ve Okul Temelli Planlamaya uygun şablon.</p>
+                <a href="doc-plan.html" class="btn-tool">Oluştur</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-analiz"><i class="fas fa-chart-line"></i></div>
+                <h3>Sınav Analizi (Genel)</h3>
+                <p>Notları yapıştırın, sınıfın çan eğrisini ve başarı grafiğini görün.</p>
+                <a href="doc-analiz.html" class="btn-tool">Analiz Et</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg bg-kazanim"><i class="fas fa-bullseye"></i></div>
+                <h3>Kazanım Bazlı Analiz</h3>
+                <p>Hangi konunun ne kadar öğrenildiğini soru bazlı analiz edin.</p>
+                <a href="doc-kazanim.html" class="btn-tool">Analiz Et</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg"><i class="fas fa-file-alt"></i></div>
+                <h3>Yazılı Sınav Kağıdı</h3>
+                <p>Klasik veya test sınav kağıdı şablonu hazırlayın.</p>
+                <a href="doc-sinav.html" class="btn-tool">Oluştur</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="icon-bg"><i class="fas fa-hands-helping"></i></div>
+                <h3>Kulüp Evrakları</h3>
+                <p>Sosyal kulüp planı ve karar defteri tutanakları.</p>
+                <a href="doc-kulup.html" class="btn-tool">Oluştur</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
